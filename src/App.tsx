@@ -6,25 +6,14 @@ import Companies from 'components/pages/Companies';
 import Pois from 'components/pages/Pois';
 
 import './App.css';
+import AppMenu from 'components/organisms/AppMenu';
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
         <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/companies">companies</Link>
-              </li>
-              <li>
-                <Link to="/pois">pois</Link>
-              </li>
-            </ul>
-          </nav>
+          <AppMenu />
           <Switch>
             <Route exact path="/">
               <Dashboard />
