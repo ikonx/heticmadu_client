@@ -7,12 +7,14 @@ import Pois from 'components/pages/Pois';
 
 import './App.css';
 import AppMenu from 'components/organisms/AppMenu';
+import Header from 'components/molecules/Header';
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
         <div>
+          <Header />
           <AppMenu />
           <Switch>
             <Route exact path="/">
