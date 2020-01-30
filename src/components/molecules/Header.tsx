@@ -7,26 +7,27 @@ import Searchbar from 'components/atoms/Searchbar';
 
 interface Props {}
 
+const StyledAppBar = styled(AppBar)`
+&& {
+    background-color: white;
+    color: #333333;
+    box-shadow: none;
+    border-bottom: 1px solid #BDBDBD;
+}
+`;
+
+const StyledBlock = styled.div`
+display: inherit;
+align-items: center;
+`;
+
+const StyledToolbar = styled(Toolbar)`
+&& {
+    justify-content: space-between;
+}
+`;
+
 const Header: React.FC<Props> = () => {
-    const StyledAppBar = styled(AppBar)`
-    && {
-        background-color: white;
-        color: #333333;
-        box-shadow: none;
-        border-bottom: 1px solid #BDBDBD;
-    }
-    `;
-
-    const StyledBlock = styled.div`
-    display: inherit;
-    align-items: center;
-    `;
-
-    const StyledToolbar = styled(Toolbar)`
-    && {
-        justify-content: space-between;
-    }
-    `;
 
     return (
         <StyledAppBar position="static">
