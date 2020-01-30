@@ -10,27 +10,46 @@ interface Props {}
 const Header: React.FC<Props> = () => {
     const StyledAppBar = styled(AppBar)`
     && {
-        display: flex;
-        color: red;
+        background-color: white;
+        color: #333333;
+        box-shadow: none;
+        border-bottom: 1px solid #BDBDBD;
+    }
+    `;
+
+    const StyledBlock = styled.div`
+    && {
+        display: inherit;
+        align-items: center;
+    }
+    `;
+
+    const StyledToolbar = styled(Toolbar)`
+    && {
+        justify-content: space-between;
     }
     `;
 
     return (
         <StyledAppBar position="static">
-            <Toolbar>
-                <IconButton edge="start" color="inherit" aria-label="home">
-                    <AccountBalanceIcon />
-                </IconButton>
-                <Typography variant="h4" align="center">
-                    Entreprise
-                </Typography>
-                <IconButton edge="start" color="inherit" aria-label="search">
-                    <SearchIcon />
-                </IconButton>
-                <IconButton edge="start" color="inherit" aria-label="add">
-                    <AddIcon />
-                </IconButton>
-            </Toolbar>
+            <StyledToolbar>
+                <StyledBlock>
+                    <IconButton edge="start" color="inherit" aria-label="home">
+                        <AccountBalanceIcon />
+                    </IconButton>
+                    <Typography variant="h5" align="center">
+                        Entreprise
+                    </Typography>
+                </StyledBlock>
+                <StyledBlock>
+                    <IconButton edge="start" color="inherit" aria-label="search">
+                        <SearchIcon fontSize="large" />
+                    </IconButton>
+                    <IconButton edge="start" color="inherit" aria-label="add">
+                        <AddIcon fontSize="large" />
+                    </IconButton>
+                </StyledBlock>
+            </StyledToolbar>
         </StyledAppBar>
     )
 }

@@ -7,6 +7,7 @@ import { Switch, Route } from 'react-router-dom';
 import Dashboard from 'components/pages/Dashboard';
 import Companies from 'components/pages/Companies';
 import Pois from 'components/pages/Pois';
+import Header from 'components/molecules/Header';
 
 const StyledContainer = styled(Grid)`
   display: grid;
@@ -22,7 +23,7 @@ const MainUi: React.FC<Props> = () => {
       <AppMenu />
       <Grid flow={FlowEnum.ROW}>
         <>
-          <h1>app bar</h1>
+          <Header />
           <Switch>
             <Route exact path="/">
               <Dashboard />
