@@ -1,7 +1,9 @@
 import React from 'react'
-import {AppBar, IconButton, Toolbar, Typography, InputBase } from '@material-ui/core';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import AddIcon from '@material-ui/icons/Add';
+import {AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
+import {
+    AccountBalance,
+    Add
+} from '@material-ui/icons';
 import styled from 'styled-components';
 import Searchbar from 'components/atoms/Searchbar';
 
@@ -34,7 +36,7 @@ const Header: React.FC<Props> = () => {
             <StyledToolbar>
                 <StyledBlock>
                     <IconButton edge="start" color="inherit" aria-label="home">
-                        <AccountBalanceIcon />
+                        <AccountBalance />
                     </IconButton>
                     <Typography variant="h5" align="center">
                         Entreprise
@@ -43,7 +45,7 @@ const Header: React.FC<Props> = () => {
                 <StyledBlock>
                     <Searchbar />
                     <IconButton edge="start" color="inherit" aria-label="add">
-                        <AddIcon fontSize="large" />
+                        <Add fontSize="large" />
                     </IconButton>
                 </StyledBlock>
             </StyledToolbar>
