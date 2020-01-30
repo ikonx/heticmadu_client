@@ -47,8 +47,9 @@ const Pois: React.FC<Props> = () => {
       <Map
         style="mapbox://styles/mapbox/streets-v9"
         containerStyle={{
-          height: '100vh',
-          width: '100vw',
+          height: '100%',
+          width: '100%',
+          maxWidth: 'calc(100vw - 280px)',
         }}
         movingMethod="flyTo"
         ref={mapRef}
