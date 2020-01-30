@@ -1,9 +1,9 @@
 import React from 'react'
-import {AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
+import {AppBar, IconButton, Toolbar, Typography, InputBase } from '@material-ui/core';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
 import styled from 'styled-components';
+import Searchbar from 'components/atoms/Searchbar';
 
 interface Props {}
 
@@ -40,9 +40,7 @@ const Header: React.FC<Props> = () => {
                     </Typography>
                 </StyledBlock>
                 <StyledBlock>
-                    <IconButton edge="start" color="inherit" aria-label="search">
-                        <SearchIcon fontSize="large" />
-                    </IconButton>
+                    <Searchbar />
                     <IconButton edge="start" color="inherit" aria-label="add">
                         <AddIcon fontSize="large" />
                     </IconButton>
