@@ -1,8 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
 
-.mapboxgl-canvas{
+.mapboxgl-canvas {
   position: relative !important;
 }
 
