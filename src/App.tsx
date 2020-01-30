@@ -1,16 +1,43 @@
 import React from 'react';
-import mapboxgl from 'mapbox-gl';
-import Button from '@material-ui/core/Button';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-mapboxgl.accessToken = process.env.REACT_APP_MABOXGL_KEY || '';
+import Dashboard from 'components/pages/Dashboard';
+import Companies from 'components/pages/Companies';
+import Pois from 'components/pages/Pois';
+
+import './App.css';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Button variant="contained" color="primary">
-        Hello World
-      </Button>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/companies">companies</Link>
+              </li>
+              <li>
+                <Link to="/pois">pois</Link>
+              </li>
+            </ul>
+          </nav>
+          <Switch>
+            <Route exact path="/">
+              <Dashboard />
+            </Route>
+            <Route path="/companies">
+              <Companies />
+            </Route>
+            <Route path="/pois">
+              <Pois />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 };
