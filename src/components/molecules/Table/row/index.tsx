@@ -1,6 +1,6 @@
 import React from 'react';
 import ellipse from "../../../../assets/img/ellipse.png";
-import PopperMore from "../../../atoms/popper/popperMore";
+import PopperMore from "../../../atoms/Popper/popperMore";
 import { Cell, CellActive, TableBackground } from "./_style";
 
 
