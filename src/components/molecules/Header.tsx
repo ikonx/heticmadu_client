@@ -18,10 +18,8 @@ const Header: React.FC<Props> = () => {
     `;
 
     const StyledBlock = styled.div`
-    && {
-        display: inherit;
-        align-items: center;
-    }
+    display: inherit;
+    align-items: center;
     `;
 
     const StyledToolbar = styled(Toolbar)`
