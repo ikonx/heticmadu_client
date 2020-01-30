@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import AppMenu from 'components/organisms/AppMenu';
 import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
+import Header from 'components/molecules/Header';
 
 const StyledContainer = styled(Grid)`
   display: grid;
@@ -20,7 +21,7 @@ const MainUi: React.FC<Props> = ({ render }) => {
       <AppMenu />
       <Grid flow={FlowEnum.ROW}>
         <>
-          <h1>app bar</h1>
+          <Header />
           {render}
         </>
       </Grid>
