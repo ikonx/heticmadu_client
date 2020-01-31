@@ -7,3 +7,4 @@ RUN npm run build
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 COPY --from=build ./build/* ./
+COPY --from=build ./build/static/ ./static
