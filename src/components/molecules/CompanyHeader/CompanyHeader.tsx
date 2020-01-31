@@ -1,5 +1,5 @@
 import React from 'react';
-import BtnFilter from "../../atoms/Buttons/filter/btnFilter";
+import BtnFilter from "../../atoms/Buttons/Filter/BtnFilter";
 import TextGrey from "../../atoms/Text/TextGrey";
 import { CompanyHeaderContainer } from "./_style";
 
