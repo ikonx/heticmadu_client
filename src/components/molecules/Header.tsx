@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import AddIcon from '@material-ui/icons/Add';
 import styled from 'styled-components';
 import Searchbar from 'components/atoms/Searchbar';
-import Arrow from 'components/atoms/Arrow';
 interface Props {}
 
 const StyledAppBar = styled(AppBar)`
@@ -33,7 +32,6 @@ const StyledIconLogo = styled(AccountBalanceIcon)`
         margin-right: 24px;
     }
 `;
-
 
 const Header: React.FC<Props> = () => {
 
