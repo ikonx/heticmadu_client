@@ -20,4 +20,4 @@ sudo docker system prune -f -a
 sudo docker-compose -f ./docker-compose.client.yml up -d
 
 # clean directory
-rm dump.sql
+rm ./docker-compose.client.yml
