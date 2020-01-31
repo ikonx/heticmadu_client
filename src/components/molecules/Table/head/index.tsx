@@ -3,9 +3,7 @@ import { TableHeadCell } from "./_style";
 import TextHead from "../../../atoms/Text/table/textHead";
 import { TableHead, TableRow } from "@material-ui/core";
 
-interface Props {
-
-}
+interface Props {}
 
 export const index: React.FC<Props> = () => {
   return (

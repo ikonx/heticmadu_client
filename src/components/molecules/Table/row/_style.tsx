@@ -21,7 +21,7 @@ export const TableBackground = styled(TableRow)`
 export const Cell = styled(TableCell)`
     background: #F2F2F2;
     box-shadow: 4px 4px 4px rgba(151, 151, 151, 0.25);
-    border: none;
+    border: none !important;
     padding-top: 0;
     padding-bottom: 0;
 `;

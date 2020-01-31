@@ -1,19 +1,16 @@
 import React from 'react';
-import ellipse from "../../../../assets/img/ellipse.png";
+import startUpLogo from "../../../../assets/img/startUp-logo.png";
 import PopperMore from "../../../atoms/Popper/popperMore";
 import { Cell, CellActive, TableBackground } from "./_style";
 
 
-interface Props {
-
-}
+interface Props {}
 
 export const index: React.FC<Props> = () => {
-
   return (
         <TableBackground>
             <Cell scope="row">
-                <img src={ellipse} alt=""/>
+                <img src={startUpLogo} alt=""/>
             </Cell>
             <Cell>Turningpoint</Cell>
             <Cell>Start-up</Cell>
