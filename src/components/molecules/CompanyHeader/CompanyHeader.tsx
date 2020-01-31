@@ -1,13 +1,14 @@
 import React from 'react';
 import BtnFilter from "../../atoms/Buttons/filter/btnFilter";
-import { CompanyHeaderContainer, CompanyTotal } from "./_style";
+import TextGrey from "../../atoms/Text/TextGrey";
+import { CompanyHeaderContainer } from "./_style";
 
 interface Props {}
 
 const CompanyHeader: React.FC<Props> = () => {
   return (
     <CompanyHeaderContainer>
-      <CompanyTotal>Total 29010</CompanyTotal>
+      <TextGrey>Total 29010</TextGrey>
       <BtnFilter />
     </CompanyHeaderContainer>
   );

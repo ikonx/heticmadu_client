@@ -6,6 +6,7 @@ export const TableBackground = styled(TableRow)`
     font-size: 1rem;
     height: 64px;
     border-collapse: separate;
+    cursor: pointer;
     td {
       &:first-child {
         border-top-left-radius: .5rem;
@@ -31,4 +32,20 @@ export const CellActive = styled(Typography)`
     border-radius: 4px;
     padding: .5rem;
     display: inline-block;
+`;
+
+export const GreenScore = styled.div`
+    background: #6FCF97;
+    color: #FFFFFF;
+    border: 1px solid #27AE60;
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    font-weight: 600;
+    font-size: 14px;
+    svg {
+      margin-right: 10px;
+    }
 `;

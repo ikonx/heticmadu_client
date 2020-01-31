@@ -30,11 +30,11 @@ const Companies: React.FC<Props> = () => {
                 <TableHead />
                 <TableBody>
                     {/* TODO: @DEV Loop over */}
-                    <TableItem />
+                    <TableItem params={{ withLogo: true, withGreenScore: false }}/>
                     <TableSpace />
-                    <TableItem />
+                    <TableItem params={{ withLogo: true, withGreenScore: false }}/>
                     <TableSpace />
-                    <TableItem />
+                    <TableItem params={{ withLogo: true, withGreenScore: false }}/>
                 </TableBody>
             </CompanyTable>
         </CompanyContainer>

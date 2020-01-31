@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { Button, MenuList } from "@material-ui/core";
+import { Button, MenuList, Popper } from "@material-ui/core";
+
+
+export const PopperStyle = styled(Popper)`
+  z-index: 1;
+`;
 
 export const PopperList = styled(MenuList)`
   padding: 0;

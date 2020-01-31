@@ -3,7 +3,6 @@ import {
   ClickAwayListener,
   Grow,
   Paper,
-  Popper,
   MenuItem
 } from '@material-ui/core';
 import {
@@ -11,7 +10,7 @@ import {
   Edit,
   Delete
 } from "@material-ui/icons";
-import { PopperButton, PopperList } from "./_style";
+import { PopperButton, PopperList, PopperStyle } from "./_style";
 
 const PopperMore = () => {
   const [open, setOpen] = React.useState(false);
@@ -44,11 +43,11 @@ const PopperMore = () => {
         >
           <MoreHoriz />
         </PopperButton>
-        <Popper open={open} anchorEl={anchorRef.current} placement='bottom-end' transition disablePortal>
+        <PopperStyle open={open} anchorEl={anchorRef.current} placement='bottom-end' transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+              style={{ transformOrigin: 'right top' }}
             >
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
@@ -66,7 +65,7 @@ const PopperMore = () => {
               </Paper>
             </Grow>
           )}
-        </Popper>
+        </PopperStyle>
       </div>
   );
 }

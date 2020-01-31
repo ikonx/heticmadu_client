@@ -1,17 +1,29 @@
 import React from 'react';
 import startUpLogo from "../../../../assets/img/startUp-logo.png";
 import PopperMore from "../../../atoms/Popper/popperMore";
-import { Cell, CellActive, TableBackground } from "./_style";
+import { Cell, CellActive, TableBackground, GreenScore } from "./_style";
+import {
+  Eco
+} from '@material-ui/icons'
 
 
-interface Props {}
+interface Props {
+  params: {
+    withLogo: boolean,
+    withGreenScore: boolean
+  }
+}
 
-export const index: React.FC<Props> = () => {
+export const index: React.FC<Props> = ({ params }) => {
+  const { withLogo, withGreenScore } = params;
+
   return (
         <TableBackground>
-            <Cell scope="row">
-                <img src={startUpLogo} alt=""/>
-            </Cell>
+            { withLogo && (
+              <Cell scope="row">
+                  <img src={startUpLogo} alt=""/>
+              </Cell>
+            )}
             <Cell>Turningpoint</Cell>
             <Cell>Start-up</Cell>
             <Cell>@Turningpoint.net</Cell>
@@ -20,6 +32,14 @@ export const index: React.FC<Props> = () => {
             <Cell>
                 <CellActive>Active</CellActive>
             </Cell>
+            { withGreenScore && (
+              <Cell>
+                <GreenScore>
+                  <Eco />
+                  8,7
+                </GreenScore>
+              </Cell>
+            )}
             <Cell>
                <PopperMore/>
             </Cell>
