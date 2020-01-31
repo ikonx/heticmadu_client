@@ -5,7 +5,7 @@ import { Button } from '@material-ui/core';
 interface Props {}
 
 const Map = ReactMapboxGl({
-  accessToken: process.env.REACT_APP_MABOXGL_KEY || '',
+  accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
 });
 
 const Pois: React.FC<Props> = () => {
