@@ -26,7 +26,6 @@ const Companies: React.FC<Props> = () => {
     return (
         <CompanyContainer>
             <CompanyHeader/>
-            {/*companies*/}
             <CompanyTable>
                 <TableHead />
                 <TableBody>
