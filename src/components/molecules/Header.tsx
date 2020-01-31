@@ -6,28 +6,36 @@ import {
 } from '@material-ui/icons';
 import styled from 'styled-components';
 import Searchbar from 'components/atoms/Searchbar';
-
+import Arrow from 'components/atoms/Arrow';
 interface Props {}
 
 const StyledAppBar = styled(AppBar)`
-&& {
-    background-color: white;
-    color: #333333;
-    box-shadow: none;
-    border-bottom: 1px solid #BDBDBD;
-}
+    && {
+        background-color: white;
+        color: #333333;
+        box-shadow: none;
+        border-bottom: 1px solid #BDBDBD;
+        height: min-content;
+    }
 `;
 
 const StyledBlock = styled.div`
-display: inherit;
-align-items: center;
+    display: inherit;
+    align-items: center;
 `;
 
 const StyledToolbar = styled(Toolbar)`
-&& {
-    justify-content: space-between;
-}
+    && {
+        justify-content: space-between;
+    }
 `;
+
+const StyledIconLogo = styled(AccountBalanceIcon)`
+    && {
+        margin-right: 24px;
+    }
+`;
+
 
 const Header: React.FC<Props> = () => {
 
@@ -35,6 +43,7 @@ const Header: React.FC<Props> = () => {
         <StyledAppBar position="static">
             <StyledToolbar>
                 <StyledBlock>
+                    <StyledIconLogo />
                     <IconButton edge="start" color="inherit" aria-label="home">
                         <AccountBalance />
                     </IconButton>

@@ -12,10 +12,16 @@ const AppMenu: React.FC<Props> = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/companies">companies</Link>
+            <Link to="/companies">Entreprises</Link>
           </li>
           <li>
-            <Link to="/pois">pois</Link>
+            <Link to="/pois">POIs</Link>
+          </li>
+          <li>
+            <Link to="/tags">Tags</Link>
+          </li>
+          <li>
+            <Link to="/form">Formulaire</Link>
           </li>
         </ul>
       </nav>
