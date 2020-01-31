@@ -4,12 +4,12 @@ interface Props {
     
 }
 
-const Companies: React.FC<Props> = () => {
+const Tags: React.FC<Props> = () => {
     return (
         <div>
-            Entreprises
+            Tout les tags sont ici
         </div>
     )
 }
 
-export default Companies
+export default Tags

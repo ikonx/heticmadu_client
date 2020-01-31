@@ -7,6 +7,8 @@ import { Switch, Route } from 'react-router-dom';
 import Dashboard from 'components/pages/Dashboard';
 import Companies from 'components/pages/Companies';
 import Pois from 'components/pages/Pois';
+import Form from 'components/pages/Form';
+import Tags from 'components/pages/Tags';
 import Header from 'components/molecules/Header';
 
 const StyledContainer = styled(Grid)`
@@ -33,6 +35,12 @@ const MainUi: React.FC<Props> = () => {
             </Route>
             <Route path="/pois">
               <Pois />
+            </Route>
+            <Route path="/tags">
+              <Tags />
+            </Route>
+            <Route path="/form">
+              <Form />
             </Route>
           </Switch>
         </>
