@@ -1,12 +1,8 @@
 import React from 'react'
 import {AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
-import {
-    AccountBalance,
-    Add
-} from '@material-ui/icons';
+import { Add, AccountBalance } from '@material-ui/icons';
 import styled from 'styled-components';
 import Searchbar from 'components/atoms/Searchbar';
-import Arrow from 'components/atoms/Arrow';
 interface Props {}
 
 const StyledAppBar = styled(AppBar)`
@@ -30,12 +26,11 @@ const StyledToolbar = styled(Toolbar)`
     }
 `;
 
-const StyledIconLogo = styled(AccountBalanceIcon)`
+const StyledIconLogo = styled.div`
     && {
         margin-right: 24px;
     }
 `;
-
 
 const Header: React.FC<Props> = () => {
 
@@ -43,10 +38,9 @@ const Header: React.FC<Props> = () => {
         <StyledAppBar position="static">
             <StyledToolbar>
                 <StyledBlock>
-                    <StyledIconLogo />
-                    <IconButton edge="start" color="inherit" aria-label="home">
+                    <StyledIconLogo>
                         <AccountBalance />
-                    </IconButton>
+                    </StyledIconLogo>
                     <Typography variant="h5" align="center">
                         Entreprise
                     </Typography>
