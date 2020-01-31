@@ -1,21 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Typography } from '@material-ui/core';
 
-const StyledLogoText = styled.div`
-  font-family: Source Sans Pro;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 32px;
-  line-height: 40px;
+const StyledLogoBlock = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const StyledTitle = styled(Typography)`
+  && {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    margin-left: 16px;
+  }
 `;
 
 interface Props {}
 
 const Logo: React.FC<Props> = () => {
   return (
-    <div>
+    <StyledLogoBlock>
       <svg
         width="32"
         height="32"
@@ -25,8 +30,8 @@ const Logo: React.FC<Props> = () => {
       >
         <rect width="32" height="32" fill="#333333" />
       </svg>
-      <StyledLogoText>Madu</StyledLogoText>
-    </div>
+      <StyledTitle variant="h1" align="center" >Madu</StyledTitle>
+    </StyledLogoBlock>
   );
 };
 
