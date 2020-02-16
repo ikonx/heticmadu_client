@@ -8,6 +8,7 @@ const StyledAdminBlock = styled.div `
     display:flex;
     flex-direction: row;
     align-items: center;
+    margin-right: 47px;
 `;
 
 const StyledNameBlock = styled.div `
@@ -20,7 +21,7 @@ const StyledNameBlock = styled.div `
 
 const StyledAvatar = styled(Avatar) `
     && {
-        margin-right: 16px;
+        margin-right: 21px;
     }
 `;
 

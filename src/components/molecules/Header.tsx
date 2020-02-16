@@ -1,16 +1,18 @@
 import React from 'react'
-import {AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
-import { Add, AccountBalance } from '@material-ui/icons';
+import {AppBar, InputBase, Toolbar, Typography} from '@material-ui/core';
 import styled from 'styled-components';
 import Searchbar from 'components/atoms/Searchbar';
+import AdminBlock from "./AdminBlock";
+import MenuContainer from "../organisms/MenuContainer";
+
 interface Props {}
 
 const StyledAppBar = styled(AppBar)`
+    width: 100%;
     && {
         background-color: white;
         color: #333333;
         box-shadow: none;
-        border-bottom: 1px solid #BDBDBD;
         height: min-content;
     }
 `;
@@ -21,6 +23,7 @@ const StyledBlock = styled.div`
 `;
 
 const StyledToolbar = styled(Toolbar)`
+    padding: 0 2rem !important;
     && {
         justify-content: space-between;
     }
@@ -32,24 +35,40 @@ const StyledIconLogo = styled.div`
     }
 `;
 
+const HeaderLogo = styled(Typography)`
+    font-size: 24px;
+    font-weight: 800;
+    font-family: 'Montserrat-ExtraBold', sans-serif !important;
+`;
+
+const HeaderSearch = styled(StyledBlock)`
+    margin-left: 6rem;
+    svg {
+      font-size: 20px;
+      color: #A4A6B3;
+    }
+`;
+
 const Header: React.FC<Props> = () => {
 
     return (
         <StyledAppBar position="static">
             <StyledToolbar>
                 <StyledBlock>
-                    <StyledIconLogo>
-                        <AccountBalance />
-                    </StyledIconLogo>
-                    <Typography variant="h5" align="center">
-                        Entreprise
-                    </Typography>
+                    <HeaderLogo variant="h5" align="center">
+                        Madu
+                    </HeaderLogo>
+                    <HeaderSearch>
+                        <Searchbar />
+                        <InputBase
+                          placeholder="Search"
+                          inputProps={{ 'aria-label': 'search' }}
+                        />
+                    </HeaderSearch>
                 </StyledBlock>
                 <StyledBlock>
-                    <Searchbar />
-                    <IconButton edge="start" color="inherit" aria-label="add">
-                        <Add fontSize="large" />
-                    </IconButton>
+                    <MenuContainer />
+                    <AdminBlock />
                 </StyledBlock>
             </StyledToolbar>
         </StyledAppBar>

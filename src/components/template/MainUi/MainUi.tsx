@@ -12,9 +12,9 @@ import Tags from 'components/pages/Tags';
 import Header from 'components/molecules/Header';
 
 const StyledContainer = styled(Grid)`
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 280px 1fr auto;
+  //display: grid;
+  //grid-auto-flow: column;
+  //grid-template-columns: 280px 1fr auto;
 `;
 
 interface Props {}
@@ -22,7 +22,7 @@ interface Props {}
 const MainUi: React.FC<Props> = () => {
   return (
     <StyledContainer>
-      <AppMenu />
+      {/*<AppMenu />*/}
       <Grid flow={FlowEnum.ROW}>
         <>
           <Header />
