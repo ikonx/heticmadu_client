@@ -16,7 +16,7 @@ import { CreatePointsOfInterestDTO } from 'utils/dto/pointsOfInterest.dto';
 interface Props {}
 
 const Map = ReactMapboxGl({
-  accessToken: process.env.REACT_APP_MABOXGL_KEY || '',
+  accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
 });
 
 const Pois: React.FC<Props> = () => {
