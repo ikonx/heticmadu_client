@@ -1,7 +1,7 @@
 import React from 'react';
-import { TableHeadCell } from "./_style";
-import TextHead from "../../../atoms/Text/Table/TextHead";
 import { TableHead, TableRow } from "@material-ui/core";
+import { TableHeadCell } from "./_style";
+import TextHead from 'components/atoms/Text/Table/TextHead';
 
 interface Props {}
 

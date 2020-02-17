@@ -1,7 +1,7 @@
 import React from 'react';
-import BtnFilter from "../../atoms/Buttons/Filter/BtnFilter";
 import TextGrey from "../../atoms/Text/TextGrey";
 import { CompanyHeaderContainer } from "./_style";
+import BtnFilter from 'components/atoms/Buttons/Filter/BtnFilter';
 
 interface Props {}
 
