@@ -8,7 +8,7 @@ interface Props {}
 const StyledContainer = styled.div`
     display: flex;
     justify-content: space-between;
-`;  
+`;
 
 const AdminBlock: React.FC<Props> = () => {
     return (
