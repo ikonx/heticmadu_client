@@ -9,15 +9,15 @@ interface Props {
     link: string;
 }
 
-const StyledTypoTitle = styled(Typography)<{ linkactive: boolean }>`
+const StyledTypoTitle = styled(Typography)<{ linkactive: number }>`
     && {
         font-size: 1rem;
-        color: ${props => props.linkActive ? '#000000' : '#A4A6B3' };
-        font-family: ${props => props.linkActive ? 'Montserrat-Bold': 'Montserrat-Regular'}, sans-serif;
+        color: ${props => props.linkactive ? '#000000' : '#A4A6B3' };
+        font-family: ${props => props.linkactive ? 'Montserrat-Bold': 'Montserrat-Regular'}, sans-serif;
     }
 `;
 
-const StyledLink = styled(Link)<{ linkactive: boolean }>`
+const StyledLink = styled(Link)<{ linkactive: number }>`
     && {
         text-decoration: none;
         padding: 9px 12px;
@@ -27,7 +27,7 @@ const StyledLink = styled(Link)<{ linkactive: boolean }>`
             content: '';
             width: 20%;
             height: 4px;
-            background: ${props => (props.linkActive ? '#2C7BE5' : 'unset' )};
+            background: ${props => (props.linkactive ? '#2C7BE5' : 'unset' )};
             position: absolute;
             bottom: 2px;
         }
@@ -57,8 +57,8 @@ const MenuListItem: React.FC<Props> = ({link, title }) => {
 
     return (
         <StyledMenuItem>
-            <StyledLink to={link} linkactive={isActive}>
-                <StyledTypoTitle variant="h4" linkactive={isActive}>{title}</StyledTypoTitle>
+            <StyledLink to={link} linkactive={isActive ? 1 : 0}>
+                <StyledTypoTitle variant="h4" linkactive={isActive ? 1 : 0}>{title}</StyledTypoTitle>
             </StyledLink>
         </StyledMenuItem>
     )

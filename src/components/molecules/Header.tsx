@@ -25,6 +25,7 @@ const StyledBlock = styled.div`
 const StyledToolbar = styled(Toolbar)`
     padding: 0 2rem !important;
     && {
+        min-height: 72px;
         justify-content: space-between;
     }
 `;

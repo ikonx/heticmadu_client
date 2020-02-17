@@ -1,7 +1,6 @@
 import React from 'react'
 import { MenuList } from '@material-ui/core';
 import MenuListItem from 'components/molecules/MenuListItem';
-import { AccountBalance, ShoppingBasket } from '@material-ui/icons';
 import styled from "styled-components";
 
 interface Props {}

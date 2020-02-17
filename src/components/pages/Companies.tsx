@@ -6,6 +6,9 @@ import { Grid, Table, TableBody, TableRow } from "@material-ui/core";
 import PageHeader from "../molecules/PageHeader/PageHeader";
 import ReactMapboxGl from 'react-mapbox-gl';
 
+const Map = ReactMapboxGl({
+  accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
+});
 
 const CompanyContainer = styled.section`
   width: 100%;
@@ -25,10 +28,6 @@ const CompanyTable = styled(Table)`
   margin-top: 24px;
 `;
 
-const Map = ReactMapboxGl({
-  accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
-});
-
 const LeftColumn = styled(Grid)`
   && {
     padding: 2rem 2rem 0;
@@ -42,7 +41,7 @@ const Companies: React.FC<Props> = () => {
         <CompanyContainer>
             <Grid container>
                 <LeftColumn item xs={7}>
-                    <PageHeader/>
+                    <PageHeader title="Enprepise" text="Créer une entreprise" subtitle="LIST" link="/"/>
                     <CompanyTable>
                         <TableHead />
                         <TableBody>
