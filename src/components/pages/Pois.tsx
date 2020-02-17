@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React from 'react';
 import styled from "styled-components";
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Grid } from "@material-ui/core";
@@ -116,7 +116,7 @@ const Pois: React.FC<Props> = () => {
               <PageHeader title="POI" text="Créer une POI" subtitle="CARD" link="/"/>
               <ContainerList>
                 {
-                  dataArray.map((item:CardItemProps) => <CardItem {...item} />)
+                  dataArray.map((item:CardItemProps, i) => <CardItem {...item} key={i}/>)
                 }
               </ContainerList>
             </LeftColumn>

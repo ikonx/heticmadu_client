@@ -54,7 +54,7 @@ const MenuListItem: React.FC<Props> = ({link, title }) => {
 
     useEffect(() => {
         setActive(location.pathname === link);
-    }, [location]);
+    }, [location, link]);
 
     return (
         <StyledMenuItem>

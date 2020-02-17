@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { Typography } from "@material-ui/core";
 import styled from "styled-components";
 import EcoIcon from '@material-ui/icons/Eco';
@@ -19,8 +19,7 @@ const TitlePOI = styled.h3 `
     font-weight: 600;
     font-size: 15px;
     color: #1A1626;
-    margin: 0;
-    margin-top: 12px;
+    margin: 12px 0 0;
 `;
 
 const Text = styled(Typography)`

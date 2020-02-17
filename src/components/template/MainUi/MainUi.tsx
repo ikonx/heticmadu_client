@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import AppMenu from 'components/organisms/AppMenu';
 import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
 import { Switch, Route } from 'react-router-dom';
 import Dashboard from 'components/pages/Dashboard';
@@ -11,11 +10,7 @@ import Form from 'components/pages/Form';
 import Tags from 'components/pages/Tags';
 import Header from 'components/molecules/Header';
 
-const StyledContainer = styled(Grid)`
-  //display: grid;
-  //grid-auto-flow: column;
-  //grid-template-columns: 280px 1fr auto;
-`;
+const StyledContainer = styled(Grid)``;
 
 interface Props {}
 
