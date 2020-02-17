@@ -97,6 +97,15 @@ const Pois: React.FC<Props> = () => {
       "price" : "€€€",
       "type" : "Restaurant",
       "score" : 8.6
+    },
+    {
+      "image" : imgPOI,
+      "title" : "Titre test",
+      "name" : "Chez vico final",
+      "adress" : "12 rue zfkzf",
+      "price" : "€€€€€",
+      "type" : "Restaurant",
+      "score" : 9.6
     }
   ];  
 
