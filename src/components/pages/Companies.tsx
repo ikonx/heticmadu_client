@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { index as TableItem } from '../molecules/Table/Row';
 import { index as TableHead } from '../molecules/Table/Head';
 import { Table, TableBody, TableRow } from "@material-ui/core";
-import CompanyHeader from "../molecules/CompanyHeader/CompanyHeader";
+import PageHeader from "../molecules/PageHeader/PageHeader";
 
 const CompanyContainer = styled.section`
   width: calc(100% - 80px); 
@@ -25,7 +25,7 @@ interface Props {}
 const Companies: React.FC<Props> = () => {
     return (
         <CompanyContainer>
-            <CompanyHeader/>
+            <PageHeader/>
             <CompanyTable>
                 <TableHead />
                 <TableBody>

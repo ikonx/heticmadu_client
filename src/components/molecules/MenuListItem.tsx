@@ -9,19 +9,19 @@ interface Props {
     link: string;
 }
 
-const StyledTypoTitle = styled(Typography)<{ linkActive: boolean }>`
+const StyledTypoTitle = styled(Typography)<{ linkactive: boolean }>`
     && {
         font-size: 1rem;
-        color: ${props => props.linkActive ? '#2C7BE5' : '#A4A6B3' };
-        font-family: ${props => props.linkActive ? 'Montserrat-Bold': 'Montserrat-Regular'}, sans-serif;
+        color: ${props => props.linkactive ? '#2C7BE5' : '#A4A6B3' };
+        font-family: ${props => props.linkactive ? 'Montserrat-Bold': 'Montserrat-Regular'}, sans-serif;
     }
 `;
 
-const StyledLink = styled(Link)<{ linkActive: boolean }>`
+const StyledLink = styled(Link)<{ linkactive: boolean }>`
     && {
         text-decoration: none;
         padding: 9px 12px;
-        background: ${props => (props.linkActive ? 'rgba(44, 123, 229, 0.16)' : 'unset' )};
+        background: ${props => (props.linkactive ? 'rgba(44, 123, 229, 0.16)' : 'unset' )};
         border-radius: 4px;
     }
 `;
@@ -49,8 +49,8 @@ const MenuListItem: React.FC<Props> = ({link, title }) => {
 
     return (
         <StyledMenuItem>
-            <StyledLink to={link} linkActive={isActive}>
-                <StyledTypoTitle variant="h4" linkActive={isActive}>{title}</StyledTypoTitle>
+            <StyledLink to={link} linkactive={isActive}>
+                <StyledTypoTitle variant="h4" linkactive={isActive}>{title}</StyledTypoTitle>
             </StyledLink>
         </StyledMenuItem>
     )
