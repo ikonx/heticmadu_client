@@ -19,6 +19,7 @@ export const Cell = styled(TableCell)`
       border: none;
       padding-top: 0;
       padding-bottom: 0;
+      font-size: 13px;
     }
 `;
 
