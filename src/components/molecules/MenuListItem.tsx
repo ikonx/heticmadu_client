@@ -9,7 +9,7 @@ interface Props {
     link: string;
 }
 
-const StyledTypoTitle = styled(Typography)<{ linkActive: boolean }>`
+const StyledTypoTitle = styled(Typography)<{ linkactive: boolean }>`
     && {
         font-size: 1rem;
         color: ${props => props.linkActive ? '#000000' : '#A4A6B3' };
@@ -17,7 +17,7 @@ const StyledTypoTitle = styled(Typography)<{ linkActive: boolean }>`
     }
 `;
 
-const StyledLink = styled(Link)<{ linkActive: boolean }>`
+const StyledLink = styled(Link)<{ linkactive: boolean }>`
     && {
         text-decoration: none;
         padding: 9px 12px;
@@ -58,8 +58,8 @@ const MenuListItem: React.FC<Props> = ({link, title }) => {
 
     return (
         <StyledMenuItem>
-            <StyledLink to={link} linkActive={isActive}>
-                <StyledTypoTitle variant="h4" linkActive={isActive}>{title}</StyledTypoTitle>
+            <StyledLink to={link} linkactive={isActive}>
+                <StyledTypoTitle variant="h4" linkactive={isActive}>{title}</StyledTypoTitle>
             </StyledLink>
         </StyledMenuItem>
     )
