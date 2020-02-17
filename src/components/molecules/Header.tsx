@@ -1,5 +1,5 @@
 import React from 'react'
-import {AppBar, InputBase, Toolbar, Typography} from '@material-ui/core';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import styled from 'styled-components';
 import Searchbar from 'components/atoms/Searchbar';
 import AdminBlock from "./AdminBlock";
@@ -25,13 +25,8 @@ const StyledBlock = styled.div`
 const StyledToolbar = styled(Toolbar)`
     padding: 0 2rem !important;
     && {
+        min-height: 72px;
         justify-content: space-between;
-    }
-`;
-
-const StyledIconLogo = styled.div`
-    && {
-        margin-right: 24px;
     }
 `;
 
@@ -60,10 +55,6 @@ const Header: React.FC<Props> = () => {
                     </HeaderLogo>
                     <HeaderSearch>
                         <Searchbar />
-                        <InputBase
-                          placeholder="Search"
-                          inputProps={{ 'aria-label': 'search' }}
-                        />
                     </HeaderSearch>
                 </StyledBlock>
                 <StyledBlock>

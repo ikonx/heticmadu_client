@@ -8,7 +8,6 @@ import ReactMapboxGl from 'react-mapbox-gl';
 import { Colors } from "../../utils/styles";
 import { GridContainer, ScrollableContent } from "../../utils/styles/Globals";
 
-
 const CompanyContainer = styled.section`
   width: 100%;
   min-height: calc(100vh - 64px); 
@@ -41,7 +40,7 @@ const Companies: React.FC<Props> = () => {
         <CompanyContainer>
             <GridContainer container>
                 <Grid item xs={7}>
-                    <PageHeader />
+                    <PageHeader title="Enprepise" text="Créer une entreprise" subtitle="LIST" link="/" />
                     <ScrollableContent>
                         <CompanyTable>
                             <TableHead />

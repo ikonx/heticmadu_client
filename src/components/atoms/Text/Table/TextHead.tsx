@@ -3,9 +3,8 @@ import { Typography } from "@material-ui/core";
 import styled from "styled-components";
 import { Colors } from "../../../../utils/styles";
 
-
 interface Props {
-  name: string,
+  name: string
 }
 
 const TextContainer = styled.div`
