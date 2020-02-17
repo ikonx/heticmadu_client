@@ -1,15 +1,10 @@
 import React from 'react';
 import { Typography } from "@material-ui/core";
 import styled from "styled-components";
-import {
-  KeyboardArrowDown,
-  KeyboardArrowUp
-} from '@material-ui/icons';
-
+import { Colors } from "../../../../utils/styles";
 
 interface Props {
-  name: string,
-  desc: boolean
+  name: string
 }
 
 const TextContainer = styled.div`
@@ -20,18 +15,18 @@ const TextContainer = styled.div`
 `;
 
 const Text = styled(Typography)`
-  text-transform: uppercase;
-  color: #828282;
-  font-weight: 600;
+  && {
+    color: ${Colors.black};
+    font-size: 12px;
+  }
 `;
 
-const TextHead: React.FC<Props> = ({ name, desc }) => {
+const TextHead: React.FC<Props> = ({ name }) => {
   return (
     <TextContainer>
       <Text>
           {name}
       </Text>
-      { desc ?  <KeyboardArrowDown /> : <KeyboardArrowUp />}
     </TextContainer>
   );
 };
