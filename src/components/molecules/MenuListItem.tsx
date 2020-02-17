@@ -21,7 +21,6 @@ const StyledLink = styled(Link)<{ linkactive: boolean }>`
     && {
         text-decoration: none;
         padding: 9px 12px;
-        /* background: ${props => (props.linkActive ? 'rgba(44, 123, 229, 0.16)' : 'unset' )}; */
         border-radius: 4px;
         position: relative;
         &::after {
