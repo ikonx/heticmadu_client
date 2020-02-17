@@ -7,6 +7,7 @@ import { Fonts } from 'utils/styles';
 interface Props {
   fields: any[];
   title: string;
+  defaultData: any;
 }
 
 const StyledContainer = styled(Grid)`
@@ -58,7 +59,7 @@ const StyledFieldsContainer = styled(Grid)`
 
 const StyledChangeButton = styled(Button)``;
 
-const EntityFields: React.FC<Props> = ({ title, fields }) => {
+const EntityFields: React.FC<Props> = ({ title, fields, defaultData }) => {
   const [state, setState] = useState('view');
 
   const toogleState = () => {
@@ -88,7 +89,7 @@ const EntityFields: React.FC<Props> = ({ title, fields }) => {
             flow={FlowEnum.COLUMN}
             align="center"
             style={{
-              gridTemplateColumns: 'auto 330px',
+              gridTemplateColumns: 'auto minmax(1fr, 330px)',
               borderBottom: '1px solid #EAEDF3',
               padding: '9px 16px',
             }}
@@ -97,6 +98,7 @@ const EntityFields: React.FC<Props> = ({ title, fields }) => {
               {field.label}
             </StyledLabel>
             <input
+              defaultValue={defaultData[field.key] || ""}
               id={'field_' + field.key}
               disabled={state !== 'editing'}
               type={field.type}

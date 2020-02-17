@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Grid } from '@material-ui/core';
@@ -6,6 +6,9 @@ import CardItem, { CardItemProps } from '../molecules/Card/CardItem';
 
 import imgPOI from '../../assets/img/poi_img.jpg';
 import PageHeader from 'components/molecules/PageHeader/PageHeader';
+import ViewEntity from 'components/organisms/ViewEntity/ViewEntity';
+import { EntitiesEnum } from 'utils/enums/Entity.enum';
+import { GridContainer } from 'utils/styles/Globals';
 
 interface Props {}
 
@@ -17,7 +20,7 @@ const PoiContainer = styled.section`
 
 const LeftColumn = styled(Grid)`
   && {
-    padding: 2rem 2rem 0;
+    // padding: 2rem 2rem 0;
   }
 `;
 
@@ -26,6 +29,7 @@ const ContainerList = styled.div`
   grid-template-columns: repeat(3, 1fr);
   overflow: auto;
   height: ${window.innerHeight - (72 + 115)}px;
+  padding: 0 2rem;
 `;
 
 const Map = ReactMapboxGl({
@@ -33,72 +37,129 @@ const Map = ReactMapboxGl({
 });
 
 const Pois: React.FC<Props> = () => {
+  const [state, setState] = useState('view');
+  const [selectedPoi, setPoi] = useState<CardItemProps | null>(null);
+
   const dataArray: CardItemProps[] = [
     {
       image: imgPOI,
+      images: [
+        'https://source.unsplash.com/900x900/?food,gree,vegan,bio',
+        'https://source.unsplash.com/1600x900/?food',
+        'https://source.unsplash.com/1600x900/?food,snack,fastfood',
+      ],
       title: 'Titre test',
       name: 'Chez vico',
       adress: '12 rue test',
       price: '€€€',
       type: 'Restaurant',
       score: 8.6,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
     },
     {
       image: imgPOI,
+      images: [
+        'https://source.unsplash.com/1200x900/?food,gree,vegan,bio',
+        'https://source.unsplash.com/1600x900/?food',
+        'https://source.unsplash.com/1600x900/?food,snack,fastfood',
+      ],
       title: 'Titre test',
       name: 'Chez vico 1',
       adress: '12 rue test',
       price: '€€€',
       type: 'Restaurant',
       score: 8.6,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
     },
     {
       image: imgPOI,
+      images: [
+        'https://source.unsplash.com/1300x900/?food,gree,vegan,bio',
+        'https://source.unsplash.com/1600x900/?food',
+        'https://source.unsplash.com/1600x900/?food,snack,fastfood',
+      ],
       title: 'Titre test',
       name: 'Chez vico 2',
       adress: '12 rue test',
       price: '€€€',
       type: 'Restaurant',
       score: 8.6,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
     },
     {
       image: imgPOI,
+      images: [
+        'https://source.unsplash.com/1100x900/?food,gree,vegan,bio',
+        'https://source.unsplash.com/1600x900/?food',
+        'https://source.unsplash.com/1600x900/?food,snack,fastfood',
+      ],
       title: 'Titre test',
       name: 'Chez vico 3',
       adress: '12 rue test',
       price: '€€€',
       type: 'Restaurant',
       score: 8.6,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
     },
     {
       image: imgPOI,
+      images: [
+        'https://source.unsplash.com/1300x900/?food,gree,vegan,bio',
+        'https://source.unsplash.com/1600x900/?food',
+        'https://source.unsplash.com/1600x900/?food,snack,fastfood',
+      ],
       title: 'Titre test',
       name: 'Chez vico 1',
       adress: '12 rue test',
       price: '€€€',
       type: 'Restaurant',
       score: 8.6,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
     },
     {
       image: imgPOI,
+      images: [
+        'https://source.unsplash.com/1230x900/?food,gree,vegan,bio',
+        'https://source.unsplash.com/1600x900/?food',
+        'https://source.unsplash.com/1600x900/?food,snack,fastfood',
+      ],
       title: 'Titre test',
       name: 'Chez vico 2',
       adress: '12 rue test',
       price: '€€€',
       type: 'Restaurant',
       score: 8.6,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
     },
     {
       image: imgPOI,
+      images: [
+        'https://source.unsplash.com/1550x900/?food,gree,vegan,bio',
+        'https://source.unsplash.com/1600x900/?food',
+        'https://source.unsplash.com/1600x900/?food,snack,fastfood',
+      ],
       title: 'Titre test',
       name: 'Chez vico 3',
       adress: '12 rue test',
       price: '€€€',
       type: 'Restaurant',
       score: 8.6,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
     },
     {
       image: imgPOI,
+      images: [
+        'https://source.unsplash.com/1610x900/?food,gree,vegan,bio',
+        'https://source.unsplash.com/1600x900/?food',
+        'https://source.unsplash.com/1600x900/?food,snack,fastfood',
+      ],
       title: 'Titre test',
       name: 'Chez vico final',
       adress: '12 rue zfkzf',
@@ -108,21 +169,35 @@ const Pois: React.FC<Props> = () => {
     },
   ];
 
+  const onAddItem = () => {
+    setState('add');
+  };
+
   return (
     <PoiContainer>
-      <Grid container>
+      <GridContainer container>
         <LeftColumn item xs={7}>
           <PageHeader
             title="POI"
-            text="Créer une POI"
+            text="Créer une poi"
             subtitle="CARD"
-            link="/"
+            link=""
+            onAddItem={onAddItem}
           />
-          <ContainerList>
-            {dataArray.map((item: CardItemProps, i) => (
-              <CardItem {...item} key={i} />
-            ))}
-          </ContainerList>
+          {!selectedPoi ? (
+            <ContainerList>
+              {dataArray.map((poi: CardItemProps, i) => (
+                <CardItem {...poi} key={i} onClick={() => setPoi(poi)} />
+              ))}
+            </ContainerList>
+          ) : (
+            <ViewEntity
+              entity={EntitiesEnum.POI}
+              fields={[]}
+              images={selectedPoi.images || []}
+              defaultData={selectedPoi}
+            />
+          )}
         </LeftColumn>
         <Grid item xs={5}>
           <Map
@@ -136,7 +211,7 @@ const Pois: React.FC<Props> = () => {
             center={[2.349014, 48.864716]}
           />
         </Grid>
-      </Grid>
+      </GridContainer>
     </PoiContainer>
   );
 };

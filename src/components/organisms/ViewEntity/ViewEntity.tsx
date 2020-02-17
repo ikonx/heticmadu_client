@@ -8,6 +8,7 @@ interface Props {
   fields: any[];
   images: any[];
   entity: EntitiesEnum;
+  defaultData: any;
 }
 
 const StyledImageContainer = styled(Grid)`
@@ -22,7 +23,7 @@ const StyledImageContainer = styled(Grid)`
   }
 `;
 
-const ViewEntity: React.FC<Props> = ({ images }) => {
+const ViewEntity: React.FC<Props> = ({ images, defaultData }) => {
   const generalInfoFields = [
     { label: 'Nom', key: 'name', type: 'text' },
     { label: 'Catégorie', key: 'category', type: 'text' },
@@ -33,7 +34,13 @@ const ViewEntity: React.FC<Props> = ({ images }) => {
     { label: 'Type', key: 'type', type: 'text' },
   ];
   return (
-    <Grid>
+    <Grid
+      style={{
+        overflow: 'auto',
+        height: `${window.innerHeight - (72 + 155)}px`,
+        padding: '0 2rem',
+      }}
+    >
       <Grid
         style={{
           gridTemplateColumns: '1fr 1fr',
@@ -46,14 +53,34 @@ const ViewEntity: React.FC<Props> = ({ images }) => {
             flow={FlowEnum.ROW}
             style={{ gridTemplateRows: '1fr 1fr' }}
           >
-            <img style={{ height: 'calc(50% - 4px)' }} src={images[0]} role="decoration" />
-            <img style={{ height: 'calc(50% - 4px)' }} src={images[1]} role="decoration" />
+            <img
+              style={{ height: 'calc(50% - 4px)' }}
+              src={images[0]}
+              role="decoration"
+            />
+            <img
+              style={{ height: 'calc(50% - 4px)' }}
+              src={images[1]}
+              role="decoration"
+            />
           </Grid>
           <img src={images[2]} role="decoration" />
         </StyledImageContainer>
-        <EntityFields fields={generalInfoFields} title="Informations général" />
-        <EntityFields fields={generalInfoFields} title="Les horaires" />
-        <EntityFields fields={generalInfoFields} title="Tags" />
+        <EntityFields
+          fields={generalInfoFields}
+          title="Informations général"
+          defaultData={defaultData}
+        />
+        <EntityFields
+          fields={generalInfoFields}
+          title="Les horaires"
+          defaultData={defaultData}
+        />
+        <EntityFields
+          fields={generalInfoFields}
+          title="Tags"
+          defaultData={defaultData}
+        />
       </Grid>
     </Grid>
   );
