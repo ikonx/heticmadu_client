@@ -9,6 +9,9 @@ export const TableHeadCell = styled(TableCell)`
     padding: 1rem;
     background: ${Colors.darkWhite};
     border-bottom: 1px solid ${Colors.lightGrey};   
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
 `;
 
