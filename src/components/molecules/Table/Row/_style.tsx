@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { TableCell, TableRow, Typography } from "@material-ui/core";
-import { Colors } from "../../../../utils/styles";
+import { Colors, Fonts } from "../../../../utils/styles";
 
 export const TableBackground = styled(TableRow)`
     && {  
@@ -27,9 +27,10 @@ export const CellActive = styled(Typography)<{active: boolean}>`
     && {
       background: ${props => props.active ? Colors.green : Colors.red};
       color: ${props => props.active ? Colors.darkGreen : Colors.darkRed};
-      border-radius: 25px;
+      border-radius: 15px;
       font-size: 13px;
       padding: .5rem;
       display: inline-block;
+      font-family: ${Fonts.medium};
     }
 `;
