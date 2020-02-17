@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
-import { TextField, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
+import { Colors, Fonts } from "../../../utils/styles";
 
 interface Props {
   title: string;
@@ -9,7 +10,7 @@ interface Props {
 
 const StyledSubtitle = styled.p`
   margin: 0 0 4px;
-  color: #A4A6B3;
+  color: ${Colors.grey};
   letter-spacing: 2px;
   font-size: 10px;
   text-transform: uppercase;
@@ -19,9 +20,10 @@ const StyledSubtitle = styled.p`
 const StyledTitle = styled(Typography)`
   && {
     font-size: 24px;
-    color: #1A1626;
+    color: ${Colors.black};
     line-height: unset;
     letter-spacing: .88px;
+    font-family: ${Fonts.bold};
   }
 `;
 
