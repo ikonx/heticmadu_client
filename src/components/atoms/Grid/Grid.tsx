@@ -12,6 +12,7 @@ interface Props {
   gap?: number;
   align?: GridContentAlignment;
   justify?: GridJustification;
+  style?: any;
 }
 
 const StyledWrapper = styled.div<Props>`
