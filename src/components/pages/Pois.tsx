@@ -12,6 +12,8 @@ import {
 import Grid, { FlowEnum } from '../atoms/Grid/Grid';
 
 import { CreatePointsOfInterestDTO } from 'utils/dto/pointsOfInterest.dto';
+import ViewEntity from 'components/organisms/ViewEntity/ViewEntity';
+import { EntitiesEnum } from 'utils/enums/Entity.enum';
 
 interface Props {}
 
@@ -77,6 +79,7 @@ const Pois: React.FC<Props> = () => {
   ];
 
   return (
+    <>
     <Grid flow={FlowEnum.COLUMN} style={{ gridTemplateColumn: '150px 1fr' }}>
       <div>
         <Button
@@ -138,7 +141,7 @@ const Pois: React.FC<Props> = () => {
           type="symbol"
           id="marker"
           layout={{ 'icon-image': 'marker-15' }}
-          paint={{'fill-color': 'red','fill-opacity': 0.6}}
+          paint={{ 'fill-color': 'red', 'fill-opacity': 0.6 }}
         >
           {pois.map(poi => {
             return (
@@ -150,6 +153,16 @@ const Pois: React.FC<Props> = () => {
         </Layer>
       </Map>
     </Grid>
+    <ViewEntity
+        entity={EntitiesEnum.POI}
+        fields={[]}
+        images={[
+          'https://images.unsplash.com/photo-1559941003-4f656f95b734?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=971&q=80',
+          'https://images.unsplash.com/photo-1564683214963-f09d6724be6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
+          'https://images.unsplash.com/photo-1521305916504-4a1121188589?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80',
+        ]}
+      />
+    </>
   );
 };
 
