@@ -5,4 +5,5 @@ export const PageHeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 31px;
+  padding: 2rem 2rem 0 2rem;
 `;

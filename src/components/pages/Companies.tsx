@@ -2,13 +2,11 @@ import React from 'react'
 import styled from "styled-components";
 import { index as TableItem } from '../molecules/Table/Row';
 import { index as TableHead } from '../molecules/Table/Head';
-import { Grid, Table, TableBody, TableRow } from "@material-ui/core";
+import { Grid, Table, TableBody } from "@material-ui/core";
 import PageHeader from "../molecules/PageHeader/PageHeader";
 import ReactMapboxGl from 'react-mapbox-gl';
-
-const Map = ReactMapboxGl({
-  accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
-});
+import { Colors } from "../../utils/styles";
+import { GridContainer, ScrollableContent } from "../../utils/styles/Globals";
 
 const CompanyContainer = styled.section`
   width: 100%;
@@ -16,21 +14,23 @@ const CompanyContainer = styled.section`
   margin: 0;
 `;
 
-const TableSpace = styled(TableRow)`
+const CompanyTable = styled(Table)`
   && {
-    border: 0;
-    padding: 12px;
-    height: 24px;
+    border-collapse: unset;
+    border: 1px solid ${Colors.lightGrey};
+    border-radius: 4px;
+    overflow: hidden;
   }
 `;
 
-const CompanyTable = styled(Table)`
-  margin-top: 24px;
-`;
+const Map = ReactMapboxGl({
+  accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
+});
 
-const LeftColumn = styled(Grid)`
+const StyledTableBody = styled(TableBody)`
   && {
-    padding: 2rem 2rem 0;
+    border: 1px solid ${Colors.lightGrey};
+    border-top: 0;
   }
 `;
 
@@ -39,34 +39,40 @@ interface Props {}
 const Companies: React.FC<Props> = () => {
     return (
         <CompanyContainer>
-            <Grid container>
-                <LeftColumn item xs={7}>
-                    <PageHeader title="Enprepise" text="Créer une entreprise" subtitle="LIST" link="/"/>
-                    <CompanyTable>
-                        <TableHead />
-                        <TableBody>
-                            {/* TODO: @DEV Loop over */}
-                            <TableItem params={{ withLogo: true, withGreenScore: false }}/>
-                            <TableSpace />
-                            <TableItem params={{ withLogo: true, withGreenScore: false }}/>
-                            <TableSpace />
-                            <TableItem params={{ withLogo: true, withGreenScore: false }}/>
-                        </TableBody>
-                    </CompanyTable>
-                </LeftColumn>
+            <GridContainer container>
+                <Grid item xs={7}>
+                    <PageHeader title="Enprepise" text="Créer une entreprise" subtitle="LIST" link="/" />
+                    <ScrollableContent>
+                        <CompanyTable>
+                            <TableHead />
+                            <StyledTableBody>
+                                {/* TODO: @DEV Loop over */}
+                                <TableItem status={true}/>
+                                <TableItem status={true}/>
+                                <TableItem status={false}/>
+                                <TableItem status={true}/>
+                                <TableItem status={true}/>
+                                <TableItem status={false}/>
+                                <TableItem status={true}/>
+                                <TableItem status={true}/>
+                                <TableItem status={false}/>
+                            </StyledTableBody>
+                        </CompanyTable>
+                    </ScrollableContent>
+                </Grid>
                 <Grid item xs={5}>
                     <Map
-                      style="mapbox://styles/mapbox/streets-v9"
-                      containerStyle={{
-                        minHeight: 'calc(100vh - 70px)',
-                        width: '100%',
-                        maxWidth: 'calc(100vw - 280px)',
-                      }}
-                      movingMethod="flyTo"
-                      center={[2.349014, 48.864716]}
+                       style="mapbox://styles/mapbox/streets-v9"
+                       containerStyle={{
+                         height: 'calc(100vh - 64px)',
+                         width: '100%',
+                         maxWidth: 'calc(100vw - 280px)',
+                       }}
+                       movingMethod="flyTo"
+                       center={[2.349014, 48.864716]}
                     />
                 </Grid>
-            </Grid>
+            </GridContainer>
         </CompanyContainer>
     )
 }

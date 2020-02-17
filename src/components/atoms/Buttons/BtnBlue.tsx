@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button } from "@material-ui/core";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Colors } from "../../../utils/styles";
 
 interface Props {
   text: string;
@@ -10,13 +11,13 @@ interface Props {
 
 const StyledButton = styled(Button)`
   && {
-    background-color: #2C7BE5;
-    color: #FFFFFF;
+    background-color: ${Colors.blue};
+    color: ${Colors.white};
     padding: 0;
     transition: .5s;
     &:hover {
       opacity: .5;
-      background: #2C7BE5;
+      background: ${Colors.blue};
     }
   }
 `;

@@ -1,8 +1,9 @@
-import React, {ReactElement, useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MenuItem, Typography } from '@material-ui/core';
 import { useLocation } from 'react-router-dom';
+import { Fonts, Colors } from "../../utils/styles";
 
 interface Props {
     title: string;
@@ -12,8 +13,8 @@ interface Props {
 const StyledTypoTitle = styled(Typography)<{ linkactive: number }>`
     && {
         font-size: 1rem;
-        color: ${props => props.linkactive ? '#000000' : '#A4A6B3' };
-        font-family: ${props => props.linkactive ? 'Montserrat-Bold': 'Montserrat-Regular'}, sans-serif;
+        color: ${props => props.linkactive ? Colors.blue : Colors.grey };
+        font-family: ${props => props.linkactive ? Fonts.bold : Fonts.regular }, sans-serif;
     }
 `;
 

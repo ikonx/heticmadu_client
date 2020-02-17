@@ -1,18 +1,18 @@
 /* FONTS */
 
 @font-face {
-  font-family: 'Montserrat-Regular';
-  src: url("assets/fonts/Montserrat/Montserrat-Regular.ttf");
+  font-family: 'Prompt-Regular';
+  src: url("assets/fonts/Prompt/Prompt-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Montserrat-Bold';
-  src: url("assets/fonts/Montserrat/Montserrat-Bold.ttf");
+  font-family: 'Prompt-Bold';
+  src: url("assets/fonts/Prompt/Prompt-Bold.ttf");
 }
 
 @font-face {
-  font-family: 'Montserrat-ExtraBold';
-  src: url("assets/fonts/Montserrat/Montserrat-ExtraBold.ttf");
+  font-family: 'Prompt-ExtraBold';
+  src: url("assets/fonts/Prompt/Prompt-ExtraBold.ttf");
 }
 
 * {
