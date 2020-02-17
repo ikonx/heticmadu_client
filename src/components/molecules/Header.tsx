@@ -60,10 +60,6 @@ const Header: React.FC<Props> = () => {
                     </HeaderLogo>
                     <HeaderSearch>
                         <Searchbar />
-                        <InputBase
-                          placeholder="Search"
-                          inputProps={{ 'aria-label': 'search' }}
-                        />
                     </HeaderSearch>
                 </StyledBlock>
                 <StyledBlock>

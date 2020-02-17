@@ -12,7 +12,7 @@ interface Props {
 const StyledTypoTitle = styled(Typography)<{ linkActive: boolean }>`
     && {
         font-size: 1rem;
-        color: ${props => props.linkActive ? '#2C7BE5' : '#A4A6B3' };
+        color: ${props => props.linkActive ? '#000000' : '#A4A6B3' };
         font-family: ${props => props.linkActive ? 'Montserrat-Bold': 'Montserrat-Regular'}, sans-serif;
     }
 `;
@@ -21,8 +21,17 @@ const StyledLink = styled(Link)<{ linkActive: boolean }>`
     && {
         text-decoration: none;
         padding: 9px 12px;
-        background: ${props => (props.linkActive ? 'rgba(44, 123, 229, 0.16)' : 'unset' )};
+        /* background: ${props => (props.linkActive ? 'rgba(44, 123, 229, 0.16)' : 'unset' )}; */
         border-radius: 4px;
+        position: relative;
+        &::after {
+            content: '';
+            width: 20%;
+            height: 4px;
+            background: ${props => (props.linkActive ? '#2C7BE5' : 'unset' )};
+            position: absolute;
+            bottom: 2px;
+        }
     }
 `;
 
