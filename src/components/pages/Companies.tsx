@@ -2,22 +2,37 @@ import React from 'react'
 import styled from "styled-components";
 import { index as TableItem } from '../molecules/Table/Row';
 import { index as TableHead } from '../molecules/Table/Head';
-import { Table, TableBody, TableRow } from "@material-ui/core";
-import CompanyHeader from "../molecules/CompanyHeader/CompanyHeader";
+import { Grid, Table, TableBody } from "@material-ui/core";
+import PageHeader from "../molecules/PageHeader/PageHeader";
+import ReactMapboxGl from 'react-mapbox-gl';
+import { Colors } from "../../utils/styles";
+import { GridContainer, ScrollableContent } from "../../utils/styles/Globals";
+
 
 const CompanyContainer = styled.section`
-  width: calc(100% - 80px); 
-  margin: 24px 40px 0;
-`;
-
-const TableSpace = styled(TableRow)`
-  border: 0 !important;
-  padding: 12px !important;
-  height: 24px;
+  width: 100%;
+  min-height: calc(100vh - 64px); 
+  margin: 0;
 `;
 
 const CompanyTable = styled(Table)`
-  margin-top: 24px;
+  && {
+    border-collapse: unset;
+    border: 1px solid ${Colors.lightGrey};
+    border-radius: 4px;
+    overflow: hidden;
+  }
+`;
+
+const Map = ReactMapboxGl({
+  accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
+});
+
+const StyledTableBody = styled(TableBody)`
+  && {
+    border: 1px solid ${Colors.lightGrey};
+    border-top: 0;
+  }
 `;
 
 interface Props {}
@@ -25,18 +40,40 @@ interface Props {}
 const Companies: React.FC<Props> = () => {
     return (
         <CompanyContainer>
-            <CompanyHeader/>
-            <CompanyTable>
-                <TableHead />
-                <TableBody>
-                    {/* TODO: @DEV Loop over */}
-                    <TableItem params={{ withLogo: true, withGreenScore: false }}/>
-                    <TableSpace />
-                    <TableItem params={{ withLogo: true, withGreenScore: false }}/>
-                    <TableSpace />
-                    <TableItem params={{ withLogo: true, withGreenScore: false }}/>
-                </TableBody>
-            </CompanyTable>
+            <GridContainer container>
+                <Grid item xs={7}>
+                    <PageHeader />
+                    <ScrollableContent>
+                        <CompanyTable>
+                            <TableHead />
+                            <StyledTableBody>
+                                {/* TODO: @DEV Loop over */}
+                                <TableItem status={true}/>
+                                <TableItem status={true}/>
+                                <TableItem status={false}/>
+                                <TableItem status={true}/>
+                                <TableItem status={true}/>
+                                <TableItem status={false}/>
+                                <TableItem status={true}/>
+                                <TableItem status={true}/>
+                                <TableItem status={false}/>
+                            </StyledTableBody>
+                        </CompanyTable>
+                    </ScrollableContent>
+                </Grid>
+                <Grid item xs={5}>
+                    <Map
+                       style="mapbox://styles/mapbox/streets-v9"
+                       containerStyle={{
+                         height: 'calc(100vh - 64px)',
+                         width: '100%',
+                         maxWidth: 'calc(100vw - 280px)',
+                       }}
+                       movingMethod="flyTo"
+                       center={[2.349014, 48.864716]}
+                    />
+                </Grid>
+            </GridContainer>
         </CompanyContainer>
     )
 }
