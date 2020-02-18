@@ -6,13 +6,11 @@ interface Props {}
 
 const InputContainer = styled.div `
     margin: 32px auto;
-`;
+    div {
+        margin-bottom: 24px;
+    }
 
-// const StyledInputText = styled(InputText) `
-//     && {
-//         margin-bottom: 24px;
-//     }
-// `;
+`;
 
 const AdminInputBlock: React.FC<Props> = () => {
     return (

@@ -6,10 +6,8 @@ import BtnBlue from 'components/atoms/Buttons/BtnBlue';
 
 interface Props {}
 
-const ContainerAdminBlock = styled.div ``;
-
-const StyledBtnBlue = styled(BtnBlue) `
-    && {
+const ContainerAdminBlock = styled.div `
+    button {
         width: 100%;
     }
 `;
@@ -19,7 +17,7 @@ const AdminBlock: React.FC<Props> = () => {
         <ContainerAdminBlock>
             <AdminText />
             <AdminInputBlock />
-            <StyledBtnBlue text="Se connecter" onClick={() => null} />
+            <BtnBlue text="Se connecter" onClick={() => null} />
         </ContainerAdminBlock>
     )
 }
