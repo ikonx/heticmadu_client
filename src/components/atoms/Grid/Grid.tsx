@@ -13,6 +13,7 @@ interface Props {
   align?: GridContentAlignment;
   justify?: GridJustification;
   style?: any;
+  onClick?: any;
 }
 
 const StyledWrapper = styled.div<Props>`
