@@ -9,14 +9,14 @@ interface Props {
 }
 
 const InputFile: React.FC<Props> = ({ name, placeholder }) => {
-  const [source, setSource] = useState('');
-  const [imgFile, setImgFile] = useState('');
+  const [source, setSource] = useState('Importer un logo');
+  // const [imgFile, setImgFile] = useState('');
 
   const displaySrc = (event: { target: HTMLInputElement }) => {
     const { files } = event.target;
 
-    files && setImgFile(URL.createObjectURL(files[0]));
-    setSource( files && files.length > 0 ? files[0].name : '');
+    // files && setImgFile(URL.createObjectURL(files[0]));
+    setSource( files && files.length > 0 ? files[0].name : 'Importer un logo');
   };
 
   return (
@@ -26,12 +26,12 @@ const InputFile: React.FC<Props> = ({ name, placeholder }) => {
         <StyledInput id={name} type="file" placeholder={placeholder} onChange={displaySrc} accept="image/png, image/jpeg, .svg"/>
         <StyledLabel>
           <ImportLogo/>
-          Importer un logo
+          { source }
         </StyledLabel>
-        { source !== '' && (
-          <StyledClose onClick={() => setSource('')}/>
+        { source !== 'Importer un logo' && (
+          <StyledClose onClick={() => setSource('Importer un logo')}/>
         )}
-        <StyledImg src={imgFile} alt=""/>
+        {/*<StyledImg src={imgFile} alt=""/>*/}
       </StyledContainer>
     </StyledFormControl>
   );

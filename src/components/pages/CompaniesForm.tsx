@@ -5,6 +5,7 @@ import { Grid } from "@material-ui/core";
 import InputRadio from "../atoms/Inputs/Radio/InputRadio";
 import InputText from "../atoms/Inputs/Text/InputText";
 import InputFile from "../atoms/Inputs/File/InputFile";
+import FormsFooter from "../molecules/FormsFooter";
 
 interface Props {
 }
@@ -91,6 +92,7 @@ const CompaniesForm: React.FC<Props> = () => {
           </Grid>
         </Grid>
       </ScrollableContent>
+      <FormsFooter />
     </section>
   );
 };

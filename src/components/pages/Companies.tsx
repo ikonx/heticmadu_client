@@ -45,7 +45,7 @@ const Companies: React.FC<Props> = () => {
   return (
     <CompanyContainer>
       <GridContainer container>
-        <Grid item xs={7}>
+        <Grid item xs={8}>
           <PageHeader
             title="Enprepise"
             text="Créer une entreprise"
@@ -70,7 +70,7 @@ const Companies: React.FC<Props> = () => {
             </CompanyTable>
           </ScrollableContent>
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={4}>
           <Map
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{

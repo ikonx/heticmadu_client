@@ -5,7 +5,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 export const StyledContainer = styled.div`
   position: relative;
-  height: auto;
+  height: 48px;
   background: ${Colors.white};
   border: 1px solid ${Colors.lightGrey};
   border-radius: 4px;

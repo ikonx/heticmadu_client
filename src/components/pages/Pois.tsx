@@ -176,7 +176,7 @@ const Pois: React.FC<Props> = () => {
   return (
     <PoiContainer>
       <GridContainer container>
-        <LeftColumn item xs={7}>
+        <LeftColumn item xs={8}>
           <PageHeader
             title="POI"
             text="Créer une poi"
@@ -198,7 +198,7 @@ const Pois: React.FC<Props> = () => {
             />
           )}
         </LeftColumn>
-        <Grid item xs={5}>
+        <Grid item xs={4}>
           <Map
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{
