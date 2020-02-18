@@ -9,6 +9,7 @@ interface Props {
   text?: string;
   onAddItem?: () => void;
   formBar?: boolean;
+  link?: string;
 }
 
 const PageHeader: React.FC<Props> = ({title, text, subtitle, onAddItem, formBar}) => {
