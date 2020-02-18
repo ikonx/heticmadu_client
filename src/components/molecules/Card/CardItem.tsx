@@ -14,6 +14,8 @@ export interface CardItemProps {
   images: string[];
   title: string;
   description?: string;
+  latitude: string;
+  longitude: string;
   onClick?: () => void;
 }
 
