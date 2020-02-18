@@ -8,13 +8,14 @@ interface Props {
   text: string,
   subtitle: string,
   link: string
+  onAddItem: () => void;
 }
 
-const PageHeader: React.FC<Props> = ({title, text, subtitle, link}) => {
+const PageHeader: React.FC<Props> = ({title, text, subtitle, link, onAddItem}) => {
   return (
     <PageHeaderContainer>
       <MainTitle title={title} subtitle={subtitle}/>
-      <BtnBlue text={text} link={link} />
+      <BtnBlue text={text} link={link} onClick={onAddItem} />
     </PageHeaderContainer>
   );
 };
