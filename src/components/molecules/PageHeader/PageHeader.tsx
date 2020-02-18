@@ -4,18 +4,20 @@ import MainTitle from "../../atoms/Text/MainTitle";
 import BtnBlue from "../../atoms/Buttons/BtnBlue";
 
 interface Props {
-  title: string,
-  text: string,
-  subtitle: string,
-  link: string
-  onAddItem: () => void;
+  title: string;
+  subtitle: string;
+  text?: string;
+  onAddItem?: () => void;
+  formBar?: boolean;
 }
 
-const PageHeader: React.FC<Props> = ({title, text, subtitle, link, onAddItem}) => {
+const PageHeader: React.FC<Props> = ({title, text, subtitle, onAddItem, formBar}) => {
   return (
-    <PageHeaderContainer>
-      <MainTitle title={title} subtitle={subtitle}/>
-      <BtnBlue text={text} link={link} onClick={onAddItem} />
+    <PageHeaderContainer formBar={formBar ? 1 : 0}>
+      <MainTitle title={title} subtitle={subtitle} isForm={formBar ? 1 : 0}/>
+      { text && onAddItem && (
+        <BtnBlue text={text} onClick={onAddItem} />
+      )}
     </PageHeaderContainer>
   );
 };

@@ -16,7 +16,7 @@ export const index: React.FC<Props> = ({ status }) => {
             <Cell>23</Cell>
             <Cell>12/03/21</Cell>
             <Cell>
-                <CellActive active={status}>{ status ? 'Active' : 'Désactive' }</CellActive>
+                <CellActive active={status ? 1 : 0}>{ status ? 'Active' : 'Désactive' }</CellActive>
             </Cell>
             <Cell>
                <PopperMore/>

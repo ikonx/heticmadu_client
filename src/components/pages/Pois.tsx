@@ -181,7 +181,6 @@ const Pois: React.FC<Props> = () => {
             title="POI"
             text="Créer une poi"
             subtitle="CARD"
-            link=""
             onAddItem={onAddItem}
           />
           {!selectedPoi ? (
