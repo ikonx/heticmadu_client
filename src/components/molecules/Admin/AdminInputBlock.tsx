@@ -1,0 +1,24 @@
+import React from 'react';
+import styled from 'styled-components';
+import InputText from 'components/atoms/Inputs/Text/InputText';
+
+interface Props {}
+
+const InputContainer = styled.div `
+    margin: 32px auto;
+    div {
+        margin-bottom: 24px;
+    }
+
+`;
+
+const AdminInputBlock: React.FC<Props> = () => {
+    return (
+        <InputContainer>
+            <InputText title="Email" placeholder="Entrez votre email"/>
+            <InputText title="Mot de passe" placeholder="Entrez votre mot de passe"/>
+        </InputContainer>
+    )
+}
+
+export default AdminInputBlock;

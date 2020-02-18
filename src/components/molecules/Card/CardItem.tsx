@@ -10,16 +10,17 @@ export interface CardItemProps {
   price: string;
   type: string;
   score: number;
-  image: string;
   images: string[];
   title: string;
   description?: string;
+  latitude: string;
+  longitude: string;
   onClick?: () => void;
+  id?: string;
 }
 
 const CardContainer = styled(Card)`
   && {
-    margin: 0 8px 24px;
     background: #ffffff;
     border: 1px solid #eaedf3;
     box-sizing: border-box;
@@ -35,7 +36,6 @@ const CardItem: React.FC<CardItemProps> = ({
   price,
   type,
   score,
-  image,
   images,
   title,
   onClick,

@@ -13,11 +13,6 @@ const StyledButton = styled(Button)`
     background-color: ${Colors.blue};
     color: ${Colors.white};
     transition: 0.5s;
-    padding: 12px 1rem;
-    text-transform: none;
-    font-family: ${Fonts.bold};
-    font-size: 14px;
-    box-shadow: unset;
     &:hover {
       background: ${Colors.darkBlue};
       box-shadow: unset;

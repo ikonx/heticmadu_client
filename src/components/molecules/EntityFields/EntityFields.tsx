@@ -60,7 +60,7 @@ const StyledFieldsContainer = styled(Grid)`
 const StyledChangeButton = styled(Button)``;
 
 const EntityFields: React.FC<Props> = ({ title, fields, defaultData }) => {
-  const [state, setState] = useState('view');
+  const [state, setState] = useState(Object.keys(defaultData).length > 0 ? 'view' : 'editing');
 
   const toogleState = () => {
     setState(state === 'view' ? 'editing' : 'view');
@@ -76,7 +76,9 @@ const EntityFields: React.FC<Props> = ({ title, fields, defaultData }) => {
         <StyledTitle>{title}</StyledTitle>
         <Grid flow={FlowEnum.COLUMN} gap={8}>
           {state === 'editing' && (
-            <StyledChangeButton color="primary" onClick={saveHandler}>valider</StyledChangeButton>
+            <StyledChangeButton color="primary" onClick={saveHandler}>
+              valider
+            </StyledChangeButton>
           )}
           <StyledChangeButton color="primary" onClick={toogleState}>
             {state === 'view' ? 'modifier' : 'annuler'}
@@ -98,12 +100,12 @@ const EntityFields: React.FC<Props> = ({ title, fields, defaultData }) => {
               {field.label}
             </StyledLabel>
             <input
-              defaultValue={defaultData[field.key] || ""}
+              defaultValue={defaultData[field.key] || ''}
               id={'field_' + field.key}
               disabled={state !== 'editing'}
               type={field.type}
               style={{
-                border: state === 'editing' ? "1px solid #eee" : "none"
+                border: state === 'editing' ? '1px solid #eee' : 'none',
               }}
             />
           </Grid>
