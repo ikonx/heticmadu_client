@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Grid } from '@material-ui/core';
@@ -9,6 +9,7 @@ import PageHeader from 'components/molecules/PageHeader/PageHeader';
 import ViewEntity from 'components/organisms/ViewEntity/ViewEntity';
 import { EntitiesEnum } from 'utils/enums/Entity.enum';
 import { GridContainer } from 'utils/styles/Globals';
+import { FactoryParameters } from 'react-mapbox-gl/lib/map';
 
 interface Props {}
 
@@ -56,7 +57,9 @@ const Pois: React.FC<Props> = () => {
       score: 8.6,
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    },
+      longitude: '2.383572',
+      latitude: '48.868671',
+      },
     {
       image: imgPOI,
       images: [
@@ -72,7 +75,9 @@ const Pois: React.FC<Props> = () => {
       score: 8.6,
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    },
+      longitude: '2.383572',
+      latitude: '48.868671',
+      },
     {
       image: imgPOI,
       images: [
@@ -88,7 +93,9 @@ const Pois: React.FC<Props> = () => {
       score: 8.6,
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    },
+      longitude: '2.383572',
+      latitude: '48.868671',
+      },
     {
       image: imgPOI,
       images: [
@@ -104,7 +111,9 @@ const Pois: React.FC<Props> = () => {
       score: 8.6,
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    },
+      longitude: '2.383572',
+      latitude: '48.868671',
+      },
     {
       image: imgPOI,
       images: [
@@ -120,7 +129,9 @@ const Pois: React.FC<Props> = () => {
       score: 8.6,
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    },
+      longitude: '2.383572',
+      latitude: '48.868671',
+      },
     {
       image: imgPOI,
       images: [
@@ -136,7 +147,9 @@ const Pois: React.FC<Props> = () => {
       score: 8.6,
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    },
+      longitude: '2.383572',
+      latitude: '48.868671',
+      },
     {
       image: imgPOI,
       images: [
@@ -152,7 +165,9 @@ const Pois: React.FC<Props> = () => {
       score: 8.6,
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    },
+      longitude: '2.383572',
+      latitude: '48.868671',
+      },
     {
       image: imgPOI,
       images: [
@@ -166,6 +181,10 @@ const Pois: React.FC<Props> = () => {
       price: '€€€€€',
       type: 'Restaurant',
       score: 9.6,
+      description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
+      longitude: '2.383572',
+      latitude: '48.868671',
     },
   ];
 
@@ -208,7 +227,8 @@ const Pois: React.FC<Props> = () => {
               maxWidth: 'calc(100vw - 280px)',
             }}
             movingMethod="flyTo"
-            center={[2.349014, 48.864716]}
+            center={[parseFloat(selectedPoi?.longitude || "2.3488"), parseFloat(selectedPoi?.latitude || "48.8534")]}
+            zoom={selectedPoi ? [18] : [11.25]}
           />
         </Grid>
       </GridContainer>
