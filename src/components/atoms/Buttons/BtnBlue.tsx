@@ -13,7 +13,6 @@ const StyledButton = styled(Button)`
     background-color: ${Colors.blue};
     color: ${Colors.white};
     transition: 0.5s;
-    padding: 12px 1rem;
     &:hover {
       opacity: 0.5;
       background: ${Colors.blue};
