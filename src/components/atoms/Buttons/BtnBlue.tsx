@@ -7,7 +7,7 @@ import { Colors } from '../../../utils/styles';
 interface Props {
   text: string;
   link: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const StyledButton = styled(Button)`
@@ -15,7 +15,6 @@ const StyledButton = styled(Button)`
     background-color: ${Colors.blue};
     color: ${Colors.white};
     transition: 0.5s;
-    padding: 12px 1rem;
     &:hover {
       opacity: 0.5;
       background: ${Colors.blue};
@@ -36,9 +35,7 @@ const StyledLink = styled(Link)`
 const BtnBlue: React.FC<Props> = ({ text, link, onClick }) => {
   return (
     <StyledButton variant="contained" onClick={onClick}>
-      {/* <StyledLink to={link}> */}
-      {text}
-      {/* </StyledLink> */}
+      <StyledLink to={link}>{text}</StyledLink>
     </StyledButton>
   );
 };
