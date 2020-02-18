@@ -7,6 +7,7 @@ import PageHeader from '../molecules/PageHeader/PageHeader';
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Colors } from '../../utils/styles';
 import { GridContainer, ScrollableContent } from '../../utils/styles/Globals';
+import { useHistory } from "react-router-dom";
 
 const CompanyContainer = styled.section`
   width: 100%;
@@ -36,6 +37,11 @@ const StyledTableBody = styled(TableBody)`
 interface Props {}
 
 const Companies: React.FC<Props> = () => {
+  const history = useHistory();
+  const navigateCompanyForm = () => {
+    history.push('/companies/form')
+  };
+
   return (
     <CompanyContainer>
       <GridContainer container>
@@ -44,8 +50,7 @@ const Companies: React.FC<Props> = () => {
             title="Enprepise"
             text="Créer une entreprise"
             subtitle="LIST"
-            link="/"
-            onAddItem={() => {}}
+            onAddItem={navigateCompanyForm}
           />
           <ScrollableContent>
             <CompanyTable>

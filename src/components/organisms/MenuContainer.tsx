@@ -10,7 +10,7 @@ const MenuContainer: React.FC<Props> = () => {
     const arrayData = [
         {
             "title": "Dashboard",
-            "link": "/"
+            "link": "/home"
         },
         {
             "title": "Map",

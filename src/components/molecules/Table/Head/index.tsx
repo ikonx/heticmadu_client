@@ -16,8 +16,8 @@ export const index: React.FC<Props> = () => {
   return (
       <TableHeadContainer>
         <TableRowContainer>
-          { valueHead.map(item => (
-            <TableHeadCell>
+          { valueHead.map((item, i) => (
+            <TableHeadCell key={i}>
               <TextHead name={item}/>
             </TableHeadCell>
           )) }

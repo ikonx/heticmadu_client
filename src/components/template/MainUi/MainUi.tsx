@@ -9,6 +9,7 @@ import Pois from 'components/pages/Pois';
 import Form from 'components/pages/Form';
 import Tags from 'components/pages/Tags';
 import Header from 'components/molecules/Header';
+import CompaniesForm from "../../pages/CompaniesForm";
 import Map from 'components/pages/Map';
 
 const StyledContainer = styled(Grid)``;
@@ -23,14 +24,17 @@ const MainUi: React.FC<Props> = () => {
         <>
           <Header />
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/home">
               <Dashboard />
             </Route>
             <Route path="/map">
               <Map />
             </Route>
-            <Route path="/companies">
+            <Route exact path="/companies">
               <Companies />
+            </Route>
+            <Route path="/companies/form">
+              <CompaniesForm />
             </Route>
             <Route path="/pois">
               <Pois />
