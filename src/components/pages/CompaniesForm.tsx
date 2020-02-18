@@ -6,76 +6,37 @@ import InputRadio from "../atoms/Inputs/Radio/InputRadio";
 import InputText from "../atoms/Inputs/Text/InputText";
 import InputFile from "../atoms/Inputs/File/InputFile";
 import FormsFooter from "../molecules/FormsFooter";
+import { radioCompany, radioCompanyActive, radioPerimeter } from "../../utils/formsMocks/CompaniesForm";
+import CustomSelect from "../atoms/Select/CustomSelect";
 
 interface Props {
 }
 
-const radioCompany = [
-  {
-    name: 'Startup',
-    category: 'company'
-  },
-  {
-    name: 'Grand groupe',
-    category: 'company'
-  },
-  {
-    name: 'PME',
-    category: 'company'
-  }
-];
-
-const radioPerimeter = [
-  {
-    name: '1km',
-    category: 'perimeter'
-  },
-  {
-    name: '3km',
-    category: 'perimeter'
-  },
-  {
-    name: '5km',
-    category: 'perimeter'
-  }
-];
-
-const radioCompanyActive = [
-  {
-    name: 'Oui',
-    category: 'companyActive'
-  },
-  {
-    name: 'Non',
-    category: 'companyActive'
-  }
-]
-
 const CompaniesForm: React.FC<Props> = () => {
   return (
     <section>
-      <PageHeader title="Crée une entreprise" subtitle="nouvelle entreprise" formBar={true}/>
-      <ScrollableContent>
+      <PageHeader title="Crée une entreprise" subtitle="nouvelle entreprise" isForm="true"/>
+      <ScrollableContent isForm="true">
         <Grid container spacing={8}>
           <Grid item xs={4}>
-            <InputRadio values={radioCompany} title="Type d'entreprise"/>
+            <CustomSelect values={radioCompany} title="Type d'entreprise"/>
           </Grid>
           <Grid item xs={4}>
-            <InputText name="Nom de l'entreprise" placeholder="Entrez le nom de l'entreprise .."/>
+            <InputText title="Nom de l'entreprise" placeholder="Entrez le nom de l'entreprise .."/>
           </Grid>
           <Grid item xs={4}>
-            <InputText name="Adresse complète" placeholder="Entrez votre adresse ..."/>
+            <InputText title="Adresse complète" placeholder="Entrez votre adresse ..."/>
           </Grid>
         </Grid>
         <Grid container spacing={8}>
           <Grid item xs={4}>
-            <InputText name="Effectif" placeholder="Ex: 90"/>
+            <InputText title="Effectif" placeholder="Ex: 90"/>
           </Grid>
           <Grid item xs={4}>
-            <InputText name="Email du référant" placeholder="Entrez l'email du référant.."/>
+            <InputText title="Email du référant" placeholder="Entrez l'email du référant.."/>
           </Grid>
           <Grid item xs={4}>
-            <InputText name="Pattern" placeholder="Entrez le pattern ..."/>
+            <InputText title="Pattern" placeholder="Entrez le pattern ..."/>
           </Grid>
         </Grid>
         <Grid container spacing={8}>
@@ -83,7 +44,7 @@ const CompaniesForm: React.FC<Props> = () => {
             <InputRadio values={radioPerimeter} title="Périmètre"/>
           </Grid>
           <Grid item xs={4}>
-            <InputFile name="Logo" placeholder="Importer un logo"/>
+            <InputFile title="Logo" placeholder="Importer un logo" isLarge={false}/>
           </Grid>
         </Grid>
         <Grid container spacing={8}>

@@ -6,7 +6,7 @@ import { Colors, Fonts } from "../../../utils/styles";
 interface Props {
   title: string;
   subtitle: string;
-  isForm?: number;
+  formBar?: string;
 }
 
 const StyledSubtitle = styled.p`
@@ -18,7 +18,7 @@ const StyledSubtitle = styled.p`
   text-align: left;
 `;
 
-const StyledTitle = styled(Typography)<{ status: number }>`
+const StyledTitle = styled(Typography)<{ status: string | undefined }>`
   && {
     font-size: 24px;
     color: ${Colors.black};
@@ -30,7 +30,7 @@ const StyledTitle = styled(Typography)<{ status: number }>`
       content: '';
       width: 2rem;
       height: 2px;
-      background: ${props => (props.status ? Colors.blue : 'unset' )};
+      background: ${Colors.blue};
       position: absolute;
       bottom: -8px;
       left: 0;
@@ -38,11 +38,11 @@ const StyledTitle = styled(Typography)<{ status: number }>`
   }
 `;
 
-const MainTitle: React.FC<Props> = ({ title, subtitle, isForm }) => {
+const MainTitle: React.FC<Props> = ({ title, subtitle, formBar }) => {
   return (
     <div>
       <StyledSubtitle>{subtitle}</StyledSubtitle>
-      <StyledTitle variant="h2" status={isForm ? 1 : 0}>{title}</StyledTitle>
+      <StyledTitle variant="h2" status={formBar}>{title}</StyledTitle>
     </div>
   );
 };

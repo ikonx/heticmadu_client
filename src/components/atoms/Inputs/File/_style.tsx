@@ -3,12 +3,17 @@ import { Colors, Fonts } from "../../../../utils/styles";
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 
-export const StyledContainer = styled.div`
+export const StyledInputContainer = styled.div<{isLarge: string}>`
   position: relative;
-  height: 48px;
+  height: ${props => props.isLarge === 'true' ? '100%' : '48px'};
   background: ${Colors.white};
   border: 1px solid ${Colors.lightGrey};
   border-radius: 4px;
+`;
+
+export const StyledContainer = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 
 export const StyledTitle = styled.p`
@@ -30,7 +35,7 @@ export const StyledInput = styled.input`
   cursor: pointer;
 `;
 
-export const StyledLabel = styled.label`
+export const StyledLabel = styled.label<{isLarge: string}>`
   height: 100%;
   width: 100%;
   font-size: 15px;
@@ -41,6 +46,8 @@ export const StyledLabel = styled.label`
   padding: 0 1rem;
   display: flex;
   align-items: center;
+  justify-content: ${props => props.isLarge === 'true' ? 'center' : 'flex-start'};
+  flex-direction: ${props => props.isLarge === 'true' ? 'column' : 'row'};
   pointer-events: none;
   svg {
     margin-right: .5rem;

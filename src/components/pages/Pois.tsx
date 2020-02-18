@@ -3,18 +3,19 @@ import styled from 'styled-components';
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Grid } from '@material-ui/core';
 import CardItem, { CardItemProps } from '../molecules/Card/CardItem';
+import { useHistory } from "react-router-dom";
 
 import imgPOI from '../../assets/img/poi_img.jpg';
 import PageHeader from 'components/molecules/PageHeader/PageHeader';
 import ViewEntity from 'components/organisms/ViewEntity/ViewEntity';
 import { EntitiesEnum } from 'utils/enums/Entity.enum';
-import { GridContainer } from 'utils/styles/Globals';
+import { GridContainer, ScrollableContent } from 'utils/styles/Globals';
 
 interface Props {}
 
 const PoiContainer = styled.section`
   width: 100%;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 72px);
   margin: 0;
 `;
 
@@ -28,8 +29,12 @@ const ContainerList = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   overflow: auto;
-  height: ${window.innerHeight - (72 + 115)}px;
+  height: ${window.innerHeight - (72 + 118)}px;
   padding: 0 2rem;
+`;
+
+const StyledScrollableContent = styled(ScrollableContent)`
+  padding: 0;
 `;
 
 const Map = ReactMapboxGl({
@@ -168,9 +173,11 @@ const Pois: React.FC<Props> = () => {
       score: 9.6,
     },
   ];
+  const history = useHistory();
 
   const onAddItem = () => {
     setState('add');
+    history.push('/pois/form')
   };
 
   return (
@@ -183,26 +190,28 @@ const Pois: React.FC<Props> = () => {
             subtitle="CARD"
             onAddItem={onAddItem}
           />
-          {!selectedPoi ? (
-            <ContainerList>
-              {dataArray.map((poi: CardItemProps, i) => (
-                <CardItem {...poi} key={i} onClick={() => setPoi(poi)} />
-              ))}
-            </ContainerList>
-          ) : (
-            <ViewEntity
-              entity={EntitiesEnum.POI}
-              fields={[]}
-              images={selectedPoi.images || []}
-              defaultData={selectedPoi}
-            />
-          )}
+          <StyledScrollableContent>
+            {!selectedPoi ? (
+              <ContainerList>
+                {dataArray.map((poi: CardItemProps, i) => (
+                  <CardItem {...poi} key={i} onClick={() => setPoi(poi)} />
+                ))}
+              </ContainerList>
+            ) : (
+              <ViewEntity
+                entity={EntitiesEnum.POI}
+                fields={[]}
+                images={selectedPoi.images || []}
+                defaultData={selectedPoi}
+              />
+            )}
+          </StyledScrollableContent>
         </LeftColumn>
         <Grid item xs={4}>
           <Map
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{
-              minHeight: 'calc(100vh - 70px)',
+              height: 'calc(100vh - 72px)',
               width: '100%',
               maxWidth: 'calc(100vw - 280px)',
             }}

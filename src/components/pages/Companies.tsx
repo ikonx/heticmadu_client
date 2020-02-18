@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 
 const CompanyContainer = styled.section`
   width: 100%;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 72px);
   margin: 0;
 `;
 
@@ -74,7 +74,7 @@ const Companies: React.FC<Props> = () => {
           <Map
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{
-              height: 'calc(100vh - 64px)',
+              height: 'calc(100vh - 72px)',
               width: '100%',
               maxWidth: 'calc(100vw - 280px)',
             }}

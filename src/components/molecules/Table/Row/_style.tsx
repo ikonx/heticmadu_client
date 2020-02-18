@@ -23,10 +23,10 @@ export const Cell = styled(TableCell)`
     }
 `;
 
-export const CellActive = styled(Typography)<{active: number}>`
+export const CellActive = styled(Typography)<{active: string}>`
     && {
-      background: ${props => props.active ? Colors.green : Colors.red};
-      color: ${props => props.active ? Colors.darkGreen : Colors.darkRed};
+      background: ${props => props.active === 'true' ? Colors.green : Colors.red};
+      color: ${props => props.active === 'true' ? Colors.darkGreen : Colors.darkRed};
       border-radius: 15px;
       font-size: 13px;
       padding: .5rem;
