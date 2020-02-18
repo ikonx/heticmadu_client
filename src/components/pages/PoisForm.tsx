@@ -20,6 +20,12 @@ import ScheduleBlock from "../molecules/ScheduleBlock";
 interface Props {
 }
 
+const footerData = {
+  title: 'Création d\'une POI',
+  current: '1',
+  final: '4'
+};
+
 const PoisForm: React.FC<Props> = () => {
   return (
     <section>
@@ -75,7 +81,7 @@ const PoisForm: React.FC<Props> = () => {
           </Grid>
         </Grid>
       </ScrollableContent>
-      <FormsFooter />
+      <FormsFooter activeSteps={footerData}/>
     </section>
   );
 };
