@@ -9,6 +9,7 @@ import Pois from 'components/pages/Pois';
 import Form from 'components/pages/Form';
 import Tags from 'components/pages/Tags';
 import Header from 'components/molecules/Header';
+import Map from 'components/pages/Map';
 
 const StyledContainer = styled(Grid)``;
 
@@ -24,6 +25,9 @@ const MainUi: React.FC<Props> = () => {
           <Switch>
             <Route exact path="/">
               <Dashboard />
+            </Route>
+            <Route path="/map">
+              <Map />
             </Route>
             <Route path="/companies">
               <Companies />
