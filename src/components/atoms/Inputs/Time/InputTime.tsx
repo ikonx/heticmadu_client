@@ -1,46 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  StyledInputs,
-  StyledItem,
-  StyledList, StyledTimeClose,
-  StyledTimeContainer,
   StyledTimeInput,
-  StyledTimeOpen, StyledTimeSpan,
-  StyledTitle
 } from "./_style";
-import { Switch } from "@material-ui/core";
 
 interface Props {
-  title: string;
+  name: string;
 }
 
-const InputTime: React.FC<Props> = ({ title }) => {
+const InputTime: React.FC<Props> = ({ name }) => {
+  const [inputValue, setValue] = useState('');
+
+  const limitTimeInput = (event: any) => {
+    const { value } = event.target;
+    // Prevent letter "e"
+    event.which === 69 && event.preventDefault();
+    // Prevent more than 2 numbers && only on numerical keyboard elements
+    value.length > 1 && event.which >= 47 && event.which <= 57 && event.preventDefault();
+  };
+
+  const changeInput = (event: { target: HTMLInputElement }) => {
+    var { value } = event.target;
+    setValue(value);
+  };
+  
   return (
-    <StyledTimeContainer>
-      <StyledTitle>{ title }</StyledTitle>
-      <StyledList>
-        <StyledItem>
-          <p>Lundi</p>
-          <StyledInputs>
-            <StyledTimeOpen>
-              <StyledTimeInput type="number" min="0" max="24" />
-              <span>:</span>
-              <StyledTimeInput type="number" min="0" max="59" />
-            </StyledTimeOpen>
-            <StyledTimeSpan>-</StyledTimeSpan>
-            <StyledTimeClose>
-              <StyledTimeInput type="number" min="0" max="24" />
-              <span>:</span>
-              <StyledTimeInput type="number" min="0" max="59" />
-            </StyledTimeClose>
-            <Switch
-              value="checkedA"
-              inputProps={{ 'aria-label': 'secondary checkbox' }}
-            />
-          </StyledInputs>
-        </StyledItem>
-      </StyledList>
-    </StyledTimeContainer>
+      <StyledTimeInput
+        type="number"
+        value={inputValue}
+        min="0"
+        max="24"
+        name={name}
+        onKeyDown={limitTimeInput}
+        onChange={changeInput}
+        placeholder="00"
+      />
   );
 };
 

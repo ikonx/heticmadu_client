@@ -54,6 +54,11 @@ export const StyledTimeInput = styled.input`
   color: ${Colors.black};
   font-size: 12px;
   font-family: ${Fonts.medium};
+  text-align: center;
+  padding: .25rem;
+  &::-webkit-inner-spin-button, &::-webkit-outer-spin-button{
+    appearance: none;
+  }
 `;
 
 export const StyledTimeSpan = styled.span`

@@ -15,7 +15,7 @@ import {
   radioPrice
 } from "../../utils/formsMocks/PoisForm";
 import TextArea from "../atoms/Inputs/Area/TextArea";
-import InputTime from "../atoms/Inputs/Time/InputTime";
+import ScheduleBlock from "../molecules/ScheduleBlock";
 
 interface Props {
 }
@@ -49,7 +49,7 @@ const PoisForm: React.FC<Props> = () => {
         </Grid>
         <Grid container spacing={8}>
           <Grid item xs={4}>
-            <InputTime title="Horaire"/>
+            <ScheduleBlock title="Horaire"/>
           </Grid>
           <Grid item xs={4}>
             <TextArea title="Description"/>
