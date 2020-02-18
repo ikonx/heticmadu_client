@@ -24,13 +24,13 @@ const MainUi: React.FC<Props> = () => {
         <>
           <Header />
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/home">
               <Dashboard />
             </Route>
             <Route path="/map">
               <Map />
             </Route>
-            <Route path="/companies">
+            <Route exact path="/companies">
               <Companies />
             </Route>
             <Route path="/companies/form">
