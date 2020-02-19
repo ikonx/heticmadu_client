@@ -86,7 +86,7 @@ const PoisForm: React.FC<Props> = () => {
           </Grid>
         </Grid>
       </ScrollableContent>
-      <FormsFooter activeSteps={footerData} returnLink="/pois" confirmLink="/pois/greenscore"/>
+      <FormsFooter activeSteps={footerData} returnLink="/pois" confirmLink="/formGreenscore"/>
     </section>
   );
 };
