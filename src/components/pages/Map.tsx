@@ -8,6 +8,7 @@ import MainTitle from 'components/atoms/Text/MainTitle';
 import { Close } from '@material-ui/icons';
 import Icon from 'components/atoms/Icon/Icon';
 import { filterType } from 'utils/filters/type.filter';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const MapComponent = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
@@ -52,83 +53,109 @@ const StyledFiltersHeader = styled(Grid)`
   border-bottom: 1px solid #eaedf3;
 `;
 
+const MotionMarker = styled(motion.div)``;
+
 const Map: React.FC<Props> = () => {
   const [defaultEntries, setDefaultEntries] = useState<any[]>([
     {
+      id: 1,
       center: [2.354768, 48.860589],
       zoom: 15.5,
       pitch: 20,
       type: 'resto',
+      price: '€',
     },
     {
+      id: 2,
       center: [2.332595, 48.864371],
       zoom: 15.5,
       pitch: 20,
       type: 'shop',
+      price: '€€€',
     },
     {
+      id: 3,
       center: [2.292952, 48.87102],
       zoom: 15.5,
       pitch: 20,
       type: 'business',
+      price: '€€',
     },
     {
+      id: 4,
       center: [2.397322, 48.87102],
       zoom: 15.5,
       pitch: 20,
       type: 'shop',
+      price: '€',
     },
     {
+      id: 5,
       center: [2.402886, 48.859557],
       zoom: 15.5,
       pitch: 20,
       type: 'resto',
+      price: '€€',
     },
     {
+      id: 6,
       center: [2.369143, 48.853161],
       zoom: 15.5,
       pitch: 20,
       type: 'shop',
+      price: '€',
     },
   ]);
   const [isMapReady, setMapReady] = useState<any>(false);
 
   const [entries, setEntries] = useState<any[]>([
     {
+      id: 1,
       center: [2.354768, 48.860589],
       zoom: 15.5,
       pitch: 20,
       type: 'resto',
+      price: '€',
     },
     {
+      id: 2,
       center: [2.332595, 48.864371],
       zoom: 15.5,
       pitch: 20,
       type: 'shop',
+      price: '€€€',
     },
     {
+      id: 3,
       center: [2.292952, 48.87102],
       zoom: 15.5,
       pitch: 20,
       type: 'business',
+      price: '€€',
     },
     {
+      id: 4,
       center: [2.397322, 48.87102],
       zoom: 15.5,
       pitch: 20,
       type: 'shop',
+      price: '€',
     },
     {
+      id: 5,
       center: [2.402886, 48.859557],
       zoom: 15.5,
       pitch: 20,
       type: 'resto',
+      price: '€€',
     },
     {
+      id: 6,
       center: [2.369143, 48.853161],
       zoom: 15.5,
       pitch: 20,
       type: 'shop',
+      price: '€',
     },
   ]);
 
@@ -139,9 +166,12 @@ const Map: React.FC<Props> = () => {
   };
 
   const filter = (filter_key: string, filter_value: string) => {
-    let newEntries: any[] = [...entries];
+    let newEntries: any[] = [...defaultEntries];
     switch (filter_key) {
       case 'type':
+        newEntries = filterType(newEntries, filter_key, filter_value);
+        break;
+      case 'price':
         newEntries = filterType(newEntries, filter_key, filter_value);
         break;
       default:
@@ -165,28 +195,32 @@ const Map: React.FC<Props> = () => {
         zoom={[12]}
         onStyleLoad={() => setMapReady(true)}
       >
-        {isMapReady && entries.map((entry, index) => {
-          return (
-            <Marker
-              key={index}
-              coordinates={entry.center}
-              anchor="bottom"
-              offset={[0, -15]}
-            >
-              <MapPointIcon point={entry} />
-            </Marker>
-          );
-        })}
+        <AnimatePresence>
+          {isMapReady &&
+            entries.map((entry, index) => {
+              return (
+                <Marker
+                  key={entry.id}
+                  coordinates={entry.center}
+                  anchor="bottom"
+                  offset={[0, -15]}
+                >
+                  <MotionMarker
+                    initial={{ scale: 0, y: 20 }}
+                    animate={{ scale: 1, y: 0 }}
+                    exit={{ scale: 0, y: 20 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <MapPointIcon point={entry} />
+                  </MotionMarker>
+                </Marker>
+              );
+            })}
+        </AnimatePresence>
       </MapComponent>
     ),
     [entries, isMapReady],
   );
-
-  useEffect(() => {
-    setTimeout(() => {
-      filter('type', 'resto');
-    }, 4000);
-  }, []);
 
   return (
     <CompanyContainer>
@@ -201,10 +235,14 @@ const Map: React.FC<Props> = () => {
           </Icon>
         </StyledFiltersHeader>
         <Grid>
-          
+          <span onClick={() => filter('type', 'resto')}>resto</span>
+          <span onClick={() => filter('price', '€')}>price €</span>
+          <span onClick={() => filter('price', '€€')}>price €€</span>
+          <span onClick={() => filter('price', '€€€')}>price €€€</span>
+          <span onClick={() => setEntries(defaultEntries)}>reset</span>
         </Grid>
       </StyledFiltersContainer>
-      {renderMap}
+      <AnimatePresence>{renderMap}</AnimatePresence>
     </CompanyContainer>
   );
 };
