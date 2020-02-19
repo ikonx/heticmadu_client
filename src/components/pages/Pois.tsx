@@ -188,6 +188,7 @@ const Pois: React.FC<Props> = () => {
       latitude: '48.868671',
     },
   ];
+  
   const { pathname } = useLocation();
   const history = useHistory();
   const isAddingRoute =
