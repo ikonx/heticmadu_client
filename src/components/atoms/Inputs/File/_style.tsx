@@ -50,7 +50,10 @@ export const StyledLabel = styled.label<{isLarge: string}>`
   flex-direction: ${props => props.isLarge === 'true' ? 'column' : 'row'};
   pointer-events: none;
   svg {
-    margin-right: .5rem;
+    margin-right: ${props => props.isLarge === 'true' ? '0' : '.5rem'};
+    width: ${props => props.isLarge === 'true' ? '30px' : 'unset'};
+    height: ${props => props.isLarge === 'true' ? '30px' : 'unset'};
+    margin-bottom: ${props => props.isLarge === 'true' ? '.5rem' : '0'};
   }
 `;
 
@@ -65,7 +68,34 @@ export const StyledClose = styled(HighlightOffIcon)`
   }
 `;
 
-export const StyledImg = styled.img`
-  width: 200px;
-  height: 200px;
+export const StyledFileItem = styled.div<{ isLarge: string }>`
+  width: 100%;
+  height: 48px;
+  position: relative;
+  ${StyledLabel} {
+    align-items: ${props => props.isLarge === 'true' ? 'flex-start' : 'center'};
+  }
+  &::after {
+    content: '';
+    background: ${Colors.lightGrey};
+    width: calc(100% - 16px);
+    height: 1px;
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+  }
+`;
+
+export const StyledRemainingFiles = styled.div`
+  color: ${Colors.purple};
+  font-family: ${Fonts.medium};
+  font-size: 13px;
+  margin-top: 4rem;
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+  p {
+    margin: 0;
+  }
 `;

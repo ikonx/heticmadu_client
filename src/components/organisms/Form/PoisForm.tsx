@@ -27,6 +27,24 @@ const footerData = {
 };
 
 const PoisForm: React.FC<Props> = () => {
+  const data = {
+    category: '',
+    name: '',
+    address: '',
+    phone: '',
+    price: '',
+    handicap: '',
+    schedule : {
+      monday: ''
+    },
+    description: '',
+    pictures: '',
+    bio: '',
+    diet: '',
+    gluten: '',
+    activePOI: ''
+  };
+
   return (
     <section>
       <PageHeader
