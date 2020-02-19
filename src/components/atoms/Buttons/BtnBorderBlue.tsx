@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
-import { Colors, Fonts } from '../../../utils/styles';
+import {Colors, Fonts} from '../../../utils/styles';
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -12,8 +12,9 @@ interface Props {
 
 const StyledButton = styled(Button)`
   && {
-    background-color: ${Colors.blue};
-    color: ${Colors.white};
+    background-color: transparent;
+    color: ${Colors.blue};
+    border: 1px solid ${Colors.blue};
     transition: 0.5s;
     text-transform: none;
     font-family: ${Fonts.bold};
@@ -21,8 +22,8 @@ const StyledButton = styled(Button)`
     box-shadow: unset;
     padding: 0;
     &:hover {
-      background: ${Colors.darkBlue};
       box-shadow: unset;
+      background: ${Colors.lightBlue};
     }
   }
 `;
@@ -37,7 +38,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const BtnBlue: React.FC<Props> = ({ text, link, onClick }) => {
+const BtnBorderBlue: React.FC<Props> = ({ text, link,onClick }) => {
   return (
     <>
       { onClick ? (
@@ -57,4 +58,4 @@ const BtnBlue: React.FC<Props> = ({ text, link, onClick }) => {
   );
 };
 
-export default BtnBlue;
+export default BtnBorderBlue;

@@ -13,10 +13,11 @@ const InputContainer = styled.div `
 `;
 
 const AdminInputBlock: React.FC<Props> = () => {
+
     return (
         <InputContainer>
-            <InputText name="Email" placeholder="Entrez votre email"/>
-            <InputText name="Mot de passe" placeholder="Entrez votre mot de passe"/>
+            <InputText title="Email" placeholder="Entrez votre email"/>
+            <InputText title="Mot de passe" placeholder="Entrez votre mot de passe"/>
         </InputContainer>
     )
 }

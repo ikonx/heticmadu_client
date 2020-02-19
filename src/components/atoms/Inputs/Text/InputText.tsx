@@ -2,15 +2,19 @@ import React from 'react';
 import { StyledFormControl, StyledInput, StyledLabel } from "./_style";
 
 interface Props {
-  name: string;
+  title: string;
   placeholder: string;
 }
 
-const InputText: React.FC<Props> = ({ name, placeholder }) => {
+const InputText: React.FC<Props> = ({ title, placeholder }) => {
   return (
     <StyledFormControl>
-      <StyledLabel htmlFor={name}>{ name }</StyledLabel>
-      <StyledInput id={name} type="text" placeholder={placeholder}/>
+      <StyledLabel htmlFor={title}>{ title }</StyledLabel>
+      <StyledInput
+        id={title}
+        type="text"
+        placeholder={placeholder}
+      />
     </StyledFormControl>
   );
 };
