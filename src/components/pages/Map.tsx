@@ -14,9 +14,10 @@ import InputRadio from 'components/atoms/Inputs/Radio/InputRadio';
 import CustomSelect from 'components/atoms/Select/CustomSelect';
 import RadioMultiple from 'components/atoms/Inputs/RadioMultiple/RadioMultiple';
 
-import { radioPrice } from 'utils/formsMocks/PoisForm';
+import { radioPrice, radioAccessibility, radioTags } from 'utils/formsMocks/PoisForm';
 import { filterType } from 'utils/filters/type.filter';
 import { filterPrice } from 'utils/filters/price.filter';
+import { filterTags } from 'utils/filters/tags.filter';
 
 const MapComponent = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
@@ -64,107 +65,120 @@ const StyledFiltersHeader = styled(Grid)`
 
 const MotionMarker = styled(motion.div)``;
 
+const fakeData = [
+  {
+    id: 1,
+    center: [2.354768, 48.860589],
+    zoom: 15.5,
+    pitch: 20,
+    type: 'resto',
+    price: '€',
+    tags: ['africa', 'bar'],
+  },
+  {
+    id: 2,
+    center: [2.332595, 48.864371],
+    zoom: 15.5,
+    pitch: 20,
+    type: 'shop',
+    price: '€€€',
+    tags: ['africa'],
+  },
+  {
+    id: 3,
+    center: [2.292952, 48.87102],
+    zoom: 15.5,
+    pitch: 20,
+    type: 'business',
+    price: '€€',
+    tags: ['burger', 'bar'],
+  },
+  {
+    id: 4,
+    center: [2.397322, 48.87102],
+    zoom: 15.5,
+    pitch: 20,
+    type: 'shop',
+    price: '€',
+    tags: ['burger', 'vegan', 'cosy', 'sushi', 'indien'],
+  },
+  {
+    id: 5,
+    center: [2.402886, 48.859557],
+    zoom: 15.5,
+    pitch: 20,
+    type: 'resto',
+    price: '€€',
+    tags: ['bar'],
+  },
+  {
+    id: 6,
+    center: [2.369143, 48.853161],
+    zoom: 15.5,
+    pitch: 20,
+    type: 'shop',
+    price: '€€€',
+    tags: ['africa', 'bar'],
+  },
+  {
+    id: 7,
+    center: [2.324768, 48.680589],
+    zoom: 15.5,
+    pitch: 20,
+    type: 'resto',
+    price: '€',
+    tags: ['africa', 'bar'],
+  },
+  {
+    id: 8,
+    center: [2.322595, 48.764371],
+    zoom: 15.5,
+    pitch: 20,
+    type: 'shop',
+    price: '€€€',
+    tags: ['salade', 'cosy'],
+  },
+  {
+    id: 9,
+    center: [2.292952, 48.83102],
+    zoom: 15.5,
+    pitch: 20,
+    type: 'business',
+    price: '€€',
+    tags: ['burger', 'bar', 'salade'],
+  },
+  {
+    id: 10,
+    center: [2.391322, 48.87802],
+    zoom: 15.5,
+    pitch: 20,
+    type: 'shop',
+    price: '€€€',
+    tags: ['burger'],
+  },
+  {
+    id: 11,
+    center: [2.412886, 48.849557],
+    zoom: 15.5,
+    pitch: 20,
+    type: 'business',
+    price: '€€€',
+    tags: ['bar', 'sushi', 'cosy'],
+  },
+  {
+    id: 12,
+    center: [2.329143, 48.859161],
+    zoom: 15.5,
+    pitch: 20,
+    type: 'business',
+    price: '€€',
+    tags: ['africa', 'bar'],
+  },
+];
+
 const Map: React.FC<Props> = () => {
-  const [defaultEntries, setDefaultEntries] = useState<any[]>([
-    {
-      id: 1,
-      center: [2.354768, 48.860589],
-      zoom: 15.5,
-      pitch: 20,
-      type: 'resto',
-      price: '€',
-    },
-    {
-      id: 2,
-      center: [2.332595, 48.864371],
-      zoom: 15.5,
-      pitch: 20,
-      type: 'shop',
-      price: '€€€',
-    },
-    {
-      id: 3,
-      center: [2.292952, 48.87102],
-      zoom: 15.5,
-      pitch: 20,
-      type: 'business',
-      price: '€€',
-    },
-    {
-      id: 4,
-      center: [2.397322, 48.87102],
-      zoom: 15.5,
-      pitch: 20,
-      type: 'shop',
-      price: '€',
-    },
-    {
-      id: 5,
-      center: [2.402886, 48.859557],
-      zoom: 15.5,
-      pitch: 20,
-      type: 'resto',
-      price: '€€',
-    },
-    {
-      id: 6,
-      center: [2.369143, 48.853161],
-      zoom: 15.5,
-      pitch: 20,
-      type: 'shop',
-      price: '€',
-    },
-  ]);
-  const [entries, setEntries] = useState<any[]>([
-    {
-      id: 1,
-      center: [2.354768, 48.860589],
-      zoom: 15.5,
-      pitch: 20,
-      type: 'resto',
-      price: '€',
-    },
-    {
-      id: 2,
-      center: [2.332595, 48.864371],
-      zoom: 15.5,
-      pitch: 20,
-      type: 'shop',
-      price: '€€€',
-    },
-    {
-      id: 3,
-      center: [2.292952, 48.87102],
-      zoom: 15.5,
-      pitch: 20,
-      type: 'business',
-      price: '€€',
-    },
-    {
-      id: 4,
-      center: [2.397322, 48.87102],
-      zoom: 15.5,
-      pitch: 20,
-      type: 'shop',
-      price: '€',
-    },
-    {
-      id: 5,
-      center: [2.402886, 48.859557],
-      zoom: 15.5,
-      pitch: 20,
-      type: 'resto',
-      price: '€€',
-    },
-    {
-      id: 6,
-      center: [2.369143, 48.853161],
-      zoom: 15.5,
-      pitch: 20,
-      type: 'shop',
-      price: '€',
-    },
-  ]);
+  const [defaultEntries, setDefaultEntries] = useState<any[]>([...fakeData]);
+  const [entries, setEntries] = useState<any[]>([...fakeData]);
   const [isMapReady, setMapReady] = useState<any>(false);
   const [isFiltring, setFiltring] = useState<boolean>(!false);
 
@@ -194,6 +208,19 @@ const Map: React.FC<Props> = () => {
         newEntries =
           filter_value.length > 0
             ? filterPrice(newEntries, filter_key, filter_value)
+            : defaultEntries;
+        break;
+      // @TODOS check DATA BASE SCHEMA
+      case 'accessibility':
+        newEntries =
+          filter_value.length > 0
+            ? filterPrice(newEntries, filter_key, filter_value)
+            : defaultEntries;
+        break;
+      case 'tags':
+        newEntries =
+          filter_value.length > 0
+            ? filterTags(newEntries, filter_key, filter_value)
             : defaultEntries;
         break;
       default:
@@ -266,13 +293,21 @@ const Map: React.FC<Props> = () => {
           </Button>
           <CustomSelect
             title="Catégorie"
-            values={['resto', 'shop']}
+            values={['resto', 'shop', 'business']}
             onChange={(_value: any) => filter('type', _value)}
           />
           <RadioMultiple
             values={radioPrice}
             title="Prix"
             onChange={(_value: any) => filter('price', _value)}
+          />
+          <RadioMultiple
+            values={radioTags}
+            title="Tags"
+            onChange={(_value: any) => {
+              filter('tags', _value);
+              console.log('values', _value);
+            }}
           />
         </Grid>
       </StyledFiltersContainer>
