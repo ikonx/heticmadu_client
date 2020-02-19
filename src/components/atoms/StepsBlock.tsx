@@ -4,8 +4,8 @@ import { Colors } from "../../utils/styles";
 
 interface Props {
   title: string;
-  currentStep: string;
-  finalStep: string;
+  currentStep: number;
+  finalStep: number;
 }
 
 const StepsContainer = styled.div`
@@ -26,6 +26,7 @@ const StepsBar = styled.div<{ status: string }>`
     left: 0;
     background: ${Colors.blue};
     border: 1px solid ${Colors.blue};
+    transition: width .6s ease;
     width: ${props => props.status};
     border-radius: 5px;
     height: 100%;
@@ -50,7 +51,7 @@ const StepsTitle = styled.p`
 `;
 
 const StepsBlock: React.FC<Props> = ({ title, currentStep, finalStep }) => {
-  const statusBar = parseInt(currentStep) / parseInt(finalStep) * 100 + '%';
+  const statusBar = currentStep / finalStep * 100 + '%';
 
   return (
     <StepsContainer>
