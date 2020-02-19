@@ -9,9 +9,12 @@ interface Props {
 }
 
 const SwitchState = styled.p`
-  font-family: ${Fonts.medium};
-  font-size: 12px;
-  margin-right: .5rem;
+  && {
+    font-family: ${Fonts.medium};
+    color: ${Colors.black};
+    font-size: 12px;
+    margin-right: .5rem;
+  }
 `;
 
 const SwitchContainer = styled.div`
@@ -38,10 +41,6 @@ const StyledSwitch = withStyles({
         border: 'none',
       },
     },
-    '&$focusVisible $thumb': {
-      color: '#52d869',
-      border: '6px solid #fff',
-    },
   },
   thumb: {
     width: 16,
@@ -49,11 +48,10 @@ const StyledSwitch = withStyles({
   },
   track: {
     borderRadius: 36,
-    backgroundColor: Colors.darkWhite,
+    backgroundColor: Colors.lightGrey,
     opacity: 1,
   },
   checked: {},
-  focusVisible: {},
 })(Switch);
 
 const CustomSwitch: React.FC<Props> = ({ status, changeListener }) => {
