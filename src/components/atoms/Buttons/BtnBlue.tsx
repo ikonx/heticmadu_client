@@ -20,6 +20,7 @@ const StyledButton = styled(Button)`
     font-size: 14px;
     box-shadow: unset;
     padding: 0;
+    padding: 12px 1rem;
     &:hover {
       background: ${Colors.darkBlue};
       box-shadow: unset;
@@ -33,7 +34,7 @@ const StyledLink = styled(Link)`
     letter-spacing: 0.22px;
     text-decoration: none;
     color: inherit;
-    padding: 12px 1rem;
+    /* padding: 12px 1rem; */
   }
 `;
 

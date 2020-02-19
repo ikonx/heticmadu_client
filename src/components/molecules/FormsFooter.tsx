@@ -8,8 +8,9 @@ import StepsBlock from "../atoms/StepsBlock";
 interface Props {
   activeSteps?: {
     title: string;
-    current: string;
-    final: string;
+    current: number;
+    final: number;
+    currentGreenscore: number;
   };
   returnLink?: string;
   confirmLink?: string;
