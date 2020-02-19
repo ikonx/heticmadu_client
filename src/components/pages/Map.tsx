@@ -9,6 +9,10 @@ import { Close } from '@material-ui/icons';
 import Icon from 'components/atoms/Icon/Icon';
 import { filterType } from 'utils/filters/type.filter';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Button } from '@material-ui/core';
+import InputRadio from 'components/atoms/Inputs/Radio/InputRadio';
+import CustomSelect from 'components/atoms/Select/CustomSelect';
+import { radioPrice } from 'utils/formsMocks/PoisForm';
 
 const MapComponent = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
@@ -32,6 +36,7 @@ const StyledFilterContainer = styled.div`
 `;
 
 const StyledFiltersContainer = styled<any>(Grid)`
+  grid-template-rows: max-content;
   height: 100%;
   position: absolute;
   top: 0;
@@ -159,10 +164,16 @@ const Map: React.FC<Props> = () => {
     },
   ]);
 
-  const [isFiltring, setFiltring] = useState<boolean>(false);
+  const [isFiltring, setFiltring] = useState<boolean>(!false);
 
   const toggleFilters = () => {
     setFiltring(!isFiltring);
+  };
+
+  const spring = {
+    type: 'spring',
+    damping: 900,
+    stiffness: 600,
   };
 
   const filter = (filter_key: string, filter_value: string) => {
@@ -206,10 +217,10 @@ const Map: React.FC<Props> = () => {
                   offset={[0, -15]}
                 >
                   <MotionMarker
-                    initial={{ scale: 0, y: 20 }}
+                    initial={{ scale: 0, y: -100 }}
                     animate={{ scale: 1, y: 0 }}
-                    exit={{ scale: 0, y: 20 }}
-                    transition={{ delay: index * 0.1 }}
+                    exit={{ scale: 0, y: 30 }}
+                    transition={{ ...spring, delay: index * 0.1 }}
                   >
                     <MapPointIcon point={entry} />
                   </MotionMarker>
@@ -229,17 +240,30 @@ const Map: React.FC<Props> = () => {
       </StyledFilterContainer>
       <StyledFiltersContainer isFiltring={isFiltring}>
         <StyledFiltersHeader flow={FlowEnum.COLUMN}>
-          <MainTitle title="Filtres" subtitle="" isForm={1} />
+          <MainTitle title="Filtres" subtitle="" />
           <Icon onClick={toggleFilters}>
             <Close />
           </Icon>
         </StyledFiltersHeader>
-        <Grid>
+        <Grid
+          gap={32}
+          flow={FlowEnum.ROW}
+          style={{ gridAutoRows: 'max-content', padding: '2rem' }}
+        >
+          <Button color="primary" onClick={() => setEntries(defaultEntries)}>
+            Réinitialiser les filtres
+          </Button>
           <span onClick={() => filter('type', 'resto')}>resto</span>
-          <span onClick={() => filter('price', '€')}>price €</span>
-          <span onClick={() => filter('price', '€€')}>price €€</span>
-          <span onClick={() => filter('price', '€€€')}>price €€€</span>
-          <span onClick={() => setEntries(defaultEntries)}>reset</span>
+          <CustomSelect
+            title="Catégorie"
+            values={['resto', 'shop']}
+            onChange={(_value: any) => filter('type', _value)}
+          />
+          <InputRadio
+            values={radioPrice}
+            title="Périmètre"
+            onChange={(_value: any) => filter('price', _value)}
+          />
         </Grid>
       </StyledFiltersContainer>
       <AnimatePresence>{renderMap}</AnimatePresence>
