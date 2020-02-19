@@ -1,18 +1,22 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
 import styled from 'styled-components';
+import { Close } from '@material-ui/icons';
+import { Button } from '@material-ui/core';
+import { AnimatePresence, motion } from 'framer-motion';
+
 import MapPointIcon from 'components/atoms/MapPointIcon/MapPointIcon';
 import BtnBlue from 'components/atoms/Buttons/BtnBlue';
 import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
 import MainTitle from 'components/atoms/Text/MainTitle';
-import { Close } from '@material-ui/icons';
 import Icon from 'components/atoms/Icon/Icon';
-import { filterType } from 'utils/filters/type.filter';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Button } from '@material-ui/core';
 import InputRadio from 'components/atoms/Inputs/Radio/InputRadio';
 import CustomSelect from 'components/atoms/Select/CustomSelect';
+import RadioMultiple from 'components/atoms/Inputs/RadioMultiple/RadioMultiple';
+
 import { radioPrice } from 'utils/formsMocks/PoisForm';
+import { filterType } from 'utils/filters/type.filter';
+import { filterPrice } from 'utils/filters/price.filter';
 
 const MapComponent = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
@@ -111,8 +115,6 @@ const Map: React.FC<Props> = () => {
       price: '€',
     },
   ]);
-  const [isMapReady, setMapReady] = useState<any>(false);
-
   const [entries, setEntries] = useState<any[]>([
     {
       id: 1,
@@ -163,7 +165,7 @@ const Map: React.FC<Props> = () => {
       price: '€',
     },
   ]);
-
+  const [isMapReady, setMapReady] = useState<any>(false);
   const [isFiltring, setFiltring] = useState<boolean>(!false);
 
   const toggleFilters = () => {
@@ -176,14 +178,23 @@ const Map: React.FC<Props> = () => {
     stiffness: 600,
   };
 
-  const filter = (filter_key: string, filter_value: string) => {
+  /**
+   * switch to chose wich filter to use depending on the filter key
+   *
+   * @param {string} filter_key
+   * @param {*} filter_value
+   */
+  const filter = (filter_key: string, filter_value: any) => {
     let newEntries: any[] = [...defaultEntries];
     switch (filter_key) {
       case 'type':
         newEntries = filterType(newEntries, filter_key, filter_value);
         break;
       case 'price':
-        newEntries = filterType(newEntries, filter_key, filter_value);
+        newEntries =
+          filter_value.length > 0
+            ? filterPrice(newEntries, filter_key, filter_value)
+            : defaultEntries;
         break;
       default:
         alert('no filter existing ');
@@ -253,15 +264,14 @@ const Map: React.FC<Props> = () => {
           <Button color="primary" onClick={() => setEntries(defaultEntries)}>
             Réinitialiser les filtres
           </Button>
-          <span onClick={() => filter('type', 'resto')}>resto</span>
           <CustomSelect
             title="Catégorie"
             values={['resto', 'shop']}
             onChange={(_value: any) => filter('type', _value)}
           />
-          <InputRadio
+          <RadioMultiple
             values={radioPrice}
-            title="Périmètre"
+            title="Prix"
             onChange={(_value: any) => filter('price', _value)}
           />
         </Grid>
