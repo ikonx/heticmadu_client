@@ -11,6 +11,7 @@ import Tags from 'components/pages/Tags';
 import Header from 'components/molecules/Header';
 import CompaniesForm from "../../pages/CompaniesForm";
 import Map from 'components/pages/Map';
+import GreenscoreForm from 'components/pages/GreenscoreForm';
 
 const StyledContainer = styled(Grid)``;
 
@@ -44,6 +45,9 @@ const MainUi: React.FC<Props> = () => {
             </Route>
             <Route path="/form">
               <Form />
+            </Route>
+            <Route path="/formGreenscore">
+              <GreenscoreForm />
             </Route>
           </Switch>
         </>
