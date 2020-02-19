@@ -19,6 +19,7 @@ const StyledButton = styled(Button)`
     font-family: ${Fonts.bold};
     font-size: 14px;
     box-shadow: unset;
+    padding: 0;
     &:hover {
       background: ${Colors.darkBlue};
       box-shadow: unset;

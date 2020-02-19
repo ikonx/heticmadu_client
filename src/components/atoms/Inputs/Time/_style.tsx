@@ -3,6 +3,7 @@ import { Colors, Fonts } from "../../../../utils/styles";
 
 export const StyledTimeContainer = styled.div`
     text-align: left;
+    height: 100%;
 `;
 
 export const StyledTitle = styled.label`
@@ -14,21 +15,45 @@ export const StyledTitle = styled.label`
 
 export const StyledList = styled.ul`
    list-style: none;
+   height: 100%;
    margin: 0;
-   padding: 0 1rem;
+   padding: 4px 0 4px 1rem;
    background: ${Colors.white};
    border: 1px solid ${Colors.lightGrey};
    border-radius: 4px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   li:last-child::after {
+      display: none;
+   }
 `;
 
 export const StyledItem = styled.li`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  
   p {
     color: ${Colors.textGrey};
     font-size: 12px;
   }
+  &::after {
+    content: '';
+    background: ${Colors.lightGrey};
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 4px 0;
+  }
+`;
+
+export const StyledItemContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 1rem;
 `;
 
 export const StyledInputs = styled.div`
