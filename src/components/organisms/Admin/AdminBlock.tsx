@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 import AdminText from 'components/atoms/Text/Admin/AdminText';
 import AdminInputBlock from 'components/molecules/Admin/AdminInputBlock';
 import BtnBlue from 'components/atoms/Buttons/BtnBlue';
@@ -22,4 +22,4 @@ const AdminBlock: React.FC<Props> = () => {
     )
 }
 
-export default AdminBlock
+export default AdminBlock;

@@ -4,9 +4,7 @@ import styled from 'styled-components';
 
 interface Props {}
 
-const TitleContainer = styled.div `
-
-`;
+const TitleContainer = styled.div ``;
 
 const TitleText = styled.h2 `
     font-size: 24px;
