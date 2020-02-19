@@ -199,6 +199,7 @@ const Map: React.FC<Props> = () => {
    * @param {*} filter_value
    */
   const filter = (filter_key: string, filter_value: any) => {
+    // @TODOS Manage selected filters && or || ????????????
     let newEntries: any[] = [...defaultEntries];
     switch (filter_key) {
       case 'type':
@@ -258,7 +259,7 @@ const Map: React.FC<Props> = () => {
                     initial={{ scale: 0, y: -100 }}
                     animate={{ scale: 1, y: 0 }}
                     exit={{ scale: 0, y: 30 }}
-                    transition={{ ...spring, delay: index * 0.1 }}
+                    transition={{ ...spring, delay: index * 0.05, duration: .3 }}
                   >
                     <MapPointIcon point={entry} />
                   </MotionMarker>

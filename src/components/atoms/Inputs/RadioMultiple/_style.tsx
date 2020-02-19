@@ -41,8 +41,8 @@ export const StyledRadioGroup = styled(RadioGroup)`
   && {
     position: relative;
     flex: 1;
-    margin-right: 4px;
-    margin-bottom: 4px;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
   }
 `;
 
