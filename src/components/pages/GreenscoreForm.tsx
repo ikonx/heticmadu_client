@@ -9,7 +9,7 @@ interface Props {}
 const GreenscoreForm: React.FC<Props> = () => {
     return (
         <section>
-           <PageHeader title="Évaluez le Greenscore matériel de HETIC" subtitle="Greenscore entreprise" formBar={true} /> 
+           <PageHeader title="Évaluez le Greenscore matériel de HETIC" subtitle="Greenscore entreprise" /> 
            <ScrollableContent>
                 <div>
                     { DataGreenscore.length > 0 && DataGreenscore[0].data.map((item, i) => <InputGreenscore key={i} DataGreenscore={item}/>)}
