@@ -7,6 +7,7 @@ import PageHeader from '../molecules/PageHeader/PageHeader';
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Colors } from '../../utils/styles';
 import { GridContainer, ScrollableContent } from '../../utils/styles/Globals';
+import { useHistory, useLocation } from "react-router-dom";
 
 const CompanyContainer = styled.section`
   width: 100%;
@@ -39,7 +40,7 @@ const Companies: React.FC<Props> = () => {
   return (
     <CompanyContainer>
       <GridContainer container>
-        <Grid item xs={8}>
+        <Grid item xs={7}>
           <PageHeader
             title="Entreprise"
             text="Créer une entreprise"
@@ -64,7 +65,7 @@ const Companies: React.FC<Props> = () => {
             </CompanyTable>
           </ScrollableContent>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           <Map
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{

@@ -9,10 +9,6 @@ interface Props {}
 const MenuContainer: React.FC<Props> = () => {
     const arrayData = [
         {
-            "title": "Dashboard",
-            "link": "/home"
-        },
-        {
             "title": "Map",
             "link": "/map"
         },
