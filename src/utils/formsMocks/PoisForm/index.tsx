@@ -29,6 +29,60 @@ export const radioPrice = [
   }
 ];
 
+export const radioAccessibility = [
+  {
+    name: 'animals',
+    category: 'accessibility'
+  },
+  {
+    name: 'handicap',
+    category: 'accessibility'
+  },
+  {
+    name: 'childs',
+    category: 'accessibility'
+  }
+];
+
+export const radioTags = [
+  {
+    name: 'africa',
+    category: 'tags'
+  },
+  {
+    name: 'bar',
+    category: 'tags'
+  },
+  {
+    name: 'burger',
+    category: 'tags'
+  },
+  {
+    name: 'vegan',
+    category: 'tags'
+  },
+  {
+    name: 'cosy',
+    category: 'tags'
+  },
+  {
+    name: 'indien',
+    category: 'tags'
+  },
+  {
+    name: 'fastfood',
+    category: 'tags'
+  },
+  {
+    name: 'sushi',
+    category: 'tags'
+  },
+  {
+    name: 'salade',
+    category: 'tags'
+  },
+];
+
 export const radioHandicap = [
   {
     name: 'Oui',
