@@ -5,6 +5,8 @@ import { RadioGroup } from '@material-ui/core';
 export const RadioContainer = styled.div`
   && {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 1rem;
@@ -38,15 +40,16 @@ export const StyledRadio = styled.div<any>`
 export const StyledRadioGroup = styled(RadioGroup)`
   && {
     position: relative;
-    width: 50%;
+    flex: 1;
     margin-right: 4px;
+    margin-bottom: 4px;
   }
 `;
 
 export const StyledLabel = styled.label`
   font-family: ${Fonts.medium};
   color: ${Colors.black};
-  padding: 4px 0;
+  padding: 4px;
   background: transparent;
   font-size: 15px;
   border-radius: 4px;
