@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Searchbar from 'components/atoms/Searchbar';
 import AdminBlock from "./AdminBlock";
 import MenuContainer from "../organisms/MenuContainer";
+import { Fonts } from "../../utils/styles";
 
 interface Props {}
 
@@ -31,9 +32,11 @@ const StyledToolbar = styled(Toolbar)`
 `;
 
 const HeaderLogo = styled(Typography)`
-    font-size: 24px;
-    font-weight: 800;
-    font-family: 'Montserrat-ExtraBold', sans-serif !important;
+    && {
+        font-size: 24px;
+        font-weight: 800;
+        font-family: ${Fonts.extraBold};
+    }
 `;
 
 const HeaderSearch = styled(StyledBlock)`

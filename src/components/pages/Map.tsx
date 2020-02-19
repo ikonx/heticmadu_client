@@ -11,7 +11,7 @@ interface Props {}
 
 const CompanyContainer = styled.section`
   width: 100%;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 72px);
   margin: 0;
 `;
 
