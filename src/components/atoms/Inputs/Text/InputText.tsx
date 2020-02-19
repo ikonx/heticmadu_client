@@ -10,7 +10,11 @@ const InputText: React.FC<Props> = ({ title, placeholder }) => {
   return (
     <StyledFormControl>
       <StyledLabel htmlFor={title}>{ title }</StyledLabel>
-      <StyledInput id={title} type="text" placeholder={placeholder}/>
+      <StyledInput
+        id={title}
+        type="text"
+        placeholder={placeholder}
+      />
     </StyledFormControl>
   );
 };
