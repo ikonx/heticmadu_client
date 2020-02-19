@@ -7,11 +7,10 @@ import PageHeader from '../molecules/PageHeader/PageHeader';
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Colors } from '../../utils/styles';
 import { GridContainer, ScrollableContent } from '../../utils/styles/Globals';
-import { useHistory } from "react-router-dom";
 
 const CompanyContainer = styled.section`
   width: 100%;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 72px);
   margin: 0;
 `;
 
@@ -37,20 +36,15 @@ const StyledTableBody = styled(TableBody)`
 interface Props {}
 
 const Companies: React.FC<Props> = () => {
-  const history = useHistory();
-  const navigateCompanyForm = () => {
-    history.push('/companies/form')
-  };
-
   return (
     <CompanyContainer>
       <GridContainer container>
-        <Grid item xs={7}>
+        <Grid item xs={8}>
           <PageHeader
-            title="Enprepise"
+            title="Entreprise"
             text="Créer une entreprise"
             subtitle="LIST"
-            onAddItem={navigateCompanyForm}
+            link="/form/companies"
           />
           <ScrollableContent>
             <CompanyTable>
@@ -70,11 +64,11 @@ const Companies: React.FC<Props> = () => {
             </CompanyTable>
           </ScrollableContent>
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={4}>
           <Map
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{
-              height: 'calc(100vh - 64px)',
+              height: 'calc(100vh - 72px)',
               width: '100%',
               maxWidth: 'calc(100vw - 280px)',
             }}

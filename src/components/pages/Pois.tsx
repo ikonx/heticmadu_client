@@ -1,23 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Grid as GoogleGrid } from '@material-ui/core';
 import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
 import CardItem, { CardItemProps } from '../molecules/Card/CardItem';
 
-import imgPOI from '../../assets/img/poi_img.jpg';
 import PageHeader from 'components/molecules/PageHeader/PageHeader';
 import ViewEntity from 'components/organisms/ViewEntity/ViewEntity';
 import { EntitiesEnum } from 'utils/enums/Entity.enum';
-import { GridContainer } from 'utils/styles/Globals';
-import { FactoryParameters } from 'react-mapbox-gl/lib/map';
-import { useParams, useLocation, Link, useHistory } from 'react-router-dom';
+import { GridContainer, ScrollableContent } from 'utils/styles/Globals';
+import { useLocation, useHistory } from 'react-router-dom';
 
 interface Props {}
 
 const PoiContainer = styled.section`
   width: 100%;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 72px);
   margin: 0;
 `;
 
@@ -32,9 +30,10 @@ const ContainerList = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   overflow: auto;
-  height: ${window.innerHeight - (72 + 115)}px;
+  height: ${window.innerHeight - (72 + 118)}px;
   padding: 0 2rem;
 `;
+
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
@@ -189,7 +188,6 @@ const Pois: React.FC<Props> = () => {
       latitude: '48.868671',
     },
   ];
-
   const { pathname } = useLocation();
   const history = useHistory();
   const isAddingRoute =
@@ -206,8 +204,7 @@ const Pois: React.FC<Props> = () => {
                 title="POI"
                 text="Créer une poi"
                 subtitle="CARD"
-                link="/pois/create"
-                // onAddItem={onAddItem}
+                link="/form/pois"
               />
               <ContainerList>
                 {dataArray.map((poi: CardItemProps, i) => (
@@ -266,7 +263,7 @@ const Pois: React.FC<Props> = () => {
           <Map
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{
-              minHeight: 'calc(100vh - 70px)',
+              height: 'calc(100vh - 72px)',
               width: '100%',
               maxWidth: 'calc(100vw - 280px)',
             }}
