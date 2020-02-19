@@ -1,8 +1,8 @@
 export const filterType = (
-  _array: any,
-  _category: string,
-  __value: string,
+  _valuesToFilter: any,
+  _fieldKey: string,
+  _filterValue: string,
 ): any[] => {
-  const res = _array.filter((item: any) => item[_category] === __value);
+  const res = _valuesToFilter.filter((item: any) => item[_fieldKey] === _filterValue);
   return res;
 };
