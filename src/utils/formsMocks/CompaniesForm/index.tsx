@@ -1,11 +1,16 @@
 export const radioCompany = [
-  'PME',
-  'SARL',
-  'EURL',
-  'SELARL',
-  'SA',
-  'SAS',
-  'SASU'
+  {
+    name: 'Startup',
+    category: 'company'
+  },
+  {
+    name: 'Grand Groupe',
+    category: 'company'
+  },
+  {
+    name: 'PME',
+    category: 'company'
+  }
 ];
 
 export const radioPerimeter = [

@@ -25,7 +25,9 @@ const StepsBar = styled.div<{ status: string }>`
     top: 0;
     left: 0;
     background: ${Colors.blue};
+    border: 1px solid ${Colors.blue};
     width: ${props => props.status};
+    border-radius: 5px;
     height: 100%;
   }
 `;

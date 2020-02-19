@@ -1,11 +1,11 @@
 import React from 'react';
-import PageHeader from "../molecules/PageHeader/PageHeader";
-import { ScrollableContent } from "../../utils/styles/Globals";
+import PageHeader from "../../molecules/PageHeader/PageHeader";
+import { ScrollableContent } from "../../../utils/styles/Globals";
 import { Grid } from "@material-ui/core";
-import InputRadio from "../atoms/Inputs/Radio/InputRadio";
-import InputText from "../atoms/Inputs/Text/InputText";
-import InputFile from "../atoms/Inputs/File/InputFile";
-import FormsFooter from "../molecules/FormsFooter";
+import InputRadio from "../../atoms/Inputs/Radio/InputRadio";
+import InputText from "../../atoms/Inputs/Text/InputText";
+import InputFile from "../../atoms/Inputs/File/InputFile";
+import FormsFooter from "../../molecules/FormsFooter";
 import {
   radioBio,
   radioCategory,
@@ -13,9 +13,9 @@ import {
   radioHandicap,
   radioPOI,
   radioPrice
-} from "../../utils/formsMocks/PoisForm";
-import TextArea from "../atoms/Inputs/Area/TextArea";
-import ScheduleBlock from "../molecules/ScheduleBlock";
+} from "../../../utils/formsMocks/PoisForm";
+import TextArea from "../../atoms/Inputs/Area/TextArea";
+import ScheduleBlock from "../../molecules/ScheduleBlock";
 
 interface Props {
 }
@@ -29,7 +29,11 @@ const footerData = {
 const PoisForm: React.FC<Props> = () => {
   return (
     <section>
-      <PageHeader title="Crée une POI" subtitle="nouvelle poi" isForm="true"/>
+      <PageHeader
+        title="POI"
+        subtitle="Card"
+        text="Crée une POI"
+      />
       <ScrollableContent isForm="true">
         <Grid container spacing={8}>
           <Grid item xs={4}>
@@ -81,7 +85,7 @@ const PoisForm: React.FC<Props> = () => {
           </Grid>
         </Grid>
       </ScrollableContent>
-      <FormsFooter activeSteps={footerData}/>
+      <FormsFooter activeSteps={footerData} returnLink="/pois" confirmLink="/pois/greenscore"/>
     </section>
   );
 };

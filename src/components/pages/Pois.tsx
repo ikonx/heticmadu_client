@@ -34,9 +34,6 @@ const ContainerList = styled.div`
   padding: 0 2rem;
 `;
 
-const StyledScrollableContent = styled(ScrollableContent)`
-  padding: 0;
-`;
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
@@ -207,8 +204,7 @@ const Pois: React.FC<Props> = () => {
                 title="POI"
                 text="Créer une poi"
                 subtitle="CARD"
-                link="/pois/create"
-                // onAddItem={onAddItem}
+                link="/form/pois"
               />
               <ContainerList>
                 {dataArray.map((poi: CardItemProps, i) => (

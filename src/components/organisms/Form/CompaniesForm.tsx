@@ -1,13 +1,12 @@
 import React from 'react';
-import PageHeader from "../molecules/PageHeader/PageHeader";
-import { ScrollableContent } from "../../utils/styles/Globals";
+import PageHeader from "../../molecules/PageHeader/PageHeader";
+import { ScrollableContent } from "../../../utils/styles/Globals";
 import { Grid } from "@material-ui/core";
-import InputRadio from "../atoms/Inputs/Radio/InputRadio";
-import InputText from "../atoms/Inputs/Text/InputText";
-import InputFile from "../atoms/Inputs/File/InputFile";
-import FormsFooter from "../molecules/FormsFooter";
-import { radioCompany, radioCompanyActive, radioPerimeter } from "../../utils/formsMocks/CompaniesForm";
-import CustomSelect from "../atoms/Select/CustomSelect";
+import InputRadio from "../../atoms/Inputs/Radio/InputRadio";
+import InputText from "../../atoms/Inputs/Text/InputText";
+import InputFile from "../../atoms/Inputs/File/InputFile";
+import FormsFooter from "../../molecules/FormsFooter";
+import { radioCompany, radioCompanyActive, radioPerimeter } from "../../../utils/formsMocks/CompaniesForm";
 
 interface Props {
 }
@@ -15,11 +14,14 @@ interface Props {
 const CompaniesForm: React.FC<Props> = () => {
   return (
     <section>
-      <PageHeader title="Crée une entreprise" subtitle="nouvelle entreprise" isForm="true"/>
+      <PageHeader
+        title="Crée une entreprise"
+        subtitle="nouvelle entreprise"
+      />
       <ScrollableContent isForm="true">
         <Grid container spacing={8}>
           <Grid item xs={4}>
-            <CustomSelect values={radioCompany} title="Type d'entreprise"/>
+            <InputRadio values={radioCompany} title="Type d'entreprise"/>
           </Grid>
           <Grid item xs={4}>
             <InputText title="Nom de l'entreprise" placeholder="Entrez le nom de l'entreprise .."/>
@@ -53,7 +55,7 @@ const CompaniesForm: React.FC<Props> = () => {
           </Grid>
         </Grid>
       </ScrollableContent>
-      <FormsFooter />
+      <FormsFooter returnLink="/companies" confirmLink="/companies?status=created"/>
     </section>
   );
 };

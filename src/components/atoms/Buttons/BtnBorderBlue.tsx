@@ -2,10 +2,12 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 import {Colors, Fonts} from '../../../utils/styles';
+import { Link } from "react-router-dom";
 
 interface Props {
   text: string;
-  onClick: () => void;
+  link?: string;
+  onClick?: () => void;
 }
 
 const StyledButton = styled(Button)`
@@ -14,7 +16,6 @@ const StyledButton = styled(Button)`
     color: ${Colors.blue};
     border: 1px solid ${Colors.blue};
     transition: 0.5s;
-    padding: 12px 1rem;
     text-transform: none;
     font-family: ${Fonts.bold};
     font-size: 14px;
@@ -26,11 +27,33 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const BtnBorderBlue: React.FC<Props> = ({ text, onClick }) => {
+const StyledLink = styled(Link)`
+  && {
+    font-size: 14px;
+    letter-spacing: 0.22px;
+    text-decoration: none;
+    color: inherit;
+    padding: 12px 1rem;
+  }
+`;
+
+const BtnBorderBlue: React.FC<Props> = ({ text, link,onClick }) => {
   return (
-    <StyledButton variant="contained" onClick={onClick}>
-      {text}
-    </StyledButton>
+    <>
+      { onClick ? (
+        <StyledButton variant="contained" onClick={onClick}>
+          { text }
+        </StyledButton>
+      ) : (
+        <StyledButton variant="contained">
+          { link ? (
+            <StyledLink to={link}>{text}</StyledLink>
+          ) : (
+            { text }
+          )}
+        </StyledButton>
+      )}
+    </>
   );
 };
 

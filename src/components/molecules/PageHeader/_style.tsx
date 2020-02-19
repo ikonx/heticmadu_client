@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Colors } from "../../../utils/styles";
 
-export const PageHeaderContainer = styled.div<{ formBar: string | undefined }>`
+export const PageHeaderContainer = styled.div`
   padding: 2rem 0 0;
   position: relative;
 `;

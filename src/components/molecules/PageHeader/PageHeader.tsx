@@ -8,15 +8,17 @@ interface Props {
   subtitle: string;
   text?: string;
   onAddItem?: () => void;
-  isForm?: string;
   link?: string;
 }
 
-const PageHeader: React.FC<Props> = ({title, text, subtitle, onAddItem, isForm}) => {
+const PageHeader: React.FC<Props> = ({title, text, subtitle, onAddItem, link}) => {
   return (
-    <PageHeaderContainer formBar={isForm}>
+    <PageHeaderContainer>
       <PageHeaderContent>
-        <MainTitle title={title} subtitle={subtitle} formBar={isForm}/>
+        <MainTitle title={title} subtitle={subtitle} />
+        { text && link && (
+          <BtnBlue text={text} link={link} />
+        )}
         { text && onAddItem && (
           <BtnBlue text={text} onClick={onAddItem} />
         )}

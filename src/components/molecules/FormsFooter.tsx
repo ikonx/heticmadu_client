@@ -11,6 +11,10 @@ interface Props {
     current: string;
     final: string;
   };
+  returnLink?: string;
+  confirmLink?: string;
+  returnAction?: () => void;
+  confirmAction?: () => void;
 }
 
 const StyledFooter = styled.section<{ hasSteps: string }>`
@@ -28,15 +32,23 @@ const StyledFooter = styled.section<{ hasSteps: string }>`
   }
 `;
 
-const FormsFooter: React.FC<Props> = ({ activeSteps }) => {
+const FormsFooter: React.FC<Props> = ({ activeSteps,returnLink, confirmLink, returnAction, confirmAction }) => {
   return (
     <StyledFooter hasSteps={activeSteps ? 'true' : 'false'}>
       { activeSteps && (
         <StepsBlock title={activeSteps.title} currentStep={activeSteps.current} finalStep={activeSteps.final}/>
       )}
       <div>
-        <BtnBorderBlue text="Retour" onClick={() => console.log('OK')}/>
-        <BtnBlue text="Confirmer" onClick={() => console.log('KO')}/>
+        <BtnBorderBlue
+          text="Retour"
+          link={returnLink ? returnLink : undefined}
+          onClick={returnAction ? returnAction : undefined}
+        />
+        <BtnBlue
+          text="Confirmer"
+          link={confirmLink ? confirmLink : undefined}
+          onClick={confirmAction ? confirmAction : undefined}
+        />
       </div>
     </StyledFooter>
   );
