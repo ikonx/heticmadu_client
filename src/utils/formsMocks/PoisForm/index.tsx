@@ -1,15 +1,18 @@
 export const radioCategory = [
   {
     name: 'Restaurant',
-    category: 'category'
+    category: 'category',
+    value: 'restau'
   },
   {
     name: 'Boutique',
-    category: 'category'
+    category: 'category',
+    value: 'shop'
   },
   {
     name: 'Activité',
-    category: 'category'
+    category: 'category',
+    value: 'activity'
   }
 ];
 
@@ -17,127 +20,153 @@ export const radioCategory = [
 export const radioPrice = [
   {
     name: '€',
-    category: 'price'
+    category: 'price',
+    value: '€'
   },
   {
     name: '€€',
-    category: 'price'
+    category: 'price',
+    value: '€€'
   },
   {
     name: '€€€',
-    category: 'price'
+    category: 'price',
+    value: '€€€'
   }
 ];
 
 export const radioAccessibility = [
   {
     name: 'animals',
-    category: 'accessibility'
+    category: 'accessibility',
+    value: 'animals'
   },
   {
     name: 'handicap',
-    category: 'accessibility'
+    category: 'accessibility',
+    value: 'handicap'
   },
   {
     name: 'childs',
-    category: 'accessibility'
+    category: 'accessibility',
+    value: 'childs'
   }
 ];
 
 export const radioTags = [
   {
     name: 'africa',
-    category: 'tags'
+    category: 'tags',
+    value: 'africa'
   },
   {
     name: 'bar',
-    category: 'tags'
+    category: 'tags',
+    value: 'bar'
   },
   {
     name: 'burger',
-    category: 'tags'
+    category: 'tags',
+    value: 'burger'
   },
   {
     name: 'vegan',
-    category: 'tags'
+    category: 'tags',
+    value: 'vegan'
   },
   {
     name: 'cosy',
-    category: 'tags'
+    category: 'tags',
+    value: 'cosy'
   },
   {
     name: 'indien',
-    category: 'tags'
+    category: 'tags',
+    value: 'indien'
   },
   {
     name: 'fastfood',
-    category: 'tags'
+    category: 'tags',
+    value: 'fastfood'
   },
   {
     name: 'sushi',
-    category: 'tags'
+    category: 'tags',
+    value: 'sushi'
   },
   {
     name: 'salade',
-    category: 'tags'
+    category: 'tags',
+    value: 'salade'
   },
 ];
 
 export const radioHandicap = [
   {
     name: 'Oui',
-    category: 'handicap'
+    category: 'handicap',
+    value: 'true'
   },
   {
     name: 'Non',
-    category: 'handicap'
+    category: 'handicap',
+    value: 'false'
   }
 ];
 
 export const radioBio = [
   {
     name: 'Oui',
-    category: 'bio'
+    category: 'bio',
+    value: 'true'
   },
   {
     name: 'En partie',
-    category: 'bio'
+    category: 'bio',
+    value: 'duno'
   },
   {
     name: 'Non',
-    category: 'bio'
+    category: 'bio',
+    value: 'false'
   }
 ];
 
 export const radioDiet = [
   {
     name: 'VG',
-    category: 'diet'
+    category: 'diet',
+    value: 'vg'
   },
   {
     name: 'VGN',
-    category: 'diet'
+    category: 'diet',
+    value: 'vgn'
   }
 ];
 
 export const radioGluten = [
   {
     name: 'Oui',
-    category: 'gluten'
+    category: 'gluten',
+    value: 'true'
   },
   {
     name: 'Non',
-    category: 'gluten'
+    category: 'gluten',
+    value: 'false'
   }
 ];
 
 export const radioPOI = [
   {
     name: 'Oui',
-    category: 'poi'
+    category: 'poi',
+    value: 'true'
   },
   {
     name: 'Non',
-    category: 'poi'
+    category: 'poi',
+    value: 'false'
   }
 ];

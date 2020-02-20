@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PageHeader from '../../molecules/PageHeader/PageHeader';
 import { ScrollableContent } from '../../../utils/styles/Globals';
 import { Grid } from '@material-ui/core';
@@ -19,6 +19,9 @@ import TextArea from '../../atoms/Inputs/Area/TextArea';
 import ScheduleBlock from '../../molecules/ScheduleBlock';
 import GreenscoreForm from './GreenscoreForm';
 import { useHistory } from 'react-router-dom';
+import { PoiModel } from 'utils/models/pois.model';
+import { CreatePointsOfInterestDTO } from 'utils/dto/pointsOfInterest.dto';
+import { IStatusEnum } from 'utils/interfaces/statusEnum';
 
 interface Props {}
 
@@ -29,9 +32,39 @@ const footerData = {
   final: 4,
 };
 
+const emptyPoi: CreatePointsOfInterestDTO = {
+  name: '',
+  longitude: 0,
+  latitude: 0,
+  address: '',
+  postalCode: 92000,
+  monday: '',
+  tuesday: '',
+  wednesday: '',
+  thursday: '',
+  friday: '',
+  saturday: '',
+  sunday: '',
+  schedule: '',
+  category: '',
+  averagePrice: '',
+  glutenFree: false,
+  bio: '',
+  disabledAccess: false,
+  greenScore: 0,
+  phoneNumber: '',
+  picture: '',
+  description: '',
+  status: IStatusEnum.DEACTIVATED,
+  tags: [],
+  images: [],
+};
 const PoisForm: React.FC<Props> = () => {
   const [step, setStep] = useState<number>(footerData.current);
   const history = useHistory();
+  const [poiData, setPoiData] = useState<CreatePointsOfInterestDTO>({
+    ...emptyPoi,
+  });
 
   const onNextStep = () => {
     if (step >= footerData.final) {
@@ -66,6 +99,17 @@ const PoisForm: React.FC<Props> = () => {
     setStep(nextStep);
   };
 
+  const updateField = (_fieldKey: any, _fieldValue: any) => {
+    const newPoiState: CreatePointsOfInterestDTO = { ...poiData };
+    // @ts-ignore
+    newPoiState[_fieldKey] = _fieldValue;
+    setPoiData(newPoiState);
+  };
+
+  useEffect(() => {
+    console.log(poiData);
+  }, [poiData]);
+
   return (
     <section>
       {step === 1 ? (
@@ -74,21 +118,45 @@ const PoisForm: React.FC<Props> = () => {
           <ScrollableContent isForm="true">
             <Grid container spacing={8}>
               <Grid item xs={4}>
-                <InputRadio title="Catégorie" values={radioCategory} />
+                <InputRadio
+                  title="Catégorie"
+                  values={radioCategory}
+                  fieldKey={'category'}
+                  onChange={updateField}
+                  fieldValue={poiData['category']}
+                />
               </Grid>
               <Grid item xs={4}>
-                <InputText title="Nom" placeholder="Entrez le nom du POI .." />
+                <InputText
+                  title="Nom"
+                  placeholder="Entrez le nom du POI .."
+                  fieldKey={'name'}
+                  onChange={updateField}
+                  fieldValue={poiData['name']}
+                  type="text"
+                />
               </Grid>
               <Grid item xs={4}>
                 <InputText
                   title="Adresse complète"
                   placeholder="Entrez l'adresse du POI ..."
+                  fieldKey={'address'}
+                  onChange={updateField}
+                  fieldValue={poiData['address']}
+                  type="text"
                 />
               </Grid>
             </Grid>
             <Grid container spacing={8}>
               <Grid item xs={4}>
-                <InputText title="Téléphone" placeholder="01.23.45.67.89" />
+                <InputText
+                  title="Téléphone"
+                  placeholder="01.23.45.67.89"
+                  fieldKey={'phoneNumber'}
+                  onChange={updateField}
+                  fieldValue={poiData['phoneNumber']}
+                  type="number"
+                />
               </Grid>
               <Grid item xs={4}>
                 <InputRadio values={radioPrice} title="Prix" />
