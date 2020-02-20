@@ -381,6 +381,7 @@ const Map: React.FC<Props> = () => {
    * @param {*} filter_value
    */
   const filter = (filter_key: string, filter_value: any) => {
+    // @TODOS Manage multiple filters
     // @TODOS Manage selected filters && or || ????????????
     let newEntries: any[] = [...defaultEntries];
     switch (filter_key) {
