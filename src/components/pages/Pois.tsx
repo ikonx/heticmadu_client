@@ -35,7 +35,6 @@ const ContainerList = styled.div`
   padding: 0 2rem;
 `;
 
-
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
 });
@@ -189,7 +188,7 @@ const Pois: React.FC<Props> = () => {
       latitude: '48.868671',
     },
   ];
-  
+
   const { pathname } = useLocation();
   const history = useHistory();
   const isAddingRoute =

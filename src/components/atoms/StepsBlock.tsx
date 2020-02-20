@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from "styled-components";
-import { Colors } from "../../utils/styles";
+import styled from 'styled-components';
+import { Colors } from '../../utils/styles';
 
 interface Props {
   title: string;
@@ -17,7 +17,7 @@ const StepsBar = styled.div<{ status: string }>`
   height: 4px;
   border: 1px solid ${Colors.lightGrey};
   border-radius: 5px;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   position: relative;
   &::after {
     content: '';
@@ -26,7 +26,7 @@ const StepsBar = styled.div<{ status: string }>`
     left: 0;
     background: ${Colors.blue};
     border: 1px solid ${Colors.blue};
-    transition: width .6s ease;
+    transition: width 0.6s ease;
     width: ${props => props.status};
     border-radius: 5px;
     height: 100%;
@@ -47,19 +47,21 @@ const StepsLocation = styled.p`
 const StepsTitle = styled.p`
   font-size: 15px;
   color: ${Colors.black};
-  margin: 0 0 0 .5rem;
+  margin: 0 0 0 0.5rem;
 `;
 
 const StepsBlock: React.FC<Props> = ({ title, currentStep, finalStep }) => {
-  const statusBar = currentStep / finalStep * 100 + '%';
+  const statusBar = (currentStep / finalStep) * 100 + '%';
 
   return (
     <StepsContainer>
       <StepsInfo>
-        <StepsLocation>Step { currentStep } sur { finalStep } :</StepsLocation>
-        <StepsTitle>{ title }</StepsTitle>
+        <StepsLocation>
+          Step {currentStep} sur {finalStep} :
+        </StepsLocation>
+        <StepsTitle>{title}</StepsTitle>
       </StepsInfo>
-      <StepsBar status={ statusBar }/>
+      <StepsBar status={statusBar} />
     </StepsContainer>
   );
 };
