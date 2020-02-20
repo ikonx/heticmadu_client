@@ -96,8 +96,8 @@ const fakeData: CardItemProps[] = [
     score: 8.6,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    longitude: '2.383572',
-    latitude: '48.868671',
+    longitude: '2.354768',
+    latitude: '48.860589',
   },
   {
     id: 2,
