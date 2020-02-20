@@ -353,13 +353,6 @@ const Map: React.FC<Props> = () => {
     null,
   );
 
-  useEffect(() => {
-    setDefaultEntries(fakeData);
-  }, []);
-
-  const previewCardRef = useRef(null);
-  useOnClickOutside(previewCardRef, () => setPreviewCardData(null));
-
   const toggleFilters = () => {
     setFiltring(!isFiltring);
   };
@@ -429,6 +422,9 @@ const Map: React.FC<Props> = () => {
         center={[2.349014, 48.864716]}
         zoom={[12]}
         onStyleLoad={() => setMapReady(true)}
+        onClick={() => {
+          setPreviewCardData(null);
+        }}
       >
         <ZoomControl />
         <AnimatePresence>
@@ -441,7 +437,7 @@ const Map: React.FC<Props> = () => {
                   anchor="bottom"
                   offset={[0, -15]}
                   onClick={() => {
-                    setPreviewCardData(entry);
+                    !previewCardData && setPreviewCardData(entry);
                   }}
                 >
                   <MotionMarker
@@ -523,7 +519,6 @@ const Map: React.FC<Props> = () => {
               ...spring,
               duration: 0.5,
             }}
-            ref={previewCardRef}
           >
             <CardItem
               {...previewCardData}
