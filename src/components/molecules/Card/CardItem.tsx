@@ -17,7 +17,7 @@ export interface CardItemProps {
   longitude: string;
   onClick?: () => void;
   id?: string | number;
-  center?: number[];
+  center?: [number, number];
   zoom?: number;
   pitch?: number;
   tags?: string[];
