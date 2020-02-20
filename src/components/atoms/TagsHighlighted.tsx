@@ -17,6 +17,7 @@ const TagsBackground = styled.div`
   display: flex;
   align-items: center;
   width: max-content;
+  margin-right: 16px;
   p {
     margin: 0;
   }

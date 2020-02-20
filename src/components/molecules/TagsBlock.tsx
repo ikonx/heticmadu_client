@@ -1,9 +1,11 @@
 import React from 'react';
-import styled from "styled-components";
-import { Colors, Fonts } from "../../utils/styles";
-import TagsHighlighted from "../atoms/TagsHighlighted";
+import styled from 'styled-components';
+import { Colors, Fonts } from '../../utils/styles';
+import TagsHighlighted from '../atoms/TagsHighlighted';
 
 interface Props {
+  tags: string[];
+  deleteFN: any;
 }
 
 const TagsContainer = styled.div`
@@ -26,16 +28,29 @@ const TagsHeader = styled.div`
 const TagsBody = styled.div`
   height: 200px;
   padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
 `;
 
-const TagsBlock: React.FC<Props> = () => {
+
+const TagsBlock: React.FC<Props> = ({tags, deleteFN}) => {
+
   return (
     <TagsContainer>
       <TagsHeader>
         <p>Tags</p>
       </TagsHeader>
       <TagsBody>
-        <TagsHighlighted text="JunkFood" clickListener={() => console.log('CLICK TAG')}/>
+        {tags.length > 0 &&
+          tags.map((item, i) => (
+            <TagsHighlighted key={i}
+              text={item}
+              clickListener={deleteFN(i)}
+            />
+          ))}
       </TagsBody>
     </TagsContainer>
   );
