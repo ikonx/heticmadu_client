@@ -19,7 +19,15 @@ const MainUi: React.FC<Props> = () => {
   return (
     <StyledContainer>
       {/*<AppMenu />*/}
-      <Grid flow={FlowEnum.ROW}>
+      <Grid
+        flow={FlowEnum.ROW}
+        style={{
+          gridTemplateRows: 'auto 1fr',
+          maxHeight: '100vh',
+          height: '100vh',
+          overflow: 'hidden',
+        }}
+      >
         <>
           <Header />
           <Switch>
@@ -29,7 +37,7 @@ const MainUi: React.FC<Props> = () => {
             <Route path="/map">
               <Map />
             </Route>
-            <Route exact path="/companies">
+            <Route path="/companies">
               <Companies />
             </Route>
             <Route path="/pois">

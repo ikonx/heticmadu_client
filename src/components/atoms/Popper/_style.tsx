@@ -3,7 +3,7 @@ import { Button, MenuList, Popper } from "@material-ui/core";
 
 
 export const PopperStyle = styled(Popper)`
-  z-index: 1;
+  z-index: 100;
 `;
 
 export const PopperList = styled(MenuList)`

@@ -13,6 +13,7 @@ const Colors = {
   darkGreen: '#2E431C',
   red: '#FFBDB3',
   darkRed: '#75291E',
+  lightRed: '#EB5757',
   purple: '#3439CB'
 };
 

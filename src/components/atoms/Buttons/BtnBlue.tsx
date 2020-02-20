@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 import { Colors, Fonts } from '../../../utils/styles';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 interface Props {
   text: string;
@@ -19,7 +19,6 @@ const StyledButton = styled(Button)`
     font-family: ${Fonts.bold};
     font-size: 14px;
     box-shadow: unset;
-    padding: 0;
     padding: 12px 1rem;
     &:hover {
       background: ${Colors.darkBlue};
@@ -41,17 +40,13 @@ const StyledLink = styled(Link)`
 const BtnBlue: React.FC<Props> = ({ text, link, onClick }) => {
   return (
     <>
-      { onClick ? (
+      {onClick ? (
         <StyledButton variant="contained" onClick={onClick}>
-          { text }
+          {text}
         </StyledButton>
       ) : (
         <StyledButton variant="contained">
-          { link ? (
-            <StyledLink to={link}>{text}</StyledLink>
-          ) : (
-            { text }
-          )}
+          {link ? <StyledLink to={link}>{text}</StyledLink> : { text }}
         </StyledButton>
       )}
     </>

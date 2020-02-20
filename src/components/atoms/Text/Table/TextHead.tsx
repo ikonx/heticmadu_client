@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography } from "@material-ui/core";
 import styled from "styled-components";
-import { Colors } from "../../../../utils/styles";
+import { Colors, Fonts } from "../../../../utils/styles";
 
 interface Props {
   name: string
@@ -18,6 +18,7 @@ const Text = styled(Typography)`
   && {
     color: ${Colors.black};
     font-size: 12px;
+    font-family: ${Fonts.regular};
   }
 `;
 
