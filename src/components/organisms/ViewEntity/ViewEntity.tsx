@@ -2,7 +2,7 @@ import React from 'react';
 import { EntitiesEnum } from 'utils/enums/Entity.enum';
 import styled from 'styled-components';
 import EntityFields from 'components/molecules/EntityFields/EntityFields';
-import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
+import Grid from 'components/atoms/Grid/Grid';
 
 interface Props {
   fields: any[];
@@ -64,7 +64,7 @@ const ViewEntity: React.FC<Props> = ({ images, defaultData }) => {
           {/*    role="decoration"*/}
           {/*  />*/}
           {/*</Grid>*/}
-          <img src={images && images[2]} role="decoration" />
+          <img src={images && images[2]} alt="preview of poi" />
         </StyledImageContainer>
         <EntityFields
           fields={generalInfoFields}
