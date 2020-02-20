@@ -6,13 +6,13 @@ import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
 
 interface Props {
   fields: any[];
-  images: any[];
+  images?: any[];
   entity: EntitiesEnum;
   defaultData: any;
 }
 
 const StyledImageContainer = styled(Grid)`
-  grid-template-columns: 166px 1fr;
+  //grid-template-columns: 166px 1fr;
   grid-template-rows: 1fr;
   img {
     width: 100%;
@@ -37,7 +37,7 @@ const ViewEntity: React.FC<Props> = ({ images, defaultData }) => {
     <Grid
       style={{
         overflow: 'auto',
-        height: `${window.innerHeight - (72 + 155)}px`,
+        height: `${window.innerHeight - (72 + 88)}px`,
         padding: '0 2rem',
       }}
     >
@@ -48,23 +48,23 @@ const ViewEntity: React.FC<Props> = ({ images, defaultData }) => {
         gap={32}
       >
         <StyledImageContainer gap={8}>
-          <Grid
-            gap={8}
-            flow={FlowEnum.ROW}
-            style={{ gridTemplateRows: '1fr 1fr' }}
-          >
-            <img
-              style={{ height: 'calc(50% - 4px)' }}
-              src={images[0]}
-              role="decoration"
-            />
-            <img
-              style={{ height: 'calc(50% - 4px)' }}
-              src={images[1]}
-              role="decoration"
-            />
-          </Grid>
-          <img src={images[2]} role="decoration" />
+          {/*<Grid*/}
+          {/*  gap={8}*/}
+          {/*  flow={FlowEnum.ROW}*/}
+          {/*  style={{ gridTemplateRows: '1fr 1fr' }}*/}
+          {/*>*/}
+          {/*  <img*/}
+          {/*    style={{ height: 'calc(50% - 4px)' }}*/}
+          {/*    src={images && images[0]}*/}
+          {/*    role="decoration"*/}
+          {/*  />*/}
+          {/*  <img*/}
+          {/*    style={{ height: 'calc(50% - 4px)' }}*/}
+          {/*    src={images && images[1]}*/}
+          {/*    role="decoration"*/}
+          {/*  />*/}
+          {/*</Grid>*/}
+          <img src={images && images[2]} role="decoration" />
         </StyledImageContainer>
         <EntityFields
           fields={generalInfoFields}
