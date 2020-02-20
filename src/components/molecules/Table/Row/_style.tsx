@@ -20,10 +20,11 @@ export const Cell = styled(TableCell)`
       padding-top: 0;
       padding-bottom: 0;
       font-size: 13px;
+      font-family: ${Fonts.regular};
     }
 `;
 
-export const CellActive = styled(Typography)<{active: string}>`
+export const CellActive = styled(Typography)<{active: string | undefined}>`
     && {
       background: ${props => props.active === 'true' ? Colors.green : Colors.red};
       color: ${props => props.active === 'true' ? Colors.darkGreen : Colors.darkRed};

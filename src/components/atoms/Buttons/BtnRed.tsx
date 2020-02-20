@@ -12,7 +12,7 @@ interface Props {
 
 const StyledButton = styled(Button)`
   && {
-    background-color: ${Colors.blue};
+    background-color: ${Colors.lightRed};
     color: ${Colors.white};
     transition: 0.5s;
     text-transform: none;
@@ -21,7 +21,7 @@ const StyledButton = styled(Button)`
     box-shadow: unset;
     padding: 12px 1rem;
     &:hover {
-      background: ${Colors.darkBlue};
+      background: ${Colors.lightRed};
       box-shadow: unset;
     }
   }
@@ -37,7 +37,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const BtnBlue: React.FC<Props> = ({ text, link, onClick }) => {
+const BtnRed: React.FC<Props> = ({ text, link, onClick }) => {
   return (
     <>
       { onClick ? (
@@ -57,4 +57,4 @@ const BtnBlue: React.FC<Props> = ({ text, link, onClick }) => {
   );
 };
 
-export default BtnBlue;
+export default BtnRed;

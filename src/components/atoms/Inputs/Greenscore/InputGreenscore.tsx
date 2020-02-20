@@ -1,5 +1,5 @@
 import React from 'react';
-import {RadioContainer, StyledRadioGreenscore, StyledRadioGroup, StyledTitle, ContainerRowInput, WithStyledRadioGreenscore} from "./_style";
+import {RadioContainer, StyledRadioGreenscore, StyledRadioGroup, StyledTitle, ContainerRowInput} from "./_style";
 import { Radio } from '@material-ui/core';
 
 interface Props {
