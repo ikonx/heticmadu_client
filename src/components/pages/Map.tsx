@@ -385,7 +385,11 @@ const Map: React.FC<Props> = () => {
     let newEntries: any[] = [...defaultEntries];
     switch (filter_key) {
       case 'type':
-        newEntries = filterType(newEntries, filter_key, filter_value);
+        if (filter_value === '') {
+          newEntries = newEntries;
+        } else {
+          newEntries = filterType(newEntries, filter_key, filter_value);
+        }
         break;
       case 'price':
         newEntries =
@@ -418,9 +422,8 @@ const Map: React.FC<Props> = () => {
       <MapComponent
         style="mapbox://styles/mapbox/streets-v9"
         containerStyle={{
-          height: 'calc(100vh - 64px)',
+          height: '100%',
           width: '100%',
-          maxWidth: '100vw',
         }}
         movingMethod="flyTo"
         center={[2.349014, 48.864716]}
@@ -445,6 +448,8 @@ const Map: React.FC<Props> = () => {
                     initial={{ scale: 0, y: -100 }}
                     animate={{ scale: 1, y: 0 }}
                     exit={{ scale: 0, y: 30 }}
+                    whileHover={{ scale: 1.1 }}
+                    key={entry.id}
                     transition={{
                       ...spring,
                       delay: index * 0.05,
@@ -484,7 +489,12 @@ const Map: React.FC<Props> = () => {
           </Button>
           <CustomSelect
             title="Catégorie"
-            values={['resto', 'shop', 'business']}
+            values={[
+              { label: 'tous', value: '', key: 'all' },
+              { label: 'restau', value: 'resto', key: 'resto' },
+              { label: 'commerce', value: 'shop', key: 'shop' },
+              { label: 'business', value: 'business', key: 'business' },
+            ]}
             onChange={(_value: any) => filter('type', _value)}
           />
           <RadioMultiple
@@ -505,15 +515,16 @@ const Map: React.FC<Props> = () => {
       <AnimatePresence>
         {previewCardData && (
           <StyledMotionPreviewCard
-            initial={{ scale: .8 }}
+            key={previewCardData.id}
+            initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
-            exit={{ scale: .8 }}
+            exit={{ scale: 0.8 }}
+            whileHover={{ scale: 1.1 }}
             transition={{
               ...spring,
-              duration: .5
+              duration: 0.5,
             }}
             ref={previewCardRef}
-            key={previewCardData.id}
           >
             <CardItem
               {...previewCardData}
