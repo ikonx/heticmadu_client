@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
-import ReactMapboxGl, { Marker, ZoomControl, Popup } from 'react-mapbox-gl';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
+import ReactMapboxGl, { Marker, ZoomControl } from 'react-mapbox-gl';
 import styled from 'styled-components';
 import { Close } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
@@ -10,15 +10,10 @@ import BtnBlue from 'components/atoms/Buttons/BtnBlue';
 import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
 import MainTitle from 'components/atoms/Text/MainTitle';
 import Icon from 'components/atoms/Icon/Icon';
-import InputRadio from 'components/atoms/Inputs/Radio/InputRadio';
 import CustomSelect from 'components/atoms/Select/CustomSelect';
 import RadioMultiple from 'components/atoms/Inputs/RadioMultiple/RadioMultiple';
 
-import {
-  radioPrice,
-  radioAccessibility,
-  radioTags,
-} from 'utils/formsMocks/PoisForm';
+import { radioPrice, radioTags } from 'utils/formsMocks/PoisForm';
 import { filterType } from 'utils/filters/type.filter';
 import { filterPrice } from 'utils/filters/price.filter';
 import { filterTags } from 'utils/filters/tags.filter';
@@ -350,15 +345,18 @@ const fakeData: CardItemProps[] = [
 ];
 
 const Map: React.FC<Props> = () => {
-  const [defaultEntries, setDefaultEntries] = useState<CardItemProps[]>([
-    ...fakeData,
-  ]);
+  const [defaultEntries, setDefaultEntries] = useState<CardItemProps[]>([]);
   const [entries, setEntries] = useState<CardItemProps[]>([...fakeData]);
   const [isMapReady, setMapReady] = useState<any>(false);
   const [isFiltring, setFiltring] = useState<boolean>(false);
   const [previewCardData, setPreviewCardData] = useState<CardItemProps | null>(
     null,
   );
+
+  useEffect(() => {
+    setDefaultEntries(fakeData);
+  }, []);
+
   const previewCardRef = useRef(null);
   useOnClickOutside(previewCardRef, () => setPreviewCardData(null));
 
@@ -387,7 +385,7 @@ const Map: React.FC<Props> = () => {
     switch (filter_key) {
       case 'type':
         if (filter_value === '') {
-          newEntries = newEntries;
+          // reset ?
         } else {
           newEntries = filterType(newEntries, filter_key, filter_value);
         }
@@ -421,6 +419,7 @@ const Map: React.FC<Props> = () => {
   const renderMap = useMemo(
     () => (
       <MapComponent
+        // eslint-disable-next-line
         style="mapbox://styles/mapbox/streets-v9"
         containerStyle={{
           height: '100%',
@@ -465,7 +464,7 @@ const Map: React.FC<Props> = () => {
         </AnimatePresence>
       </MapComponent>
     ),
-    [entries, isMapReady],
+    [entries, isMapReady, spring],
   );
 
   return (

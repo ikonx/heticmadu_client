@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { index as TableItem, TableRowProps } from '../molecules/Table/Row';
+import { index as TableItem } from '../molecules/Table/Row';
 import { index as TableHead } from '../molecules/Table/Head';
 import { Grid as GoogleGrid, Table, TableBody } from '@material-ui/core';
 import PageHeader from '../molecules/PageHeader/PageHeader';
@@ -12,7 +12,6 @@ import { dataAllCompanies, dataSingleCompanies, dataTableHead } from "../../util
 import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
 import ViewEntityCompanies from "../organisms/ViewEntity/ViewEntityCompanies";
 import { EntitiesEnum } from "../../utils/enums/Entity.enum";
-import { ReactComponent as IconBack } from 'assets/img/arrowBack.svg';
 import BtnRed from "../atoms/Buttons/BtnRed";
 
 const CompanyContainer = styled.section`
@@ -121,6 +120,7 @@ const Companies: React.FC<Props> = () => {
         </LeftColumn>
         <GoogleGrid item xs={5}>
           <Map
+            // eslint-disable-next-line
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{
               height: 'calc(100vh - 72px)',

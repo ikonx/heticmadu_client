@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Switch, withStyles } from "@material-ui/core";
 import styled from "styled-components";
 import { Colors, Fonts } from "../../utils/styles";

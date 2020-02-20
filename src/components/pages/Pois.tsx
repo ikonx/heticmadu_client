@@ -264,6 +264,7 @@ const Pois: React.FC<Props> = () => {
         </LeftColumn>
         <GoogleGrid item xs={5}>
           <Map
+            // eslint-disable-next-line
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{
               height: 'calc(100vh - 72px)',
