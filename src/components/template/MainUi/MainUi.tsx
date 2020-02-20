@@ -29,7 +29,7 @@ const MainUi: React.FC<Props> = () => {
             <Route path="/map">
               <Map />
             </Route>
-            <Route exact path="/companies">
+            <Route path="/companies">
               <Companies />
             </Route>
             <Route path="/pois">

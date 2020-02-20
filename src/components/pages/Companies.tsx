@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { index as TableItem } from '../molecules/Table/Row';
+import { index as TableItem, TableRowProps } from '../molecules/Table/Row';
 import { index as TableHead } from '../molecules/Table/Head';
-import { Grid, Table, TableBody } from '@material-ui/core';
+import { Grid as GoogleGrid, Table, TableBody } from '@material-ui/core';
 import PageHeader from '../molecules/PageHeader/PageHeader';
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Colors } from '../../utils/styles';
 import { GridContainer, ScrollableContent } from '../../utils/styles/Globals';
 import { useHistory, useLocation } from "react-router-dom";
+import { dataArray, dataTableHead } from "../../utils/formsMocks/CompaniesData";
+import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
+import ViewEntityCompanies from "../organisms/ViewEntity/ViewEntityCompanies";
+import { EntitiesEnum } from "../../utils/enums/Entity.enum";
+import { ReactComponent as IconBack } from 'assets/img/arrowBack.svg';
+import BtnRed from "../atoms/Buttons/BtnRed";
 
 const CompanyContainer = styled.section`
   width: 100%;
@@ -23,6 +29,8 @@ const CompanyTable = styled(Table)`
   }
 `;
 
+const LeftColumn = styled(GoogleGrid)``;
+
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
 });
@@ -34,38 +42,91 @@ const StyledTableBody = styled(TableBody)`
   }
 `;
 
+const StyledIconBack = styled(IconBack)`
+  width: 14px;
+  height: 14px;
+  margin-right: 24px;
+`;
+
 interface Props {}
 
 const Companies: React.FC<Props> = () => {
+  const [selectedCompany, setCompany] = useState<TableRowProps | null>(null);
+  const { pathname } = useLocation();
+  const history = useHistory();
+  const isAddingRoute =
+    pathname === '/companies/create' ||
+    (pathname.match('/companies/edit') && selectedCompany);
+
   return (
     <CompanyContainer>
       <GridContainer container>
-        <Grid item xs={7}>
-          <PageHeader
-            title="Entreprise"
-            text="Créer une entreprise"
-            subtitle="LIST"
-            link="/form/companies"
-          />
-          <ScrollableContent>
-            <CompanyTable>
-              <TableHead />
-              <StyledTableBody>
-                {/* TODO: @DEV Loop over */}
-                <TableItem status={true} />
-                <TableItem status={true} />
-                <TableItem status={false} />
-                <TableItem status={true} />
-                <TableItem status={true} />
-                <TableItem status={false} />
-                <TableItem status={true} />
-                <TableItem status={true} />
-                <TableItem status={false} />
-              </StyledTableBody>
-            </CompanyTable>
-          </ScrollableContent>
-        </Grid>
-        <Grid item xs={5}>
+        <LeftColumn item xs={7}>
+          { !isAddingRoute ? (
+            <>
+              <PageHeader
+                title="Entreprise"
+                text="Créer une entreprise"
+                subtitle="LIST"
+                link="/form/companies"
+              />
+              <ScrollableContent>
+                <CompanyTable>
+                  <TableHead tableValues={dataTableHead}/>
+                  <StyledTableBody>
+                    { dataArray.map((company: TableRowProps, i) => (
+                      <TableItem
+                        {...company}
+                        key={i}
+                        onClick={() => {
+                          history.push(`companies/edit/${company.id}`);
+                          setCompany(company);
+                        }}
+                      />
+                    ))}
+                  </StyledTableBody>
+                </CompanyTable>
+              </ScrollableContent>
+            </>
+          ) : (
+            <>
+              <Grid
+                style={{
+                  padding: '2rem',
+                  textAlign: 'left',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                }}
+                gap={24}
+                flow={FlowEnum.COLUMN}
+              >
+                <div
+                  onClick={() => {
+                    setCompany(null);
+                    history.goBack();
+                  }}
+                  style={{
+                    cursor: 'pointer'
+                  }}
+                >
+                  <StyledIconBack />
+                  <span>Retour</span>
+                </div>
+                <BtnRed text="Supprimer une POI" onClick={() => console.log('OK')}/>
+              </Grid>
+              <ViewEntityCompanies
+                entity={EntitiesEnum.COMPANY}
+                fields={[]}
+                logo={selectedCompany?.logo || ''}
+                defaultData={selectedCompany || {}}
+                tableData={selectedCompany?.employeesData}
+              />
+            </>
+          )}
+        </LeftColumn>
+        <GoogleGrid item xs={5}>
           <Map
             style="mapbox://styles/mapbox/streets-v9"
             containerStyle={{
@@ -76,7 +137,7 @@ const Companies: React.FC<Props> = () => {
             movingMethod="flyTo"
             center={[2.349014, 48.864716]}
           />
-        </Grid>
+        </GoogleGrid>
       </GridContainer>
     </CompanyContainer>
   );

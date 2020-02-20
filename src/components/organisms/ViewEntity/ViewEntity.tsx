@@ -6,7 +6,7 @@ import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
 
 interface Props {
   fields: any[];
-  images: any[];
+  images?: any[];
   entity: EntitiesEnum;
   defaultData: any;
 }
@@ -37,7 +37,7 @@ const ViewEntity: React.FC<Props> = ({ images, defaultData }) => {
     <Grid
       style={{
         overflow: 'auto',
-        height: `${window.innerHeight - (72 + 155)}px`,
+        height: `${window.innerHeight - (72 + 88)}px`,
         padding: '0 2rem',
       }}
     >
@@ -55,16 +55,16 @@ const ViewEntity: React.FC<Props> = ({ images, defaultData }) => {
           >
             <img
               style={{ height: 'calc(50% - 4px)' }}
-              src={images[0]}
+              src={images && images[0]}
               role="decoration"
             />
             <img
               style={{ height: 'calc(50% - 4px)' }}
-              src={images[1]}
+              src={images && images[1]}
               role="decoration"
             />
           </Grid>
-          <img src={images[2]} role="decoration" />
+          <img src={images && images[2]} role="decoration" />
         </StyledImageContainer>
         <EntityFields
           fields={generalInfoFields}
