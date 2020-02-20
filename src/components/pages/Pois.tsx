@@ -108,10 +108,6 @@ const Pois: React.FC<Props> = () => {
                 flow={FlowEnum.COLUMN}
               >
                 <div
-                  onClick={() => {
-                    setPoi(null);
-                    history.goBack();
-                  }}
                   style={{
                     cursor: 'pointer',
                   }}
