@@ -39,11 +39,14 @@ Pour la réalisation de ce back office nous avons eu besoin de mettre en place u
 
 **[prettier](https://github.com/ikonx/heticmadu_client/blob/master/.prettierrc.js)** : Afin de garder une même indentation nous avons utilisé un fichier config pour le projet. 
 
+**[React-Mapbox-gl](https://github.com/alex3165/react-mapbox-gl)** : Nous utilisons cette carte afin d'obtenir et de traiter nos données sur une map acceccible directement sur notre back office. Nous avons choisi le système de mapbox car il est compatible pour react (pour notre back office) ainsi que sur react native (pour l'application).
+
+**[Turf-js](https://github.com/Turfjs/turf)** : Nous permet de creer simplement des points geographiques ainsi que des zones sur notre map.
+
 ## Approche
 
 ![atomic design](https://user-images.githubusercontent.com/4838076/33235048-d083dca6-d217-11e7-9aea-9a5ef5ae6fe7.png)
 Nous avons utilisé l'[atomic design](https://github.com/danilowoz/react-atomic-design) qui nous permet d'avoir une application flexible et facilement modulable. Ca nous permet également, d'implémenter de nouvelle fonctionnalité facilement en réutilisant les composants déjà intégrés dans un scénario différent.
-
 
 Pour le travail d'équipe et partage de tâche nous avons utilisé github et la partie "[projects](https://github.com/ikonx/heticmadu_client/projects/1)". 
 Un tableau [Kanban](https://github.com/ikonx/heticmadu_client/projects/1) était en place avec les différents issues pour faciliter l'attribution et le suivi de l'avancement. 
