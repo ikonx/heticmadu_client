@@ -355,7 +355,7 @@ const Map: React.FC<Props> = () => {
   ]);
   const [entries, setEntries] = useState<CardItemProps[]>([...fakeData]);
   const [isMapReady, setMapReady] = useState<any>(false);
-  const [isFiltring, setFiltring] = useState<boolean>(!false);
+  const [isFiltring, setFiltring] = useState<boolean>(false);
   const [previewCardData, setPreviewCardData] = useState<CardItemProps | null>(
     null,
   );
@@ -508,7 +508,6 @@ const Map: React.FC<Props> = () => {
             title="Tags"
             onChange={(_value: any) => {
               filter('tags', _value);
-              console.log('values', _value);
             }}
           />
         </Grid>
