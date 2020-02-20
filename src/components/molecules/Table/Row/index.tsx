@@ -1,44 +1,39 @@
-import React from 'react';
-import PopperMore from "../../../atoms/Popper/PopperMore";
+import React, { useState } from 'react';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { Cell, CellActive, TableBackground } from "./_style";
 
 
 export interface TableRowProps {
-  id?: string;
-  name: string;
-  type: string;
-  pattern: string;
-  employeesTotal: string;
-  created: string;
-  address?: string;
-  perimeter?: string;
-  emailAdmin?: string;
-  status?: boolean;
   onClick?: () => void;
-  logo?: string;
-  employeesData: {
-    name: string;
-    pattern: string;
-    lastConnection: string;
-  }[]
+  deleteRow?: boolean;
+  tableRowValues: any;
+  deleteClick?: () => void;
 }
 
-export const index: React.FC<TableRowProps> = ({ name, type, pattern, employeesTotal, created, status, onClick }) => {
+export const index: React.FC<TableRowProps> = ({ onClick, deleteRow,tableRowValues, deleteClick }) => {
+  const hasID = tableRowValues.id;
+  const data = Object.values(tableRowValues);
+  if (hasID) {
+    data.shift();
+    data.splice(-2, 2);
+  };
+
   return (
         <TableBackground onClick={onClick}>
-            <Cell>{ name }</Cell>
-            <Cell>{ type }</Cell>
-            <Cell>{ pattern }</Cell>
-            <Cell>{ employeesTotal }</Cell>
-            <Cell>{ created }</Cell>
-            { status !== undefined && (
-              <Cell>
-                  <CellActive active={status.toString()}>{ status ? 'Active' : 'Désactiver' }</CellActive>
-              </Cell>
+            { data.map((item: any, i) => {
+                return typeof item === "boolean" ? (
+                    <Cell key={i}>
+                      <CellActive active={item.toString()}>{item ? 'Active' : 'Désactiver'}</CellActive>
+                    </Cell>
+                ) : (
+                    <Cell key={i}>{item}</Cell>
+                )
+            })}
+            { deleteRow && (
+                <Cell onClick={deleteClick}>
+                    <DeleteIcon />
+                </Cell>
             )}
-            <Cell>
-               <PopperMore/>
-            </Cell>
         </TableBackground>
   );
 };

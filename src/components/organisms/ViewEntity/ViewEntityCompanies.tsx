@@ -2,24 +2,18 @@ import React from 'react';
 import { EntitiesEnum } from 'utils/enums/Entity.enum';
 import styled from 'styled-components';
 import EntityFields from 'components/molecules/EntityFields/EntityFields';
-import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
+import Grid from 'components/atoms/Grid/Grid';
 import EntityLogo from "../../molecules/EntityLogo";
 import { index as TableHead } from "../../molecules/Table/Head";
-import { dataArray } from "../../../utils/formsMocks/CompaniesData";
-import { index as TableItem, TableRowProps } from "../../molecules/Table/Row";
+import { index as TableItem } from "../../molecules/Table/Row";
 import { Table, TableBody } from "@material-ui/core";
 import { Colors } from "../../../utils/styles";
 
 interface Props {
   fields: any[];
-  logo?: string;
   entity: EntitiesEnum;
   defaultData: any;
-  tableData?: {
-    name: string;
-    pattern: string;
-    lastConnection: string;
-  }[];
+  tableData?: any;
 }
 
 const EntityLogoContainer = styled.div``;
@@ -41,7 +35,11 @@ const StyledTableBody = styled(TableBody)`
 `;
 
 
-const ViewEntity: React.FC<Props> = ({ logo, defaultData, tableData }) => {
+const ViewEntity: React.FC<Props> = ({ defaultData, tableData }) => {
+  const deleteRow = () => {
+    console.log('DELETE ITEM');
+  };
+
   const generalInfoFields = [
     { label: 'Type d\'entreprise', key: 'type', type: 'text' },
     { label: 'Nom de l\'entreprise', key: 'name', type: 'text' },
@@ -81,7 +79,7 @@ const ViewEntity: React.FC<Props> = ({ logo, defaultData, tableData }) => {
           defaultData={defaultData}
         />
         <EntityLogoContainer>
-          <EntityLogo source={logo ? logo : ''}/>
+          <EntityLogo source={tableData.logo ? tableData.logo : ''}/>
           <EntityFields
             fields={emailFields}
             title="Email"
@@ -90,17 +88,19 @@ const ViewEntity: React.FC<Props> = ({ logo, defaultData, tableData }) => {
         </EntityLogoContainer>
       </Grid>
       <CompanyTable>
-        <TableHead tableValues={dataTableHead}/>
+        <TableHead
+          tableValues={dataTableHead}
+          deleteRow={true}
+        />
         <StyledTableBody>
-          { tableData && tableData.map((company: any, i) => {
-            console.log(company, 'COMPANY');
-            return(
-              <TableItem
-                {...company}
-                key={i}
-              />
-            )
-          })}
+          { tableData && tableData.employeesData.map((employees: any, i: number) => (
+            <TableItem
+              key={i}
+              deleteRow={true}
+              tableRowValues={employees}
+              deleteClick={deleteRow}
+            />
+          ))}
         </StyledTableBody>
       </CompanyTable>
     </Grid>

@@ -8,7 +8,7 @@ import ReactMapboxGl from 'react-mapbox-gl';
 import { Colors } from '../../utils/styles';
 import { GridContainer, ScrollableContent } from '../../utils/styles/Globals';
 import { useHistory, useLocation } from "react-router-dom";
-import { dataArray, dataTableHead } from "../../utils/formsMocks/CompaniesData";
+import { dataAllCompanies, dataSingleCompanies, dataTableHead } from "../../utils/formsMocks/CompaniesData";
 import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
 import ViewEntityCompanies from "../organisms/ViewEntity/ViewEntityCompanies";
 import { EntitiesEnum } from "../../utils/enums/Entity.enum";
@@ -51,7 +51,7 @@ const StyledIconBack = styled(IconBack)`
 interface Props {}
 
 const Companies: React.FC<Props> = () => {
-  const [selectedCompany, setCompany] = useState<TableRowProps | null>(null);
+  const [selectedCompany, setCompany] = useState<any | null>(null);
   const { pathname } = useLocation();
   const history = useHistory();
   const isAddingRoute =
@@ -74,14 +74,14 @@ const Companies: React.FC<Props> = () => {
                 <CompanyTable>
                   <TableHead tableValues={dataTableHead}/>
                   <StyledTableBody>
-                    { dataArray.map((company: TableRowProps, i) => (
+                    { dataAllCompanies.map((company, i) => (
                       <TableItem
-                        {...company}
                         key={i}
                         onClick={() => {
                           history.push(`companies/edit/${company.id}`);
                           setCompany(company);
                         }}
+                        tableRowValues={company}
                       />
                     ))}
                   </StyledTableBody>
@@ -119,9 +119,8 @@ const Companies: React.FC<Props> = () => {
               <ViewEntityCompanies
                 entity={EntitiesEnum.COMPANY}
                 fields={[]}
-                logo={selectedCompany?.logo || ''}
                 defaultData={selectedCompany || {}}
-                tableData={selectedCompany?.employeesData}
+                tableData={dataSingleCompanies}
               />
             </>
           )}
@@ -135,7 +134,11 @@ const Companies: React.FC<Props> = () => {
               maxWidth: 'calc(100vw - 280px)',
             }}
             movingMethod="flyTo"
-            center={[2.349014, 48.864716]}
+            center={[
+              parseFloat(selectedCompany?.longitude || '2.3488'),
+              parseFloat(selectedCompany?.latitude || '48.8534'),
+            ]}
+            zoom={selectedCompany? [18] : [11.25]}
           />
         </GoogleGrid>
       </GridContainer>

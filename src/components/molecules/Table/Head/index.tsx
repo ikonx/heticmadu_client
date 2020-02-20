@@ -3,11 +3,11 @@ import { TableHeadCell, TableHeadContainer, TableRowContainer } from "./_style";
 import TextHead from "../../../atoms/Text/Table/TextHead";
 
 interface Props {
-  tableValues: string[]
+  tableValues: string[],
+  deleteRow?: boolean;
 }
 
-export const index: React.FC<Props> = ({ tableValues }) => {
-
+export const index: React.FC<Props> = ({ tableValues,deleteRow }) => {
   return (
       <TableHeadContainer>
         <TableRowContainer>
@@ -16,9 +16,10 @@ export const index: React.FC<Props> = ({ tableValues }) => {
               <TextHead name={item}/>
             </TableHeadCell>
           )) }
-          <TableHeadCell />
+          { deleteRow && (
+            <TableHeadCell />
+          )}
         </TableRowContainer>
       </TableHeadContainer>
   );
 };
-
