@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Grid } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import { postPoi } from 'utils/http';
+
 import PageHeader from '../../molecules/PageHeader/PageHeader';
 import { ScrollableContent } from '../../../utils/styles/Globals';
-import { Grid } from '@material-ui/core';
 import InputRadio from '../../atoms/Inputs/Radio/InputRadio';
 import InputText from '../../atoms/Inputs/Text/InputText';
 import InputFile from '../../atoms/Inputs/File/InputFile';
@@ -18,11 +21,10 @@ import {
 import TextArea from '../../atoms/Inputs/Area/TextArea';
 import ScheduleBlock from '../../molecules/ScheduleBlock';
 import GreenscoreForm from './GreenscoreForm';
-import { useHistory } from 'react-router-dom';
 import { PoiModel } from 'utils/models/pois.model';
 import { CreatePointsOfInterestDTO } from 'utils/dto/pointsOfInterest.dto';
 import { IStatusEnum } from 'utils/interfaces/statusEnum';
-import InputAutocomplete from "../../atoms/Inputs/Autocomplete/InputAutocomplete";
+import InputAutocomplete from '../../atoms/Inputs/Autocomplete/InputAutocomplete';
 
 interface Props {}
 
@@ -66,6 +68,7 @@ const PoisForm: React.FC<Props> = () => {
   const [poiData, setPoiData] = useState<CreatePointsOfInterestDTO>({
     ...emptyPoi,
   });
+  
 
   const onNextStep = () => {
     if (step >= footerData.final) {
@@ -79,8 +82,12 @@ const PoisForm: React.FC<Props> = () => {
     if (footerData.current > 2) {
       ++footerData.currentGreenscore;
     }
-    history.push(`/form/pois?step=${footerData.current}`);
-    setStep(nextStep);
+
+    // history.push(`/form/pois?step=${footerData.current}`);
+    // setStep(nextStep);
+
+    // console.log('g', poiData);
+    postPoi(poiData).then((res: any) => res.data && history.push('/pois'));
   };
 
   const onPrevStep = () => {
@@ -144,7 +151,6 @@ const PoisForm: React.FC<Props> = () => {
                   fieldKey={'address'}
                   onChange={updateField}
                   fieldValue={poiData['address']}
-                  type="text"
                 />
               </Grid>
             </Grid>
@@ -160,10 +166,22 @@ const PoisForm: React.FC<Props> = () => {
                 />
               </Grid>
               <Grid item xs={4}>
-                <InputRadio values={radioPrice} title="Prix" />
+                <InputRadio
+                  values={radioPrice}
+                  title="Prix"
+                  fieldKey={'averagePrice'}
+                  fieldValue={poiData['averagePrice']}
+                  onChange={updateField}
+                />
               </Grid>
               <Grid item xs={4}>
-                <InputRadio values={radioHandicap} title="Accès fauteuil" />
+                <InputRadio
+                  values={radioHandicap}
+                  title="Accès fauteuil"
+                  fieldKey={'disabledAccess'}
+                  fieldValue={poiData['disabledAccess']?.toString()}
+                  onChange={updateField}
+                />
               </Grid>
             </Grid>
             <Grid container spacing={8}>
@@ -171,30 +189,59 @@ const PoisForm: React.FC<Props> = () => {
                 <ScheduleBlock title="Horaire" />
               </Grid>
               <Grid item xs={4}>
-                <TextArea title="Description" />
+                <TextArea
+                  title="Description"
+                  fieldKey={'description'}
+                  fieldValue={poiData['description']}
+                  onChange={updateField}
+                />
               </Grid>
-              <Grid item xs={4}>
+              {/* <Grid item xs={4}>
                 <InputFile
                   title="Photos du lieu"
                   placeholder="Ajouter vos photos (3 max.)"
                   isLarge={true}
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Grid container spacing={8}>
               <Grid item xs={4}>
-                <InputRadio title="Gluten free" values={radioGluten} />
+                <InputRadio
+                  title="Gluten free"
+                  values={radioGluten}
+                  fieldKey={'glutenFree'}
+                  fieldValue={poiData['glutenFree']}
+                  onChange={updateField}
+                />
               </Grid>
               <Grid item xs={4}>
-                <InputRadio title="Bio" values={radioBio} />
+                <InputRadio
+                  title="Bio"
+                  values={radioBio}
+                  fieldKey={'bio'}
+                  fieldValue={poiData['bio']}
+                  onChange={updateField}
+                />
               </Grid>
-              <Grid item xs={4}>
-                <InputRadio title="Régime" values={radioDiet} />
-              </Grid>
+              {/* <Grid item xs={4}>
+                <InputRadio
+                  title="Régime"
+                  values={radioDiet}
+                  fieldKey={'bio'}
+                  fieldValue={poiData['bio']}
+                  onChange={updateField}
+                />
+              </Grid> */}
             </Grid>
             <Grid container spacing={8}>
               <Grid item xs={4}>
-                <InputRadio title="POI active" values={radioPOI} />
+                <InputRadio
+                  title="POI active"
+                  values={radioPOI}
+                  fieldKey={'status'}
+                  fieldValue={poiData['status']}
+                  onChange={updateField}
+                />
               </Grid>
             </Grid>
           </ScrollableContent>
