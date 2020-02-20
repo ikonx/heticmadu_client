@@ -2,7 +2,6 @@ import React from 'react';
 import { InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import styled from 'styled-components';
-import { Colors } from "../../utils/styles";
 
 interface Props {}
 
