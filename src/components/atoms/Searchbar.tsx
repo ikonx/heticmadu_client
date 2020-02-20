@@ -11,7 +11,7 @@ const StyledSearchbar = styled.div<any>`
   flex-direction: row;
   align-items: center;
   margin-right: 2vw;
-  background: #f2f2f2;
+  background: transparent;
   border-radius: 36px;
   padding: 8px 16px;
 `;

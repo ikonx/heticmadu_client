@@ -7,7 +7,7 @@ export const StyledTimeContainer = styled.div`
 `;
 
 export const StyledTitle = styled.label`
-    color: ${Colors.textGrey};
+    color: ${Colors.grey};
     font-size: 15px;
     letter-spacing: 0.22px;
     margin-bottom: 4px;
@@ -35,7 +35,7 @@ export const StyledItem = styled.li`
   flex-direction: column;
   
   p {
-    color: ${Colors.textGrey};
+    color: ${Colors.grey};
     font-size: 12px;
   }
   &::after {

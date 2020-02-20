@@ -3,7 +3,7 @@ import { Colors, Fonts } from "../../../utils/styles";
 import { FormControl, MenuItem, Select } from "@material-ui/core";
 
 export const StyledTitle = styled.p`
-  color: ${Colors.textGrey};
+  color: ${Colors.grey};
   font-size: 15px;
   letter-spacing: 0.22px;
   text-align: left;

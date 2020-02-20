@@ -40,7 +40,7 @@ const StepsInfo = styled.div`
 
 const StepsLocation = styled.p`
   font-size: 15px;
-  color: ${Colors.textGrey};
+  color: ${Colors.grey};
   margin: 0;
 `;
 
