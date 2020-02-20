@@ -22,6 +22,7 @@ import { useHistory } from 'react-router-dom';
 import { PoiModel } from 'utils/models/pois.model';
 import { CreatePointsOfInterestDTO } from 'utils/dto/pointsOfInterest.dto';
 import { IStatusEnum } from 'utils/interfaces/statusEnum';
+import InputAutocomplete from "../../atoms/Inputs/Autocomplete/InputAutocomplete";
 
 interface Props {}
 
@@ -137,7 +138,7 @@ const PoisForm: React.FC<Props> = () => {
                 />
               </Grid>
               <Grid item xs={4}>
-                <InputText
+                <InputAutocomplete
                   title="Adresse complète"
                   placeholder="Entrez l'adresse du POI ..."
                   fieldKey={'address'}

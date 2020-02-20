@@ -1,23 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { IconButton } from '@material-ui/core';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import styled from "styled-components";
 
 interface Props {
-    
+    isClicked: boolean;
 }
 
-const Arrow: React.FC<Props> = () => {
-    const [isClicked, setClicked] = useState<Boolean>(false);
-    
-    const onClickArrowIcon = () => {
-        setClicked(!isClicked);
-      };
+const StyledButton = styled(IconButton)`
+  && {
+      &:hover {
+        background: unset;
+      }
+  }
+`;
 
+const Arrow: React.FC<Props> = ({ isClicked }) => {
     return (
-        <IconButton onClick={onClickArrowIcon}>
+        <StyledButton>
             {isClicked ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-        </IconButton>
+        </StyledButton>
     )
 }
 

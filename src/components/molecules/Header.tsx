@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import styled from 'styled-components';
 import Searchbar from 'components/atoms/Searchbar';
@@ -48,6 +48,7 @@ const HeaderSearch = styled(StyledBlock)`
 `;
 
 const Header: React.FC<Props> = () => {
+    const [statusLogout, setStatusLogout] = useState(false);
 
     return (
         <StyledAppBar position="static">
@@ -62,7 +63,7 @@ const Header: React.FC<Props> = () => {
                 </StyledBlock>
                 <StyledBlock>
                     <MenuContainer />
-                    <AdminBlock />
+                    <AdminBlock status={statusLogout} clickListener={() => setStatusLogout(!statusLogout)}/>
                 </StyledBlock>
             </StyledToolbar>
         </StyledAppBar>

@@ -8,6 +8,7 @@ interface Props {
   onChange?: (_fieldKey: string, _fieldValue: string) => void;
   fieldValue?: string;
   type?: string;
+  onKeyDown?: any;
 }
 
 const InputText: React.FC<Props> = ({
@@ -29,6 +30,7 @@ const InputText: React.FC<Props> = ({
         onBlur={e => {
           onChange && onChange(fieldKey || '', e.target.value || '');
         }}
+        onKeyDown={onKeyDown}
       />
     </StyledFormControl>
   );

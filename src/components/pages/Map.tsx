@@ -227,10 +227,10 @@ const Map: React.FC<Props> = () => {
           <CustomSelect
             title="Catégorie"
             values={[
-              { label: 'tous', value: '', key: 'all' },
-              { label: 'restau', value: 'resto', key: 'resto' },
-              { label: 'commerce', value: 'shop', key: 'shop' },
-              { label: 'business', value: 'business', key: 'business' },
+              { label: 'Tous', value: '', key: 'all' },
+              { label: 'Restaurant', value: 'resto', key: 'resto' },
+              { label: 'Commerce', value: 'shop', key: 'shop' },
+              { label: 'Business', value: 'business', key: 'business' },
             ]}
             onChange={(_value: any) => filter('category', _value)}
           />
