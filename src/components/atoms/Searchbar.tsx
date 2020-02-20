@@ -2,6 +2,7 @@ import React from 'react';
 import { InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import styled from 'styled-components';
+import { Colors } from "../../utils/styles";
 
 interface Props {}
 
@@ -11,7 +12,7 @@ const StyledSearchbar = styled.div<any>`
   flex-direction: row;
   align-items: center;
   margin-right: 2vw;
-  background: #f2f2f2;
+  background: transparent;
   border-radius: 36px;
   padding: 8px 16px;
 `;
