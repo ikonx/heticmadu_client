@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
 import styled from 'styled-components';
 import { Close } from '@material-ui/icons';
@@ -10,11 +10,10 @@ import BtnBlue from 'components/atoms/Buttons/BtnBlue';
 import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
 import MainTitle from 'components/atoms/Text/MainTitle';
 import Icon from 'components/atoms/Icon/Icon';
-import InputRadio from 'components/atoms/Inputs/Radio/InputRadio';
 import CustomSelect from 'components/atoms/Select/CustomSelect';
 import RadioMultiple from 'components/atoms/Inputs/RadioMultiple/RadioMultiple';
 
-import { radioPrice, radioAccessibility, radioTags } from 'utils/formsMocks/PoisForm';
+import { radioPrice, radioTags } from 'utils/formsMocks/PoisForm';
 import { filterType } from 'utils/filters/type.filter';
 import { filterPrice } from 'utils/filters/price.filter';
 import { filterTags } from 'utils/filters/tags.filter';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyledFormControl, StyledInput, StyledLabel } from "./_style";
 
 interface Props {

@@ -7,7 +7,6 @@ import PageHeader from '../molecules/PageHeader/PageHeader';
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Colors } from '../../utils/styles';
 import { GridContainer, ScrollableContent } from '../../utils/styles/Globals';
-import { useHistory, useLocation } from "react-router-dom";
 
 const CompanyContainer = styled.section`
   width: 100%;

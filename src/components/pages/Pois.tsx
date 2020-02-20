@@ -8,7 +8,7 @@ import CardItem, { CardItemProps } from '../molecules/Card/CardItem';
 import PageHeader from 'components/molecules/PageHeader/PageHeader';
 import ViewEntity from 'components/organisms/ViewEntity/ViewEntity';
 import { EntitiesEnum } from 'utils/enums/Entity.enum';
-import { GridContainer, ScrollableContent } from 'utils/styles/Globals';
+import { GridContainer } from 'utils/styles/Globals';
 import { useLocation, useHistory } from 'react-router-dom';
 
 interface Props {}
