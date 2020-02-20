@@ -19,6 +19,7 @@ import TextArea from '../../atoms/Inputs/Area/TextArea';
 import ScheduleBlock from '../../molecules/ScheduleBlock';
 import GreenscoreForm from './GreenscoreForm';
 import { useHistory } from 'react-router-dom';
+import InputAutocomplete from "../../atoms/Inputs/Autocomplete/InputAutocomplete";
 
 interface Props {}
 
@@ -80,7 +81,7 @@ const PoisForm: React.FC<Props> = () => {
                 <InputText title="Nom" placeholder="Entrez le nom du POI .." />
               </Grid>
               <Grid item xs={4}>
-                <InputText
+                <InputAutocomplete
                   title="Adresse complète"
                   placeholder="Entrez l'adresse du POI ..."
                 />

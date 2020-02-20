@@ -203,7 +203,7 @@ const Pois: React.FC<Props> = () => {
             <>
               <PageHeader
                 title="POI"
-                text="Créer une poi"
+                text="Créer une POI"
                 subtitle="CARD"
                 link="/form/pois"
               />
