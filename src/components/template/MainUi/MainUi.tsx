@@ -24,6 +24,7 @@ const MainUi: React.FC<Props> = () => {
         style={{
           gridTemplateRows: 'auto 1fr',
           maxHeight: '100vh',
+          height: '100vh',
           overflow: 'hidden',
         }}
       >
