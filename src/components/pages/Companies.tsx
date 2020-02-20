@@ -6,7 +6,7 @@ import { Grid as GoogleGrid, Table, TableBody } from '@material-ui/core';
 import PageHeader from '../molecules/PageHeader/PageHeader';
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Colors } from '../../utils/styles';
-import { GridContainer, ScrollableContent } from '../../utils/styles/Globals';
+import { GridContainer, ScrollableContent, StyledIconBack } from '../../utils/styles/Globals';
 import { useHistory, useLocation } from "react-router-dom";
 import { dataAllCompanies, dataSingleCompanies, dataTableHead } from "../../utils/formsMocks/CompaniesData";
 import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
@@ -40,12 +40,6 @@ const StyledTableBody = styled(TableBody)`
     border: 1px solid ${Colors.lightGrey};
     border-top: 0;
   }
-`;
-
-const StyledIconBack = styled(IconBack)`
-  width: 14px;
-  height: 14px;
-  margin-right: 24px;
 `;
 
 interface Props {}

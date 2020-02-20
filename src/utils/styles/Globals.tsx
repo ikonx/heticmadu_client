@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Grid } from "@material-ui/core";
+import { ReactComponent as IconBack } from "../../assets/img/arrowBack.svg";
 
 const ScrollableContent = styled.div<{ isForm?: string }>`
   overflow: auto;
@@ -13,7 +14,14 @@ const GridContainer = styled(Grid)`
   }
 `;
 
+const StyledIconBack = styled(IconBack)`
+  width: 14px;
+  height: 14px;
+  margin-right: 24px;
+`;
+
 export {
   ScrollableContent,
-  GridContainer
+  GridContainer,
+  StyledIconBack
 }
