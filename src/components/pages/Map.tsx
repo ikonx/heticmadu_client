@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import ReactMapboxGl, { Marker, ZoomControl } from 'react-mapbox-gl';
 import styled from 'styled-components';
 import { Close } from '@material-ui/icons';
@@ -19,7 +19,6 @@ import { filterPrice } from 'utils/filters/price.filter';
 import { filterTags } from 'utils/filters/tags.filter';
 import { useHistory } from 'react-router-dom';
 import CardItem, { CardItemProps } from 'components/molecules/Card/CardItem';
-import { useOnClickOutside } from 'utils/hooks/useOnClickOutside';
 
 const MapComponent = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
@@ -346,12 +345,17 @@ const fakeData: CardItemProps[] = [
 
 const Map: React.FC<Props> = () => {
   const [defaultEntries, setDefaultEntries] = useState<CardItemProps[]>([]);
-  const [entries, setEntries] = useState<CardItemProps[]>([...fakeData]);
+  const [entries, setEntries] = useState<CardItemProps[]>([]);
   const [isMapReady, setMapReady] = useState<any>(false);
   const [isFiltring, setFiltring] = useState<boolean>(false);
   const [previewCardData, setPreviewCardData] = useState<CardItemProps | null>(
     null,
   );
+
+  useEffect(() => {
+    setDefaultEntries(fakeData);
+    setEntries(fakeData);
+  }, []);
 
   const toggleFilters = () => {
     setFiltring(!isFiltring);
@@ -437,7 +441,7 @@ const Map: React.FC<Props> = () => {
                   anchor="bottom"
                   offset={[0, -15]}
                   onClick={() => {
-                    !previewCardData && setPreviewCardData(entry);
+                    setPreviewCardData(entry);
                   }}
                 >
                   <MotionMarker
@@ -460,7 +464,8 @@ const Map: React.FC<Props> = () => {
         </AnimatePresence>
       </MapComponent>
     ),
-    [entries, isMapReady, spring],
+    // eslint-disable-next-line
+    [entries, isMapReady],
   );
 
   return (
