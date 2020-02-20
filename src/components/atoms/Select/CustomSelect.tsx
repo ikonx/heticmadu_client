@@ -8,12 +8,12 @@ import {
 
 interface Props {
   title: string;
-  values: string[];
+  values: { label: string; value: string | number; key: string }[];
   onChange?: (value: any) => void;
 }
 
 const CustomSelect: React.FC<Props> = ({ title, values, onChange }) => {
-  const [selectValue, setSelectValue] = useState(values[0]);
+  const [selectValue, setSelectValue] = useState(values[0].value);
   const selectChange = (event: React.ChangeEvent<{ value: any }>) => {
     const { value } = event.target;
     setSelectValue(value);
@@ -25,8 +25,8 @@ const CustomSelect: React.FC<Props> = ({ title, values, onChange }) => {
       <StyledTitle>{title}</StyledTitle>
       <StyledInput value={selectValue} displayEmpty onChange={selectChange}>
         {values.map((item, i) => (
-          <StyledInputValue value={item} key={i}>
-            {item}
+          <StyledInputValue value={item.value} key={i}>
+            {item.label}
           </StyledInputValue>
         ))}
       </StyledInput>

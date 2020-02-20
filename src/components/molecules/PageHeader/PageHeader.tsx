@@ -2,7 +2,7 @@ import React from 'react';
 import { PageHeaderContainer, PageHeaderContent, PageHeaderSeparator } from "./_style";
 import MainTitle from "../../atoms/Text/MainTitle";
 import BtnBlue from "../../atoms/Buttons/BtnBlue";
-// @TODOS remove onAddItemProp
+// TODOS remove onAddItemProp
 interface Props {
   title: string;
   subtitle: string;
