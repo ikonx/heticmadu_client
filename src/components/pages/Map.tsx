@@ -381,8 +381,8 @@ const Map: React.FC<Props> = () => {
    * @param {*} filter_value
    */
   const filter = (filter_key: string, filter_value: any) => {
-    // @TODOS Manage multiple filters
-    // @TODOS Manage selected filters && or || ????????????
+    // TODO Manage multiple filters
+    // TODO Manage selected filters && or || ????????????
     let newEntries: any[] = [...defaultEntries];
     switch (filter_key) {
       case 'type':
@@ -398,7 +398,7 @@ const Map: React.FC<Props> = () => {
             ? filterPrice(newEntries, filter_key, filter_value)
             : defaultEntries;
         break;
-      // @TODOS check DATA BASE SCHEMA
+      // TODO check DATA BASE SCHEMA
       case 'accessibility':
         newEntries =
           filter_value.length > 0
