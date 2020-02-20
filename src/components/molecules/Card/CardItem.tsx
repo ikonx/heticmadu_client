@@ -16,7 +16,11 @@ export interface CardItemProps {
   latitude: string;
   longitude: string;
   onClick?: () => void;
-  id?: string;
+  id?: string | number;
+  center?: [number, number];
+  zoom?: number;
+  pitch?: number;
+  tags?: string[];
 }
 
 const CardContainer = styled(Card)`

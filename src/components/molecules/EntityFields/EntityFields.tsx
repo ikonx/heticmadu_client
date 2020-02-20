@@ -86,10 +86,11 @@ const EntityFields: React.FC<Props> = ({ title, fields, defaultData }) => {
         </Grid>
       </StyledHeader>
       <StyledFieldsContainer>
-        {fields.map(field => (
+        {fields.map((field, i) => (
           <Grid
             flow={FlowEnum.COLUMN}
             align="center"
+            key={i}
             style={{
               gridTemplateColumns: 'auto minmax(1fr, 330px)',
               borderBottom: '1px solid #EAEDF3',
