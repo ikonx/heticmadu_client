@@ -17,20 +17,23 @@ const InputText: React.FC<Props> = ({
   onChange,
   fieldValue,
   fieldKey,
-  type
+  type,
+  onKeyDown,
 }) => {
   return (
     <StyledFormControl>
       <StyledLabel htmlFor={title}>{title}</StyledLabel>
       <StyledInput
         id={title}
-        type={type || "text"}
+        type={type || 'text'}
         placeholder={placeholder}
         defaultValue={fieldValue || ''}
         onBlur={e => {
           onChange && onChange(fieldKey || '', e.target.value || '');
         }}
-        onKeyDown={onKeyDown}
+        onKeyDown={e => {
+          onKeyDown && onKeyDown(e);
+        }}
       />
     </StyledFormControl>
   );

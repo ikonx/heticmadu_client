@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import parse from 'autosuggest-highlight/parse';
 import throttle from 'lodash/throttle';
-import { StyledFormControl, StyledInput, StyledLabel } from "./_style";
+import { StyledFormControl, StyledInput, StyledLabel } from './_style';
 
 const loadScript = (src: string, position: HTMLElement | null, id: string) => {
   if (!position) {
@@ -24,6 +24,9 @@ const autocompleteService = { current: null };
 interface Props {
   title: string;
   placeholder: string;
+  fieldKey?: string;
+  fieldValue?: any;
+  onChange?: (_fieldKey: string, _fieldValue: any) => void;
 }
 
 interface PlaceType {
@@ -35,13 +38,19 @@ interface PlaceType {
       {
         offset: number;
         length: number;
-      }
+      },
     ];
   };
 }
 
-const InputAutocomplete: React.FC<Props> = ({ title, placeholder }) => {
-  const [inputValue, setInputValue] = React.useState('');
+const InputAutocomplete: React.FC<Props> = ({
+  title,
+  placeholder,
+  fieldKey,
+  fieldValue,
+  onChange
+}) => {
+  const [inputValue, setInputValue] = React.useState(fieldValue || '');
   const [options, setOptions] = React.useState<PlaceType[]>([]);
   const loaded = React.useRef(false);
 
@@ -59,12 +68,16 @@ const InputAutocomplete: React.FC<Props> = ({ title, placeholder }) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
+    onChange && onChange(fieldKey || "", event.target.value);
   };
 
   const fetch = React.useMemo(
     () =>
       throttle((input: any, callback: any) => {
-        (autocompleteService.current as any).getPlacePredictions(input, callback);
+        (autocompleteService.current as any).getPlacePredictions(
+          input,
+          callback,
+        );
       }, 200),
     [],
   );
@@ -98,16 +111,18 @@ const InputAutocomplete: React.FC<Props> = ({ title, placeholder }) => {
   return (
     <Autocomplete
       id="google-map-demo"
-      getOptionLabel={option => (typeof option === 'string' ? option : option.description)}
-      filterOptions={x => x}
+      getOptionLabel={(option: any) =>
+        typeof option === 'string' ? option : option.description
+      }
+      filterOptions={(x: any) => x}
       options={options}
       autoComplete
       includeInputInList
       freeSolo
       disableOpenOnFocus
-      renderInput={params => (
+      renderInput={(params: any) => (
         <StyledFormControl>
-          <StyledLabel>{ title }</StyledLabel>
+          <StyledLabel>{title}</StyledLabel>
           <StyledInput
             {...params}
             variant="outlined"
@@ -117,11 +132,15 @@ const InputAutocomplete: React.FC<Props> = ({ title, placeholder }) => {
           />
         </StyledFormControl>
       )}
-      renderOption={option => {
-        const matches = option.structured_formatting.main_text_matched_substrings;
+      renderOption={(option: any) => {
+        const matches =
+          option.structured_formatting.main_text_matched_substrings;
         const parts = parse(
           option.structured_formatting.main_text,
-          matches.map((match: any) => [match.offset, match.offset + match.length]),
+          matches.map((match: any) => [
+            match.offset,
+            match.offset + match.length,
+          ]),
         );
 
         return (
@@ -130,8 +149,11 @@ const InputAutocomplete: React.FC<Props> = ({ title, placeholder }) => {
               <LocationOnIcon />
             </Grid>
             <Grid item xs>
-              {parts.map((part, index) => (
-                <span key={index} style={{ fontWeight: part.highlight ? 700 : 400 }}>
+              {parts.map((part: any, index: any) => (
+                <span
+                  key={index}
+                  style={{ fontWeight: part.highlight ? 700 : 400 }}
+                >
                   {part.text}
                 </span>
               ))}
@@ -144,6 +166,6 @@ const InputAutocomplete: React.FC<Props> = ({ title, placeholder }) => {
       }}
     />
   );
-}
+};
 
 export default InputAutocomplete;

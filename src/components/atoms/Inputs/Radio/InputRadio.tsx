@@ -12,22 +12,22 @@ interface Props {
   values: {
     name: string;
     category: string;
-    value: string;
+    value: string | boolean;
   }[];
   fieldKey?: string;
   onChange?: (_fieldKey: string, _fieldValue: any) => void;
-  fieldValue?: string;
+  fieldValue?: string | boolean;
 }
 
 const InputRadio: React.FC<Props> = ({ title, values, onChange, fieldValue, fieldKey }) => {
-  const [selectedValue, setSelectedValue] = React.useState<string | undefined>(
-    values[0].value,
+  const [selectedValue, setSelectedValue] = React.useState<string | boolean | undefined>(
+    fieldValue || values[0].value,
   );
 
   const handleChange = (event: { target: HTMLInputElement }) => {
     const { value } = event.target;
     setSelectedValue(value);
-    onChange && onChange(fieldKey || "", value);
+    onChange && onChange(fieldKey || "", typeof value === "boolean" ? JSON.parse(value) : value);
   };
 
   return (
@@ -40,7 +40,7 @@ const InputRadio: React.FC<Props> = ({ title, values, onChange, fieldValue, fiel
               <StyledRadio
                 type="radio"
                 name={item.name}
-                value={item.value}
+                value={item.value.toString()}
                 onChange={handleChange}
                 checked={item.value === selectedValue}
               />
