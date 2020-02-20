@@ -423,7 +423,7 @@ const Map: React.FC<Props> = () => {
         style="mapbox://styles/mapbox/streets-v9"
         containerStyle={{
           height: '100%',
-          width: '100%',
+          width: '100vw',
         }}
         movingMethod="flyTo"
         center={[2.349014, 48.864716]}
