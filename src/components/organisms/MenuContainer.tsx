@@ -20,6 +20,10 @@ const MenuContainer: React.FC<Props> = () => {
             "title": "POI",
             "link": "/pois"
         },
+        {
+            "title": "Tags",
+            "link": "/tags"
+        }
     ];
 
     const MenuNav = styled(MenuList)`
