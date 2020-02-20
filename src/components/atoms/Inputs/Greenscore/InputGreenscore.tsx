@@ -5,7 +5,6 @@ import {
   StyledRadioGroup,
   StyledTitle,
   ContainerRowInput,
-  WithStyledRadioGreenscore,
 } from './_style';
 import { Radio } from '@material-ui/core';
 
@@ -21,11 +20,13 @@ interface Props {
 }
 
 const InputGreenscore: React.FC<Props> = ({ DataGreenscore }) => {
-  const [selectedValue, setSelectedValue] = React.useState<string | undefined>(
+  const [selectedValue, setSelectedValue] = React.useState<string | number>(
     DataGreenscore.radio[0].value,
   );
 
+
   const handleChange = (event: { target: HTMLInputElement }) => {
+    
     setSelectedValue(event.target.value);
   };
 
@@ -35,7 +36,10 @@ const InputGreenscore: React.FC<Props> = ({ DataGreenscore }) => {
       <RadioContainer>
         {DataGreenscore.radio.length > 0 &&
           DataGreenscore.radio.map((item, i) => (
-            <StyledRadioGroup key={i}>
+            <StyledRadioGroup
+            key={i}
+            defaultValue={DataGreenscore.radio[i].score}
+            >
               <StyledRadioGreenscore
                 value={item.value}
                 control={

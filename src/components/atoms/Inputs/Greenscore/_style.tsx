@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Colors, Fonts } from "../../../../utils/styles";
-import { RadioGroup, FormControlLabel, withStyles } from "@material-ui/core";
+import { RadioGroup, FormControlLabel } from "@material-ui/core";
 
 export const RadioContainer = styled.div`
   && {  
@@ -15,16 +15,6 @@ export const RadioContainer = styled.div`
 export const ContainerRowInput = styled.div`
   margin: 24px 0;
 `;
-
-export const WithStyledRadioGreenscore = withStyles ({
-    root: {
-        color: Colors.lightGrey,
-        '&$checked': {
-          color: Colors.blue,
-        }
-    },
-    checked: {},
-})(FormControlLabel);
 
 export const StyledRadioGreenscore = styled(FormControlLabel)`
   && {

@@ -2,18 +2,18 @@ import React from 'react';
 import PageHeader from '../../molecules/PageHeader/PageHeader';
 import { ScrollableContent } from '../../../utils/styles/Globals';
 import InputGreenscore from '../../atoms/Inputs/Greenscore/InputGreenscore';
-import { DataGreenscore } from '../../../utils/DataGreenscore/DataGreenscore';
+import { DataGreenscore, DataTitleGS } from '../../../utils/DataGreenscore/DataGreenscore';
 
 interface Props {
   currentGreenscore: number;
 }
 
-const GreenscoreForm: React.FC<Props> = props => {
+const GreenscoreForm: React.FC<Props> = (props) => {
   return (
     <>
       <PageHeader
-        title="Évaluez le Greenscore matériel de HETIC"
-        subtitle="Greenscore entreprise"
+        title={"Évaluation du greenscore " + DataTitleGS[props.currentGreenscore].typeWord + " de " + DataTitleGS[props.currentGreenscore].companyWord}
+        subtitle="Greenscore restaurant"
       />
       <ScrollableContent isForm="true">
         <div>

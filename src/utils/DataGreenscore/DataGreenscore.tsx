@@ -354,3 +354,18 @@ export const DataGreenscore = [
     ],
   },
 ];
+
+export const DataTitleGS = [
+    {
+        typeWord: 'Food',
+        companyWord: 'HETIC'
+    },
+    {
+        typeWord: 'Matériel',
+        companyWord: 'HETIC'
+    },
+    {
+        typeWord: 'Social',
+        companyWord: 'HETIC'
+    }
+];
