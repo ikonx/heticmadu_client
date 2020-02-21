@@ -1,11 +1,15 @@
 import styled from "styled-components";
-import { FormControl, TextField } from "@material-ui/core";
+import { FormControl } from "@material-ui/core";
 import { Colors, Fonts } from "../../../../utils/styles";
 
 
 export const StyledFormControl = styled(FormControl)`
   && {
     width: 100%;
+    z-index: 1;
+    .ap-with-places {
+      text-align: left;
+    }
   }
 `;
 
@@ -19,24 +23,14 @@ export const StyledLabel = styled.label`
   }
 `;
 
-export const StyledInput = styled(TextField)`
+export const StyledInput = styled.input`
   && {
     background: ${Colors.white};
     border: 1px solid ${Colors.lightGrey};
     border-radius: 4px;
     height: 48px;
     padding: 0 1rem;
-    .MuiInputBase-adornedEnd {
-      height: 100%;
-      padding: 0;
-    }
-    fieldset {
-      border: none;
-    }
-    input {
-      padding: 0 !important;
-      font-family: ${Fonts.medium};
-      font-size: 15px;
-    }
+    font-family: ${Fonts.medium};
+    font-size: 15px;
   }
 `;

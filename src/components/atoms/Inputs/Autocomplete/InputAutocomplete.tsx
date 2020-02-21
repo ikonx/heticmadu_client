@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+import React, { useEffect, useRef } from 'react';
+import places from 'places.js';
+import { StyledFormControl, StyledInput, StyledLabel } from "./_style";
+=======
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -6,20 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import parse from 'autosuggest-highlight/parse';
 import throttle from 'lodash/throttle';
 import { StyledFormControl, StyledInput, StyledLabel } from './_style';
+>>>>>>> 037eaf3280565290cbcb534e903880c2e07d0baa
 
-const loadScript = (src: string, position: HTMLElement | null, id: string) => {
-  if (!position) {
-    return;
-  }
-
-  const script = document.createElement('script');
-  script.setAttribute('async', '');
-  script.setAttribute('id', id);
-  script.src = src;
-  position.appendChild(script);
-};
-
-const autocompleteService = { current: null };
 
 interface Props {
   title: string;
@@ -29,6 +22,10 @@ interface Props {
   onChange?: (_fieldKey: string, _fieldValue: any) => void;
 }
 
+<<<<<<< HEAD
+const InputAutocomplete: React.FC<Props> = ({ title, placeholder }) => {
+  const search = useRef(null);
+=======
 interface PlaceType {
   description: string;
   structured_formatting: {
@@ -96,18 +93,29 @@ const InputAutocomplete: React.FC<Props> = ({
       setOptions([]);
       return undefined;
     }
+>>>>>>> 037eaf3280565290cbcb534e903880c2e07d0baa
 
-    fetch({ input: inputValue }, (results?: PlaceType[]) => {
-      if (active) {
-        setOptions(results || []);
-      }
-    });
-
-    return () => {
-      active = false;
+  useEffect(() => {
+    const options = {
+      appId: 'pl563JA632LO',
+      apiKey: '530b94e219f930c335722f7d32e43eb5',
+      container: search.current ?? '',
     };
-  }, [inputValue, fetch]);
+    const reconfigurableOptions = {
+      language: 'fr',
+      countries: ['fr'],
+    };
 
+<<<<<<< HEAD
+    places(options).configure(reconfigurableOptions);
+  }, []);
+
+  return (
+    <StyledFormControl>
+      <StyledLabel>{ title }</StyledLabel>
+      <StyledInput type="text" ref={search} className="form-control" placeholder={placeholder}/>
+    </StyledFormControl>
+=======
   return (
     <Autocomplete
       id="google-map-demo"
@@ -165,6 +173,7 @@ const InputAutocomplete: React.FC<Props> = ({
         );
       }}
     />
+>>>>>>> 037eaf3280565290cbcb534e903880c2e07d0baa
   );
 };
 
