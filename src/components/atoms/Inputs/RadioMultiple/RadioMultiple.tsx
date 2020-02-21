@@ -35,7 +35,7 @@ const RadioMultiple: React.FC<Props> = ({ title, values, onChange }) => {
     <div>
       <StyledTitle>{title}</StyledTitle>
       <RadioContainer>
-        {values.length > 0 &&
+        {values.length > 0 ? (
           values.map((item, i) => (
             <StyledRadioGroup key={i}>
               <StyledRadio
@@ -52,7 +52,10 @@ const RadioMultiple: React.FC<Props> = ({ title, values, onChange }) => {
               />
               <StyledLabel>{item.name}</StyledLabel>
             </StyledRadioGroup>
-          ))}
+          ))
+        ) : (
+          <p>Il faut créer des tags avant.</p>
+        )}
       </RadioContainer>
     </div>
   );
