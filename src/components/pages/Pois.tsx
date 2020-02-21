@@ -53,7 +53,7 @@ const MySwal = withReactContent(Swal);
 
 const Pois: React.FC<Props> = () => {
   const [selectedPoi, setPoi] = useState<CardItemProps | null>(null);
-  const { pois, fetchingPois } = useContext(PoisContext);
+  const { pois, fetchingPois, deletePoi } = useContext(PoisContext);
 
   const handleOpen = () => {
     MySwal.fire({
@@ -71,6 +71,7 @@ const Pois: React.FC<Props> = () => {
       if (result.value) {
         MySwal.fire('Supprimé !', 'Cette POI à bien été supprimé');
         setPoi(null);
+        deletePoi(selectedPoi?.id);
         history.goBack();
       }
     });
