@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Grid as GoogleGrid, LinearProgress } from '@material-ui/core';
@@ -20,6 +20,7 @@ import withReactContent from 'sweetalert2-react-content';
 
 import TitleModal from 'components/atoms/Text/TitleModal';
 import TextModal from 'components/atoms/Text/TextModal';
+import { getPoi } from 'utils/http';
 
 interface Props {}
 
@@ -84,6 +85,18 @@ const Pois: React.FC<Props> = () => {
   const isAddingRoute =
     pathname === '/pois/create' ||
     (pathname.match('/pois/edit') && selectedPoi);
+
+  useEffect(() => {
+    if (pathname.match('/pois/edit') && !selectedPoi) {
+      const poiId: string | number = pathname && pathname.split('/').pop()!;
+      poiId &&
+        getPoi(poiId).then((res: any) => {
+          if (res.status === 200) {
+            setPoi(res.data);
+          }
+        });
+    }
+  }, []);
 
   return (
     <PoiContainer>
