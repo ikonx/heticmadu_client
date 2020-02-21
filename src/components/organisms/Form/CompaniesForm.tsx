@@ -18,7 +18,7 @@ const CompaniesForm: React.FC<Props> = () => {
         title="Crée une entreprise"
         subtitle="nouvelle entreprise"
       />
-      <ScrollableContent isForm="true">
+      <ScrollableContent>
         <Grid container spacing={8}>
           <Grid item xs={4}>
             <InputRadio values={radioCompany} title="Type d'entreprise"/>

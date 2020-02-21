@@ -13,7 +13,8 @@ const Colors = {
   red: '#FFBDB3',
   darkRed: '#75291E',
   lightRed: '#EB5757',
-  purple: '#3439CB'
+  purple: '#3439CB',
+  redDelete: '#EB5757'
 };
 
 export default Colors;
