@@ -8,3 +8,6 @@ export const getPois = async (): Promise<PoiModel[]> =>
 
 export const postPoi = async (_data: CreatePointsOfInterestDTO): Promise<PoiModel> =>
   await axios.post(`${API_URL}pois`, _data);
+
+export const deletePoi = async (_id: string | number): Promise<any> =>
+  await axios.delete(`${API_URL}pois/${_id}`);

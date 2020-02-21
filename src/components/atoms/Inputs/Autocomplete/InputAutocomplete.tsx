@@ -1,17 +1,22 @@
 import React, { useEffect, useRef } from 'react';
 import places from 'places.js';
-import { StyledFormControl, StyledInput, StyledLabel } from "./_style";
-
+import { StyledFormControl, StyledInput, StyledLabel } from './_style';
 
 interface Props {
   title: string;
   placeholder: string;
   fieldKey?: string;
   fieldValue?: any;
-  onChange?: (_fieldKey: string, _fieldValue: any) => void;
+  onChange?: (_fieldKey: any, _fieldValue: any) => void;
 }
 
-const InputAutocomplete: React.FC<Props> = ({ title, placeholder }) => {
+const InputAutocomplete: React.FC<Props> = ({
+  title,
+  placeholder,
+  onChange,
+  fieldKey,
+  fieldValue,
+}) => {
   const search = useRef(null);
 
   useEffect(() => {
@@ -26,12 +31,27 @@ const InputAutocomplete: React.FC<Props> = ({ title, placeholder }) => {
     };
 
     places(options).configure(reconfigurableOptions);
+    places(options).on('change', (e: any) => {
+      const parsedData = {
+        longitude: e.suggestion.latlng.lng,
+        latitude: e.suggestion.latlng.lat,
+        address: e.suggestion.value,
+      };
+      onChange && onChange(fieldKey, parsedData);
+    });
+    // eslint-disable-next-line
   }, []);
 
   return (
     <StyledFormControl>
-      <StyledLabel>{ title }</StyledLabel>
-      <StyledInput type="text" ref={search} className="form-control" placeholder={placeholder}/>
+      <StyledLabel>{title}</StyledLabel>
+      <StyledInput
+        type="text"
+        ref={search}
+        className="form-control"
+        placeholder={placeholder}
+        defaultValue={fieldValue}
+      />
     </StyledFormControl>
   );
 };
