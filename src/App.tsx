@@ -5,7 +5,10 @@ import { Switch, Route } from 'react-router-dom';
 import MainUi from 'components/template/MainUi/MainUi';
 
 import './App.css';
-import Login from 'components/pages/Login';
+/**
+ * TODO: finish login page, link to api + userContext
+ */
+// import Login from 'components/pages/Login';
 import PoisProvider from 'contexts/pois/pois.provider';
 
 const App: React.FC = () => {
@@ -13,9 +16,9 @@ const App: React.FC = () => {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/">
+          {/* <Route exact path="/">
             <Login />
-          </Route>
+          </Route> */}
           <Route path="*">
             <PoisProvider>
               <MainUi />
