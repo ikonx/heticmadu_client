@@ -40,8 +40,8 @@ const ContainerList = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   overflow: auto;
-  height: ${window.innerHeight - (72 + 118)}px;
-  padding: 0 2rem;
+  height: ${ window.innerHeight - (72 + 160) }px;
+  padding: 0 2rem 10rem;
 `;
 
 const Map = ReactMapboxGl({
