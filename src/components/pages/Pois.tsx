@@ -15,14 +15,13 @@ import { useLocation, useHistory } from 'react-router-dom';
 import BtnRed from '../atoms/Buttons/BtnRed';
 import PoisContext from 'contexts/pois/pois.context';
 
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 import TitleModal from 'components/atoms/Text/TitleModal';
 import TextModal from 'components/atoms/Text/TextModal';
 
-interface Props {
-}
+interface Props {}
 
 const PoiContainer = styled.section`
   width: 100%;
@@ -42,7 +41,7 @@ const ContainerList = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   overflow: auto;
-  height: ${ window.innerHeight - (72 + 160) }px;
+  height: ${window.innerHeight - (72 + 160)}px;
   padding: 0 2rem 10rem;
 `;
 
@@ -55,27 +54,26 @@ const MySwal = withReactContent(Swal);
 const Pois: React.FC<Props> = () => {
   const [selectedPoi, setPoi] = useState<CardItemProps | null>(null);
   const { pois, fetchingPois } = useContext(PoisContext);
-  
+
   const handleOpen = () => {
     MySwal.fire({
-      title: <TitleModal title="Supprimer la POI"/>,
-      html: <TextModal textContent="Êtes-vous sûr de vouloir définitivement supprimer cette POI ? Attention cette action est irréversible."/>,
+      title: <TitleModal title="Supprimer la POI" />,
+      html: (
+        <TextModal textContent="Êtes-vous sûr de vouloir définitivement supprimer cette POI ? Attention cette action est irréversible." />
+      ),
       showCancelButton: true,
       confirmButtonColor: Colors.redDelete,
       cancelButtonColor: Colors.blue,
       confirmButtonText: 'Suprimmer',
       cancelButtonText: 'Annuler',
-      reverseButtons: true
-    }).then((result) => {
+      reverseButtons: true,
+    }).then(result => {
       if (result.value) {
-        MySwal.fire (
-          'Supprimé !',
-          'Cette POI à bien été supprimé'
-        )
+        MySwal.fire('Supprimé !', 'Cette POI à bien été supprimé');
         setPoi(null);
         history.goBack();
       }
-    })
+    });
   };
 
   const dataArray: CardItemProps[] = [...pois];
@@ -140,11 +138,15 @@ const Pois: React.FC<Props> = () => {
                   style={{
                     cursor: 'pointer',
                   }}
+                  onClick={() => {
+                    history.goBack();
+                    setPoi(null);
+                  }}
                 >
                   <StyledIconBack />
                   <span>Retour</span>
                 </div>
-                <BtnRed text="Supprimer une POI" onClick={handleOpen}/>
+                <BtnRed text="Supprimer une POI" onClick={handleOpen} />
               </Grid>
               <ViewEntity
                 entity={EntitiesEnum.POI}
