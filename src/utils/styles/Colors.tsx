@@ -5,6 +5,7 @@ const Colors = {
   blue: '#2C7BE5',
   darkBlue: '#215AA7',
   lightBlue: 'rgba(44, 123, 229, 0.16)',
+  lighterBlue: '#B6D5FF',
   darkWhite: '#FBFBFF',
   white: '#FFFFFF',
   green: '#B0DD8A',
@@ -12,7 +13,9 @@ const Colors = {
   red: '#FFBDB3',
   darkRed: '#75291E',
   lightRed: '#EB5757',
-  purple: '#3439CB'
+  lightHoverRed: '#813030',
+  purple: '#3439CB',
+  redDelete: '#EB5757',
 };
 
 export default Colors;

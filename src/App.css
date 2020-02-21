@@ -20,6 +20,11 @@
   src: url("assets/fonts/Prompt/Prompt-ExtraBold.ttf");
 }
 
+@font-face {
+  font-family: 'Prompt-SemiBold';
+  src: url("assets/fonts/Prompt/Prompt-SemiBold.ttf");
+}
+
 * {
   box-sizing: border-box;
 }

@@ -20,7 +20,7 @@ const StyledIcon = styled.div`
 
 const MapPointIcon: React.FC<Props> = ({ point }) => {
   const renderEntryIcon = (point: any) => {
-    switch (point.type) {
+    switch (point.category) {
       case 'shop':
         return (
           <svg
@@ -301,7 +301,7 @@ const MapPointIcon: React.FC<Props> = ({ point }) => {
   };
 
   const renderEntryIconColor = (point: any) => {
-    switch (point.type) {
+    switch (point.category) {
       case 'shop':
         return '#EB5757';
       case 'resto':

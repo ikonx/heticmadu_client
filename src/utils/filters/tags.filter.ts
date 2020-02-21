@@ -13,9 +13,11 @@ export const filterTags = (
   _filterValues: any[],
 ): any[] => {
   const res = _valuesToFilter.filter((item: any) => {
-    const result = item.tags.filter((tag: any) => {
-      return _filterValues.includes(tag);
-    });
+    const result = item.tags
+      ? item.tags.filter((tag: any) => {
+          return _filterValues.includes(tag.tag);
+        })
+      : [];
     return result.length > 0 && item;
   });
   return res;

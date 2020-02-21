@@ -5,10 +5,10 @@ import EcoIcon from '@material-ui/icons/Eco';
 
 interface Props {
     name: string,
-    adress: string,
-    price: string,
-    type: string,
-    score: number
+    address: string,
+    averagePrice: string,
+    category: string,
+    greenScore: number
 }
 
 const TextContainer = styled.div`
@@ -49,7 +49,7 @@ const BlockScore = styled.div`
     font-size: 14px;
 `;
 
-const TextCard: React.FC<Props> = ({ name, adress, price, type , score }) => {
+const TextCard: React.FC<Props> = ({ name, address, averagePrice, category , greenScore }) => {
     return (
         <TextContainer>
             <TitlePOI>
@@ -57,15 +57,15 @@ const TextCard: React.FC<Props> = ({ name, adress, price, type , score }) => {
             </TitlePOI>
             <BlockDesc>
                 <Text variant="subtitle1">
-                    {adress}
+                    {address}
                 </Text>
                 <Text variant="subtitle1">
-                    {price} | {type}
+                    {averagePrice} | {category}
                 </Text>
             </BlockDesc>
             <BlockScore>
                 <EcoIcon/>
-                {score}
+                {greenScore}
             </BlockScore>
         </TextContainer>
     )

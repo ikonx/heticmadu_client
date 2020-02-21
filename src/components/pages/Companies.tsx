@@ -13,6 +13,10 @@ import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
 import ViewEntityCompanies from "../organisms/ViewEntity/ViewEntityCompanies";
 import { EntitiesEnum } from "../../utils/enums/Entity.enum";
 import BtnRed from "../atoms/Buttons/BtnRed";
+import TitleModal from 'components/atoms/Text/TitleModal';
+import TextModal from 'components/atoms/Text/TextModal';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
 
 const CompanyContainer = styled.section`
   width: 100%;
@@ -50,6 +54,30 @@ const Companies: React.FC<Props> = () => {
   const isAddingRoute =
     pathname === '/companies/create' ||
     (pathname.match('/companies/edit') && selectedCompany);
+
+  const MySwal = withReactContent(Swal);
+
+  const handleOpen = () => {
+    MySwal.fire({
+      title: <TitleModal title="Supprimer l'entreprise"/>,
+      html: <TextModal textContent="Êtes-vous sûr de vouloir définitivement supprimer cette entrprise ? Attention cette action est irréversible."/>,
+      showCancelButton: true,
+      confirmButtonColor: Colors.redDelete,
+      cancelButtonColor: Colors.blue,
+      confirmButtonText: 'Suprimmer',
+      cancelButtonText: 'Annuler',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        MySwal.fire (
+          'Supprimé !',
+          'Cette Entreprise à bien été supprimé'
+        )
+        setCompany(null);
+        history.goBack();
+      }
+    })
+  };
 
   return (
     <CompanyContainer>
@@ -107,7 +135,7 @@ const Companies: React.FC<Props> = () => {
                   <StyledIconBack />
                   <span>Retour</span>
                 </div>
-                <BtnRed text="Supprimer une POI" onClick={() => console.log('OK')}/>
+                <BtnRed text="Supprimer une POI" onClick={handleOpen}/>
               </Grid>
               <ViewEntityCompanies
                 entity={EntitiesEnum.COMPANY}
