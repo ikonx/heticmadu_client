@@ -1,4 +1,4 @@
-import axios, { AxiosResponse, AxiosStatic } from 'axios';
+import axios from 'axios';
 import { PoiModel } from './models/pois.model';
 import { CreatePointsOfInterestDTO } from './dto/pointsOfInterest.dto';
 

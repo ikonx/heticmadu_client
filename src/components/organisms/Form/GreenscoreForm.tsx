@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React from 'react';
 import PageHeader from '../../molecules/PageHeader/PageHeader';
 import { ScrollableContent } from '../../../utils/styles/Globals';
 import InputGreenscore from '../../atoms/Inputs/Greenscore/InputGreenscore';
@@ -12,8 +12,6 @@ interface Props {
 }
 
 const GreenscoreForm: React.FC<Props> = props => {
-  const [greenScore, setGreenScore] = useState(0);
-
   const onChange = (item: any) => {
     console.log(item.score, item.value);
   };

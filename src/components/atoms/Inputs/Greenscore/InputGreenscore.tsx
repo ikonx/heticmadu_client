@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   RadioContainer,
   StyledRadioGreenscore,
@@ -32,6 +32,7 @@ const InputGreenscore: React.FC<Props> = ({ DataGreenscore, onChange }) => {
   const handleChange = (item: any) => {
     setSelectedValue(item.value);
     setSelectedScoreValue(item.score);
+    console.log(selectedScoreValue);
     // onChange(item);
   };
 

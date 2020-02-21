@@ -7,12 +7,10 @@ import PageHeader from '../../molecules/PageHeader/PageHeader';
 import { ScrollableContent } from '../../../utils/styles/Globals';
 import InputRadio from '../../atoms/Inputs/Radio/InputRadio';
 import InputText from '../../atoms/Inputs/Text/InputText';
-import InputFile from '../../atoms/Inputs/File/InputFile';
 import FormsFooter from '../../molecules/FormsFooter';
 import {
   radioBio,
   radioCategory,
-  radioDiet,
   radioGluten,
   radioHandicap,
   radioPOI,
@@ -21,7 +19,6 @@ import {
 import TextArea from '../../atoms/Inputs/Area/TextArea';
 import ScheduleBlock from '../../molecules/ScheduleBlock';
 import GreenscoreForm from './GreenscoreForm';
-import { PoiModel } from 'utils/models/pois.model';
 import { CreatePointsOfInterestDTO } from 'utils/dto/pointsOfInterest.dto';
 import { IStatusEnum } from 'utils/interfaces/statusEnum';
 import InputAutocomplete from '../../atoms/Inputs/Autocomplete/InputAutocomplete';
