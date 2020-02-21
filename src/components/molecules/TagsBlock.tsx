@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Colors, Fonts } from '../../utils/styles';
 import TagsHighlighted from '../atoms/TagsHighlighted';
+import { TagModel } from 'utils/models/tag.model';
 
 interface Props {
-  tags: string[];
+  tags: TagModel[];
   deleteFN: any;
 }
 
@@ -35,9 +36,7 @@ const TagsBody = styled.div`
   flex-wrap: wrap;
 `;
 
-
-const TagsBlock: React.FC<Props> = ({tags, deleteFN}) => {
-
+const TagsBlock: React.FC<Props> = ({ tags, deleteFN }) => {
   return (
     <TagsContainer>
       <TagsHeader>
@@ -46,8 +45,9 @@ const TagsBlock: React.FC<Props> = ({tags, deleteFN}) => {
       <TagsBody>
         {tags.length > 0 &&
           tags.map((item, i) => (
-            <TagsHighlighted key={i}
-              text={item}
+            <TagsHighlighted
+              key={i}
+              text={item.tag || 'default tag name'}
               clickListener={deleteFN(i)}
             />
           ))}
