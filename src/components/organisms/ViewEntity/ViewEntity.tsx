@@ -64,7 +64,7 @@ const ViewEntity: React.FC<Props> = ({ images, defaultData }) => {
           {/*    role="decoration"*/}
           {/*  />*/}
           {/*</Grid>*/}
-          <img src={images && images[2]} alt="preview of poi" />
+          <img src={images && images?.length > 0 ? images[2] : 'https://source.unsplash.com/900x900/?food,green,vegan,bio'} alt="preview of poi" />
         </StyledImageContainer>
         <EntityFields
           fields={generalInfoFields}
@@ -72,12 +72,12 @@ const ViewEntity: React.FC<Props> = ({ images, defaultData }) => {
           defaultData={defaultData}
         />
         <EntityFields
-          fields={generalInfoFields}
+          fields={[]}
           title="Les horaires"
           defaultData={defaultData}
         />
         <EntityFields
-          fields={generalInfoFields}
+          fields={[]}
           title="Tags"
           defaultData={defaultData}
         />
