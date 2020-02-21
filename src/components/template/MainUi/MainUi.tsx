@@ -10,6 +10,8 @@ import Form from 'components/pages/Form';
 import Tags from 'components/pages/Tags';
 import Header from 'components/molecules/Header';
 import Map from 'components/pages/Map';
+import CompaniesProvider from "../../../contexts/companies/companies.provider";
+
 
 const StyledContainer = styled(Grid)``;
 
@@ -38,7 +40,9 @@ const MainUi: React.FC<Props> = () => {
               <Map />
             </Route>
             <Route path="/companies">
-              <Companies />
+              <CompaniesProvider>
+                <Companies />
+              </CompaniesProvider>
             </Route>
             <Route path="/pois">
               <Pois />
@@ -47,7 +51,9 @@ const MainUi: React.FC<Props> = () => {
               <Tags />
             </Route>
             <Route path="/form/:page">
-              <Form />
+              <CompaniesProvider>
+                <Form />
+              </CompaniesProvider>
             </Route>
           </Switch>
         </>

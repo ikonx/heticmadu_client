@@ -1,22 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { index as TableItem } from '../molecules/Table/Row';
 import { index as TableHead } from '../molecules/Table/Head';
-import { Grid as GoogleGrid, Table, TableBody } from '@material-ui/core';
+import { Grid as GoogleGrid, LinearProgress, Table, TableBody } from '@material-ui/core';
 import PageHeader from '../molecules/PageHeader/PageHeader';
 import ReactMapboxGl from 'react-mapbox-gl';
 import { Colors } from '../../utils/styles';
 import { GridContainer, ScrollableContent, StyledIconBack } from '../../utils/styles/Globals';
 import { useHistory, useLocation } from "react-router-dom";
-import { dataAllCompanies, dataSingleCompanies, dataTableHead } from "../../utils/formsMocks/CompaniesData";
+import { dataSingleCompanies, dataTableHead } from "../../utils/formsMocks/CompaniesData";
 import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
 import ViewEntityCompanies from "../organisms/ViewEntity/ViewEntityCompanies";
 import { EntitiesEnum } from "../../utils/enums/Entity.enum";
 import BtnRed from "../atoms/Buttons/BtnRed";
 import TitleModal from 'components/atoms/Text/TitleModal';
 import TextModal from 'components/atoms/Text/TextModal';
-import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
+import CompaniesContext from "../../contexts/companies/companies.context";
+import withReactContent from "sweetalert2-react-content";
+import moment from "moment";
 
 const CompanyContainer = styled.section`
   width: 100%;
@@ -49,6 +51,10 @@ interface Props {}
 
 const Companies: React.FC<Props> = () => {
   const [selectedCompany, setCompany] = useState<any | null>(null);
+  const { companies, fetchingCompanies } = useContext(CompaniesContext);
+
+  const dataAllCompanies: any[] = [...companies];
+
   const { pathname } = useLocation();
   const history = useHistory();
   const isAddingRoute =
@@ -81,6 +87,17 @@ const Companies: React.FC<Props> = () => {
 
   return (
     <CompanyContainer>
+      {fetchingCompanies && (
+        <LinearProgress
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: 5,
+            width: '100%',
+          }}
+        />
+      )}
       <GridContainer container>
         <LeftColumn item xs={7}>
           { !isAddingRoute ? (
@@ -95,16 +112,27 @@ const Companies: React.FC<Props> = () => {
                 <CompanyTable>
                   <TableHead tableValues={dataTableHead}/>
                   <StyledTableBody>
-                    { dataAllCompanies.map((company, i) => (
-                      <TableItem
-                        key={i}
-                        onClick={() => {
-                          history.push(`companies/edit/${company.id}`);
-                          setCompany(company);
-                        }}
-                        tableRowValues={company}
-                      />
-                    ))}
+                    { dataAllCompanies.map((company, i) => {
+                      const tableCompany = {
+                        name: company.name,
+                        type: company.type,
+                        pattern: company.rse,
+                        numberOfEmployees: company.numberOfEmployees,
+                        creationDate: moment(company.creationDate).format('DD/M/YY'),
+                        status: company.status
+                      };
+
+                      return(
+                        <TableItem
+                          key={i}
+                          onClick={() => {
+                            history.push(`companies/edit/${company.id}`);
+                            setCompany(company);
+                          }}
+                          tableRowValues={tableCompany}
+                        />
+                      )
+                    })}
                   </StyledTableBody>
                 </CompanyTable>
               </ScrollableContent>

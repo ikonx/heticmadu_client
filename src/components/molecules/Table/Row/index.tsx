@@ -21,9 +21,9 @@ export const index: React.FC<TableRowProps> = ({ onClick, deleteRow,tableRowValu
   return (
         <TableBackground onClick={onClick}>
             { data.map((item: any, i) => {
-                return typeof item === "boolean" ? (
+                return item === "Open" || item === "Close" ? (
                     <Cell key={i}>
-                      <CellActive active={item.toString()}>{item ? 'Active' : 'Désactiver'}</CellActive>
+                      <CellActive active={item === 'Open' ? 'true' : 'false'}>{item === 'Open' ? 'Active' : 'Désactiver'}</CellActive>
                     </Cell>
                 ) : (
                     <Cell key={i}>{item}</Cell>
