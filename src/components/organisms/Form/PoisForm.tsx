@@ -55,7 +55,7 @@ const emptyPoi: CreatePointsOfInterestDTO = {
   glutenFree: false,
   bio: '',
   disabledAccess: false,
-  greenScore: 0,
+  greenScore: 8.6,
   phoneNumber: '',
   picture: '',
   description: '',
