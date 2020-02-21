@@ -155,7 +155,7 @@ const Map: React.FC<Props> = () => {
         // eslint-disable-next-line
         style="mapbox://styles/mapbox/streets-v9"
         containerStyle={{
-          height: '100vh',
+          height: '100%',
           width: '100vw',
         }}
         movingMethod="flyTo"
