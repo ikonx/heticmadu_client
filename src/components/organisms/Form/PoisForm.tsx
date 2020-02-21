@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Grid } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { postPoi } from 'utils/http';
@@ -25,6 +25,7 @@ import { PoiModel } from 'utils/models/pois.model';
 import { CreatePointsOfInterestDTO } from 'utils/dto/pointsOfInterest.dto';
 import { IStatusEnum } from 'utils/interfaces/statusEnum';
 import InputAutocomplete from '../../atoms/Inputs/Autocomplete/InputAutocomplete';
+import PoisContext from 'contexts/pois/pois.context';
 
 interface Props {}
 
@@ -68,13 +69,19 @@ const PoisForm: React.FC<Props> = () => {
   const [poiData, setPoiData] = useState<CreatePointsOfInterestDTO>({
     ...emptyPoi,
   });
-  
+
+  const { refreshPois } = useContext(PoisContext);
 
   const onNextStep = () => {
     if (step >= footerData.final) {
-      history.push(`/pois?status=created`);
+      // history.push(`/pois?status=created`);
       footerData.currentGreenscore = 0;
       footerData.current = 1;
+      postPoi(poiData).then((res: any) => {
+        if (res.data) {
+          refreshPois().then((res: any) => res.data && history.push('/pois'));
+        }
+      });
       return;
     }
 
@@ -83,11 +90,8 @@ const PoisForm: React.FC<Props> = () => {
       ++footerData.currentGreenscore;
     }
 
-    // history.push(`/form/pois?step=${footerData.current}`);
-    // setStep(nextStep);
-
-    // console.log('g', poiData);
-    postPoi(poiData).then((res: any) => res.data && history.push('/pois'));
+    history.push(`/form/pois?step=${footerData.current}`);
+    setStep(nextStep);
   };
 
   const onPrevStep = () => {

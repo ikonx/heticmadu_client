@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   RadioContainer,
   StyledRadioGreenscore,
@@ -17,18 +17,27 @@ interface Props {
       value: string;
     }[];
   };
+  onChange: any;
 }
 
-const InputGreenscore: React.FC<Props> = ({ DataGreenscore }) => {
+const InputGreenscore: React.FC<Props> = ({ DataGreenscore, onChange }) => {
   const [selectedValue, setSelectedValue] = React.useState<string | number>(
     DataGreenscore.radio[0].value,
   );
 
+  const [selectedScoreValue, setSelectedScoreValue] = React.useState<number>(
+    DataGreenscore.radio[0].score,
+  );
 
-  const handleChange = (event: { target: HTMLInputElement }) => {
-    
-    setSelectedValue(event.target.value);
+  const handleChange = (item: any) => {
+    setSelectedValue(item.value);
+    setSelectedScoreValue(item.score);
+    // onChange(item);
   };
+
+  // useEffect(() => {
+  //   onChange(DataGreenscore.radio[0]);
+  // }, []);
 
   return (
     <ContainerRowInput>
@@ -37,15 +46,15 @@ const InputGreenscore: React.FC<Props> = ({ DataGreenscore }) => {
         {DataGreenscore.radio.length > 0 &&
           DataGreenscore.radio.map((item, i) => (
             <StyledRadioGroup
-            key={i}
-            defaultValue={DataGreenscore.radio[i].score}
+              key={i}
+              defaultValue={DataGreenscore.radio[i].score}
             >
               <StyledRadioGreenscore
                 value={item.value}
                 control={
                   <Radio
                     checked={item.value === selectedValue}
-                    onChange={handleChange}
+                    onChange={() => handleChange(item)}
                     value={item.value}
                     name={item.name}
                   />
