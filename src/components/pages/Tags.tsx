@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PageHeader from '../molecules/PageHeader/PageHeader';
 import { ScrollableContent } from '../../utils/styles/Globals';
 import InputText from '../atoms/Inputs/Text/InputText';
@@ -7,6 +7,7 @@ import BtnBlue from '../atoms/Buttons/BtnBlue';
 import TagsBlock from '../molecules/TagsBlock';
 import { DataTags } from 'utils/Tags/Tags';
 import { TagModel } from 'utils/models/tag.model';
+import TagsContext from 'contexts/tags/tags.context';
 interface Props {}
 
 const StyledScrollableContent = styled(ScrollableContent)`
@@ -23,19 +24,23 @@ const TagsInput = styled.div`
 `;
 
 const Tags: React.FC<Props> = () => {
+  const defaultTags = useContext(TagsContext);
+
   const [value, setvalue] = useState<string>('');
-  const [tags, setTags] = useState<TagModel[]>(DataTags);
+  const [tags, setTags] = useState<TagModel[]>(defaultTags.tags);
 
   const onAddTag = () => {
     /**
      * TODO: Creer un formulaire
      * TODO: Requette AJAX => method POST
-     *
      */
-
+    
     if (value === '' || value === null) {
       return;
     }
+
+    const filterExist = tags.filter(tag => tag.tag !== value)
+    console.log(filterExist);
 
     setTags([...tags, { id: 0, tag: value }]);
     setvalue('');

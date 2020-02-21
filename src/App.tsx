@@ -10,6 +10,7 @@ import './App.css';
  */
 // import Login from 'components/pages/Login';
 import PoisProvider from 'contexts/pois/pois.provider';
+import TagsProvider from 'contexts/tags/tags.provider';
 
 const App: React.FC = () => {
   return (
@@ -21,7 +22,9 @@ const App: React.FC = () => {
           </Route> */}
           <Route path="*">
             <PoisProvider>
-              <MainUi />
+              <TagsProvider>
+                  <MainUi />
+              </TagsProvider>
             </PoisProvider>
           </Route>
         </Switch>
