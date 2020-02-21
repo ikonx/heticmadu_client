@@ -31,7 +31,7 @@ const MainUi: React.FC<Props> = () => {
         <>
           <Header />
           <Switch>
-            <Route exact path="/home">
+            <Route exact path={['/home', '/']}>
               <Dashboard />
             </Route>
             <Route path="/map">
