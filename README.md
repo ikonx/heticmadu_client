@@ -25,7 +25,7 @@ cd heticmadu_client && npm i && npm start
 
 Pour la réalisation de ce back office nous avons eu besoin de mettre en place un univers à l'aide de lib et framework.
 
-**[ReactJs](https://github.com/facebook/react)** : Nous avons choisis React car nous étions familier avec et que ce framework correspond à nos besoins.
+**[ReactJs](https://github.com/facebook/react)** : Nous avons choisis React car nous étions familier avec et que ce framework correspond à nos besoins. Nous utilisons également le système de Hooks proposé par React pour travailler avec des composants fonctionnel, afin de facilité l'écriture du code et d'avoir des gestions de states optimisés.
 
 **[Create-react-app](https://github.com/facebook/create-react-app)** : Ca nous a permit de gagner du temps en générant automatiquement un squelette applicatif et de masquer la complexité potentielle de configuration des briques techniques associées : gestion de JavaScript (ES2015+...), bundling de notre application (avec Webpack), serveur de développement, génération de fichiers de production optimisés, etc. De plus nous pouvons l'utilisé avec TypeScript.
 
