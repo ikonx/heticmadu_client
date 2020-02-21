@@ -33,7 +33,7 @@ const CardItem: React.FC<CardItemProps> = ({
     <CardContainer onClick={onClick}>
       <CardActionArea>
         <CardContent>
-          <ImgCard image={images ? images[0] : ''} />
+          <ImgCard image={images ? images[0] : 'https://source.unsplash.com/900x900/?food,green,vegan,bio'} />
           <TextCard
             name={name}
             address={address}
