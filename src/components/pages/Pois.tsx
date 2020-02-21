@@ -5,6 +5,8 @@ import { Grid as GoogleGrid, LinearProgress } from '@material-ui/core';
 import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
 import CardItem, { CardItemProps } from '../molecules/Card/CardItem';
 
+import { Colors } from 'utils/styles';
+
 import PageHeader from 'components/molecules/PageHeader/PageHeader';
 import ViewEntity from 'components/organisms/ViewEntity/ViewEntity';
 import { EntitiesEnum } from 'utils/enums/Entity.enum';
@@ -13,7 +15,14 @@ import { useLocation, useHistory } from 'react-router-dom';
 import BtnRed from '../atoms/Buttons/BtnRed';
 import PoisContext from 'contexts/pois/pois.context';
 
-interface Props {}
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+import TitleModal from 'components/atoms/Text/TitleModal';
+import TextModal from 'components/atoms/Text/TextModal';
+
+interface Props {
+}
 
 const PoiContainer = styled.section`
   width: 100%;
@@ -33,17 +42,41 @@ const ContainerList = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   overflow: auto;
-  height: ${window.innerHeight - (72 + 118)}px;
-  padding: 0 2rem;
+  height: ${ window.innerHeight - (72 + 160) }px;
+  padding: 0 2rem 10rem;
 `;
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
 });
 
+const MySwal = withReactContent(Swal);
+
 const Pois: React.FC<Props> = () => {
   const [selectedPoi, setPoi] = useState<CardItemProps | null>(null);
   const { pois, fetchingPois } = useContext(PoisContext);
+  
+  const handleOpen = () => {
+    MySwal.fire({
+      title: <TitleModal title="Supprimer la POI"/>,
+      html: <TextModal textContent="Êtes-vous sûr de vouloir définitivement supprimer cette POI ? Attention cette action est irréversible."/>,
+      showCancelButton: true,
+      confirmButtonColor: Colors.redDelete,
+      cancelButtonColor: Colors.blue,
+      confirmButtonText: 'Suprimmer',
+      cancelButtonText: 'Annuler',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        MySwal.fire (
+          'Supprimé !',
+          'Cette POI à bien été supprimé'
+        )
+        setPoi(null);
+        history.goBack();
+      }
+    })
+  };
 
   const dataArray: CardItemProps[] = [...pois];
 
@@ -92,10 +125,6 @@ const Pois: React.FC<Props> = () => {
           ) : (
             <>
               <Grid
-                onClick={() => {
-                  setPoi(null);
-                  history.goBack();
-                }}
                 style={{
                   padding: '2rem',
                   textAlign: 'left',
@@ -115,10 +144,7 @@ const Pois: React.FC<Props> = () => {
                   <StyledIconBack />
                   <span>Retour</span>
                 </div>
-                <BtnRed
-                  text="Supprimer une POI"
-                  onClick={() => console.log('OK')}
-                />
+                <BtnRed text="Supprimer une POI" onClick={handleOpen}/>
               </Grid>
               <ViewEntity
                 entity={EntitiesEnum.POI}
