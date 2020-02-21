@@ -150,7 +150,11 @@ const PoisForm: React.FC<Props> = () => {
                   title="Adresse complète"
                   placeholder="Entrez l'adresse du POI ..."
                   fieldKey={'address'}
-                  onChange={updateField}
+                  onChange={(_fieldKey: any, _fieldValue: any) => {
+                    const newPoiState: CreatePointsOfInterestDTO = { ...poiData, ..._fieldValue };
+                    // @ts-ignore
+                    setPoiData(newPoiState);
+                  }}
                   fieldValue={poiData['address']}
                 />
               </Grid>
