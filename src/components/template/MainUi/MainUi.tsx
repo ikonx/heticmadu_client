@@ -31,22 +31,22 @@ const MainUi: React.FC<Props> = () => {
         <>
           <Header />
           <Switch>
-            <Route exact path={['/home', '/']}>
+            <Route exact path="/home">
               <Dashboard />
             </Route>
-            <Route path="/map">
+            <Route exact path={['/map', '/']}>
               <Map />
             </Route>
-            <Route path="/companies">
+            <Route exact path="/companies">
               <Companies />
             </Route>
-            <Route path="/pois">
+            <Route exact path="/pois">
               <Pois />
             </Route>
-            <Route path="/tags">
+            <Route exact path="/tags">
               <Tags />
             </Route>
-            <Route path="/form/:page">
+            <Route exact path="/form/:page">
               <Form />
             </Route>
           </Switch>
