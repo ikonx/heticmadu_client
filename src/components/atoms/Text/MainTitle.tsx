@@ -6,7 +6,6 @@ import { Colors, Fonts } from "../../../utils/styles";
 interface Props {
   title: string;
   subtitle: string;
-  formBar?: string;
 }
 
 const StyledSubtitle = styled.p`
@@ -18,7 +17,7 @@ const StyledSubtitle = styled.p`
   text-align: left;
 `;
 
-const StyledTitle = styled(Typography)<{ status: string | undefined }>`
+const StyledTitle = styled(Typography)`
   && {
     font-size: 24px;
     color: ${Colors.black};
@@ -38,11 +37,11 @@ const StyledTitle = styled(Typography)<{ status: string | undefined }>`
   }
 `;
 
-const MainTitle: React.FC<Props> = ({ title, subtitle, formBar }) => {
+const MainTitle: React.FC<Props> = ({ title, subtitle }) => {
   return (
     <div>
       <StyledSubtitle>{subtitle}</StyledSubtitle>
-      <StyledTitle variant="h2" status={formBar}>{title}</StyledTitle>
+      <StyledTitle variant="h2">{title}</StyledTitle>
     </div>
   );
 };

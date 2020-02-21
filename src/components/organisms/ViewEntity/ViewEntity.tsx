@@ -37,7 +37,7 @@ const ViewEntity: React.FC<Props> = ({ images, defaultData }) => {
     <Grid
       style={{
         overflow: 'auto',
-        height: `${window.innerHeight - (72 + 88)}px`,
+        height: `${window.innerHeight - (72 + 150)}px`,
         padding: '0 2rem',
       }}
     >

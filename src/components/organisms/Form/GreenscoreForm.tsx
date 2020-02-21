@@ -28,7 +28,7 @@ const GreenscoreForm: React.FC<Props> = props => {
         }
         subtitle="Greenscore restaurant"
       />
-      <ScrollableContent isForm="true">
+      <ScrollableContent>
         <div>
           {DataGreenscore.length > 0 &&
             DataGreenscore[props.currentGreenscore].data.map((item, i) => (

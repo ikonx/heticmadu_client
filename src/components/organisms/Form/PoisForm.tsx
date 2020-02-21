@@ -127,7 +127,7 @@ const PoisForm: React.FC<Props> = () => {
       {step === 1 ? (
         <>
           <PageHeader title="POI" subtitle="Card" text="Crée une POI" />
-          <ScrollableContent isForm="true">
+          <ScrollableContent>
             <Grid container spacing={8}>
               <Grid item xs={4}>
                 <InputRadio
