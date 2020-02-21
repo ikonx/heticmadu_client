@@ -163,7 +163,7 @@ const Companies: React.FC<Props> = () => {
                   <StyledIconBack />
                   <span>Retour</span>
                 </div>
-                <BtnRed text="Supprimer une POI" onClick={handleOpen}/>
+                <BtnRed text="Supprimer une entreprise" onClick={handleOpen}/>
               </Grid>
               <ViewEntityCompanies
                 entity={EntitiesEnum.COMPANY}
