@@ -37,26 +37,9 @@ const InputAutocomplete: React.FC<Props> = ({
         latitude: e.suggestion.latlng.lat,
         address: e.suggestion.value,
       };
-
       onChange && onChange(fieldKey, parsedData);
-
-      // administrative: "Île-de-France"
-      // city: "Paris"
-      // country: "France"
-      // countryCode: "fr"
-      // county: "Paris"
-      // highlight: {name: "<em>Paris</em> 10e Arrondissement", city: "<em>Paris</em>", administrative: "Île-de-France", country: "France", county: "<em>Paris</em>", …}
-      // hit: {country: "France", is_country: false, city: Array(1), is_highway: false, importance: 15, …}
-      // hitIndex: 1
-      // latlng: {lat: 48.8718, lng: 2.35779}
-      // name: "Paris 10e Arrondissement"
-      // postcode: "75010"
-      // postcodes: ["75010"]
-      // query: "paris"
-      // rawAnswer: {hits: Array(5), nbHits: 5, processingTimeMS: 6, query: "paris", params: "hitsPerPage=5&language=fr&query=paris", …}
-      // type: "city"
-      // value: "Paris 10e Arrondissement, Paris, Île-de-France, France"
     });
+    // eslint-disable-next-line
   }, []);
 
   return (
