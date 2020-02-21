@@ -21,3 +21,4 @@ sudo docker-compose -f ./docker-compose.client.yml up -d
 
 # clean directory
 rm ./docker-compose.client.yml
+rm ./.env
