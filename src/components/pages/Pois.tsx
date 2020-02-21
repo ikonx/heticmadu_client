@@ -146,7 +146,7 @@ const Pois: React.FC<Props> = () => {
                   <StyledIconBack />
                   <span>Retour</span>
                 </div>
-                <BtnRed text="Supprimer une POI" onClick={handleOpen} />
+                <BtnRed text="Supprimer un POI" onClick={handleOpen} />
               </Grid>
               <ViewEntity
                 entity={EntitiesEnum.POI}

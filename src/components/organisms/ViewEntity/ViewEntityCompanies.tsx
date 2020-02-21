@@ -24,6 +24,7 @@ const CompanyTable = styled(Table)`
     border-collapse: unset;
     border: 1px solid ${Colors.lightGrey};
     border-radius: 4px;
+    margin-bottom: 4rem;
   }
 `;
 
