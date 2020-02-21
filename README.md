@@ -41,7 +41,9 @@ Pour la réalisation de ce back office nous avons eu besoin de mettre en place u
 
 **[React-Mapbox-gl](https://github.com/alex3165/react-mapbox-gl)** : Nous utilisons cette carte afin d'obtenir et de traiter nos données sur une map acceccible directement sur notre back office. Nous avons choisi le système de mapbox car il est compatible pour react (pour notre back office) ainsi que sur react native (pour l'application).
 
-**[Turf-js](https://github.com/Turfjs/turf)** : Nous permet de creer simplement des points geographiques ainsi que des zones sur notre map.
+**[Turf-js](https://github.com/Turfjs/turf)** : Nous permet de créer simplement des points geographiques ainsi que des zones/ranges sur notre map.
+
+**[sweetAlert2](https://github.com/sweetalert2/sweetalert2-react-content)** : Nous permet de créer simplement des modales que l'on utilse pour la suppression d'un POI ou d'une entreprise.
 
 ## Approche
 
