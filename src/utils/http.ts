@@ -16,3 +16,6 @@ export const getTags = async (): Promise<TagModel[]> =>
 
 export const postTags = async (_data: CreateTagsDTO): Promise<TagModel> =>
   await axios.post(`http://localhost:4000/tags`, _data);
+
+export const deleteTag = async (_id: string | number): Promise<any> =>
+  await axios.delete(`${API_URL}tags/${_id}`,);

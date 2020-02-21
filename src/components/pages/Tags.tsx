@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PageHeader from '../molecules/PageHeader/PageHeader';
 import { ScrollableContent } from '../../utils/styles/Globals';
 import InputText from '../atoms/Inputs/Text/InputText';
@@ -8,6 +8,7 @@ import TagsBlock from '../molecules/TagsBlock';
 import { DataTags } from 'utils/Tags/Tags';
 import { TagModel } from 'utils/models/tag.model';
 import TagsContext from 'contexts/tags/tags.context';
+import { postTags } from 'utils/http';
 interface Props {}
 
 const StyledScrollableContent = styled(ScrollableContent)`
@@ -24,30 +25,34 @@ const TagsInput = styled.div`
 `;
 
 const Tags: React.FC<Props> = () => {
-  const defaultTags = useContext(TagsContext);
+  const tagsCointext = useContext(TagsContext);
 
-  const [value, setvalue] = useState<string>('');
-  const [tags, setTags] = useState<TagModel[]>(defaultTags.tags);
+  const [value, setValue] = useState<string>('');
+  const [tags, setTags] = useState<TagModel[]>([]);
+
+  useEffect(() => {
+    setTags(tagsCointext.tags);
+  }, [tagsCointext.tags]);
 
   const onAddTag = () => {
-    /**
-     * TODO: Creer un formulaire
-     * TODO: Requette AJAX => method POST
-     */
-    
     if (value === '' || value === null) {
       return;
     }
 
-    const filterExist = tags.filter(tag => tag.tag !== value)
-    console.log(filterExist);
+    if (tags.filter(filter => filter.tag === value).length !== 0) {
+      return;
+    } else {
+      postTags({ tag: value }).then((res: any) => {
+        tagsCointext.refreshTags();
+      });
+    }
 
-    setTags([...tags, { id: 0, tag: value }]);
-    setvalue('');
+    setTags([...tags, { tag: value }]);
+    setValue('');
   };
 
   const handdleChange = (_fieldKey: string, _fieldValue: any) => {
-    setvalue(_fieldValue);
+    setValue(_fieldValue);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -57,8 +62,10 @@ const Tags: React.FC<Props> = () => {
   };
 
   const deleteTags = (index: number) => (e: MouseEvent) => {
-    const filteredTags = tags.filter((tag, i) => i !== index);
+    const filteredTags = tags.filter((tag: any, i: number) => i !== index);
+    const tagToDelete: TagModel = tags[index];
     setTags(filteredTags);
+    tagToDelete.id && tagsCointext.deleteTag(tagToDelete.id);
   };
 
   return (

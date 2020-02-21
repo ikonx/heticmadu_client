@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Close } from '@material-ui/icons';
 import { Button, LinearProgress } from '@material-ui/core';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useHistory } from 'react-router-dom';
 
 import MapPointIcon from 'components/atoms/MapPointIcon/MapPointIcon';
 import BtnBlue from 'components/atoms/Buttons/BtnBlue';
@@ -12,14 +13,15 @@ import MainTitle from 'components/atoms/Text/MainTitle';
 import Icon from 'components/atoms/Icon/Icon';
 import CustomSelect from 'components/atoms/Select/CustomSelect';
 import RadioMultiple from 'components/atoms/Inputs/RadioMultiple/RadioMultiple';
+import CardItem, { CardItemProps } from 'components/molecules/Card/CardItem';
 
 import { radioPrice, radioTags } from 'utils/formsMocks/PoisForm';
 import { filterType } from 'utils/filters/type.filter';
 import { filterPrice } from 'utils/filters/price.filter';
 import { filterTags } from 'utils/filters/tags.filter';
-import { useHistory } from 'react-router-dom';
-import CardItem, { CardItemProps } from 'components/molecules/Card/CardItem';
 import PoisContext from 'contexts/pois/pois.context';
+import TagsContext from 'contexts/tags/tags.context';
+import { TagModel } from 'utils/models/tag.model';
 
 const MapComponent = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
@@ -86,18 +88,13 @@ const Map: React.FC<Props> = () => {
     null,
   );
   const { pois, fetchingPois } = useContext(PoisContext);
+  const { tags } = useContext(TagsContext);
 
-  // eslint-disable-next-line
-  useEffect(() => {
-    setDefaultEntries(pois);
-    setEntries(pois);
-  }, [pois]);
+  const history = useHistory();
 
   const toggleFilters = () => {
     setFiltring(!isFiltring);
   };
-
-  const history = useHistory();
 
   const spring = {
     type: 'spring',
@@ -204,6 +201,12 @@ const Map: React.FC<Props> = () => {
     [entries, isMapReady, pois],
   );
 
+  useEffect(() => {
+    setDefaultEntries(pois);
+    setEntries(pois);
+    // eslint-disable-next-line
+  }, [pois]);
+
   return (
     <CompanyContainer>
       <StyledFilterContainer>
@@ -240,7 +243,7 @@ const Map: React.FC<Props> = () => {
             onChange={(_value: any) => filter('averagePrice', _value)}
           />
           <RadioMultiple
-            values={radioTags}
+            values={tags.map((tag: TagModel) => ({ ...tag, name: tag.tag }))}
             title="Tags"
             onChange={(_value: any) => {
               filter('tags', _value);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TagsContext from './tags.context';
-import { getTags } from 'utils/http';
+import { getTags, deleteTag as deleteTagAPI } from 'utils/http';
 import { TagModel } from 'utils/models/tag.model';
 
 interface Props {}
@@ -22,20 +22,30 @@ const TagsProvider: React.FC<Props> = ({ children }) => {
     setFetchingTags(false);
   }, []);
 
-  const refreshTags = () => getTags().then((res: any) => {
-    if (res.status === 200) {
-      setTags(res.data);
-      setFetchingTags(false);
-    }
-    return res
-  });
+  const refreshTags = () =>
+    getTags().then((res: any) => {
+      if (res.status === 200) {
+        setTags(res.data);
+        setFetchingTags(false);
+      }
+      return res;
+    });
 
-  const addTags = () => {
-    
-  }
+  const deleteTag = (_id: string | number) => {
+    setFetchingTags(true);
+    deleteTagAPI(_id).then((res: any) => {
+      if (res.status === 200) {
+        refreshTags();
+        setFetchingTags(false);
+      }
+      return res
+    })
+  };
 
   return (
-    <TagsContext.Provider value={{ tags, setTags, fetchingTags, refreshTags }}>
+    <TagsContext.Provider
+      value={{ tags, setTags, fetchingTags, refreshTags, deleteTag }}
+    >
       {children}
     </TagsContext.Provider>
   );
