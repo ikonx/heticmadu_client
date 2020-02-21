@@ -7,6 +7,7 @@ import InputText from "../../atoms/Inputs/Text/InputText";
 import InputFile from "../../atoms/Inputs/File/InputFile";
 import FormsFooter from "../../molecules/FormsFooter";
 import { radioCompany, radioCompanyActive, radioPerimeter } from "../../../utils/formsMocks/CompaniesForm";
+import InputAutocomplete from "../../atoms/Inputs/Autocomplete/InputAutocomplete";
 
 interface Props {
 }
@@ -27,7 +28,7 @@ const CompaniesForm: React.FC<Props> = () => {
             <InputText title="Nom de l'entreprise" placeholder="Entrez le nom de l'entreprise .."/>
           </Grid>
           <Grid item xs={4}>
-            <InputText title="Adresse complète" placeholder="Entrez votre adresse ..."/>
+            <InputAutocomplete title="Adresse complète" placeholder="Entrez votre adresse ..."/>
           </Grid>
         </Grid>
         <Grid container spacing={8}>

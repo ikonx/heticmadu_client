@@ -19,7 +19,7 @@ const AppMenu: React.FC<Props> = () => {
     <StyledContainerNav>
       <Logo />
       <MenuContainer />
-      <AdminBlock />
+      {/*<AdminBlock />*/}
     </StyledContainerNav>
   );
 };
