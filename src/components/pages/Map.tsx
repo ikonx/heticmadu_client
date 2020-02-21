@@ -1,8 +1,8 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useContext } from 'react';
 import ReactMapboxGl, { Marker, ZoomControl } from 'react-mapbox-gl';
 import styled from 'styled-components';
 import { Close } from '@material-ui/icons';
-import { Button } from '@material-ui/core';
+import { Button, LinearProgress } from '@material-ui/core';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import MapPointIcon from 'components/atoms/MapPointIcon/MapPointIcon';
@@ -19,6 +19,7 @@ import { filterPrice } from 'utils/filters/price.filter';
 import { filterTags } from 'utils/filters/tags.filter';
 import { useHistory } from 'react-router-dom';
 import CardItem, { CardItemProps } from 'components/molecules/Card/CardItem';
+import PoisContext from 'contexts/pois/pois.context';
 
 const MapComponent = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
@@ -76,273 +77,6 @@ const MotionMarker = styled(motion.div)`
   cursor: pointer;
 `;
 
-const fakeData: CardItemProps[] = [
-  {
-    id: 1,
-    center: [2.354768, 48.860589],
-    zoom: 15.5,
-    pitch: 20,
-    type: 'resto',
-    price: '€',
-    tags: ['africa', 'bar'],
-    images: [
-      'https://source.unsplash.com/300x400/?food,gree,vegan,bio',
-      'https://source.unsplash.com/1600x900/?food',
-      'https://source.unsplash.com/1600x900/?food,snack,fastfood',
-    ],
-    title: 'Titre test',
-    name: 'Chez vico',
-    adress: '12 rue test',
-    score: 8.6,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    longitude: '2.383572',
-    latitude: '48.868671',
-  },
-  {
-    id: 2,
-    center: [2.332595, 48.864371],
-    zoom: 15.5,
-    pitch: 20,
-    type: 'shop',
-    price: '€€€',
-    tags: ['africa'],
-    images: [
-      'https://source.unsplash.com/300x400/?food,gree,bio',
-      'https://source.unsplash.com/1600x900/?food',
-      'https://source.unsplash.com/1600x900/?food,snack,fastfood',
-    ],
-    title: 'Titre test',
-    name: 'Chez vico',
-    adress: '12 rue test',
-    score: 8.6,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    longitude: '2.383572',
-    latitude: '48.868671',
-  },
-  {
-    id: 3,
-    center: [2.292952, 48.87102],
-    zoom: 15.5,
-    pitch: 20,
-    type: 'business',
-    price: '€€',
-    tags: ['burger', 'bar'],
-    images: [
-      'https://source.unsplash.com/300x400/?food,gree,vegan',
-      'https://source.unsplash.com/1600x900/?food',
-      'https://source.unsplash.com/1600x900/?food,snack,fastfood',
-    ],
-    title: 'Titre test',
-    name: 'Chez vico',
-    adress: '12 rue test',
-    score: 8.6,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    longitude: '2.383572',
-    latitude: '48.868671',
-  },
-  {
-    id: 4,
-    center: [2.397322, 48.87102],
-    zoom: 15.5,
-    pitch: 20,
-    type: 'shop',
-    price: '€',
-    tags: ['burger', 'vegan', 'cosy', 'sushi', 'indien'],
-    images: [
-      'https://source.unsplash.com/300x400/?vegan,bio',
-      'https://source.unsplash.com/1600x900/?food',
-      'https://source.unsplash.com/1600x900/?food,snack,fastfood',
-    ],
-    title: 'Titre test',
-    name: 'Chez vico',
-    adress: '12 rue test',
-    score: 8.6,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    longitude: '2.383572',
-    latitude: '48.868671',
-  },
-  {
-    id: 5,
-    center: [2.402886, 48.859557],
-    zoom: 15.5,
-    pitch: 20,
-    type: 'resto',
-    price: '€€',
-    tags: ['bar'],
-    images: [
-      'https://source.unsplash.com/300x400/?food,bio',
-      'https://source.unsplash.com/1600x900/?food',
-      'https://source.unsplash.com/1600x900/?food,snack,fastfood',
-    ],
-    title: 'Titre test',
-    name: 'Chez vico',
-    adress: '12 rue test',
-    score: 8.6,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    longitude: '2.383572',
-    latitude: '48.868671',
-  },
-  {
-    id: 6,
-    center: [2.369143, 48.853161],
-    zoom: 15.5,
-    pitch: 20,
-    type: 'shop',
-    price: '€€€',
-    tags: ['africa', 'bar'],
-    images: [
-      'https://source.unsplash.com/300x400/?vegan,bio',
-      'https://source.unsplash.com/1600x900/?food',
-      'https://source.unsplash.com/1600x900/?food,snack,fastfood',
-    ],
-    title: 'Titre test',
-    name: 'Chez vico',
-    adress: '12 rue test',
-    score: 8.6,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    longitude: '2.383572',
-    latitude: '48.868671',
-  },
-  {
-    id: 7,
-    center: [2.324768, 48.680589],
-    zoom: 15.5,
-    pitch: 20,
-    type: 'resto',
-    price: '€',
-    tags: ['africa', 'bar'],
-    images: [
-      'https://source.unsplash.com/300x400/?green,vegan',
-      'https://source.unsplash.com/1600x900/?food',
-      'https://source.unsplash.com/1600x900/?food,snack,fastfood',
-    ],
-    title: 'Titre test',
-    name: 'Chez vico',
-    adress: '12 rue test',
-    score: 8.6,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    longitude: '2.383572',
-    latitude: '48.868671',
-  },
-  {
-    id: 8,
-    center: [2.322595, 48.764371],
-    zoom: 15.5,
-    pitch: 20,
-    type: 'shop',
-    price: '€€€',
-    tags: ['salade', 'cosy'],
-    images: [
-      'https://source.unsplash.com/300x400/?food,gree,vegan,bio',
-      'https://source.unsplash.com/1600x900/?food',
-      'https://source.unsplash.com/1600x900/?food,snack,fastfood',
-    ],
-    title: 'Titre test',
-    name: 'Chez vico',
-    adress: '12 rue test',
-    score: 8.6,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    longitude: '2.383572',
-    latitude: '48.868671',
-  },
-  {
-    id: 9,
-    center: [2.292952, 48.83102],
-    zoom: 15.5,
-    pitch: 20,
-    type: 'business',
-    price: '€€',
-    tags: ['burger', 'bar', 'salade'],
-    images: [
-      'https://source.unsplash.com/300x400/?food,gree,vegan,bio',
-      'https://source.unsplash.com/1600x900/?food',
-      'https://source.unsplash.com/1600x900/?food,snack,fastfood',
-    ],
-    title: 'Titre test',
-    name: 'Chez vico',
-    adress: '12 rue test',
-    score: 8.6,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    longitude: '2.383572',
-    latitude: '48.868671',
-  },
-  {
-    id: 10,
-    center: [2.391322, 48.87802],
-    zoom: 15.5,
-    pitch: 20,
-    type: 'shop',
-    price: '€€€',
-    tags: ['burger'],
-    images: [
-      'https://source.unsplash.com/300x400/?food,gree,vegan,bio',
-      'https://source.unsplash.com/1600x900/?food',
-      'https://source.unsplash.com/1600x900/?food,snack,fastfood',
-    ],
-    title: 'Titre test',
-    name: 'Chez vico',
-    adress: '12 rue test',
-    score: 8.6,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    longitude: '2.383572',
-    latitude: '48.868671',
-  },
-  {
-    id: 11,
-    center: [2.412886, 48.849557],
-    zoom: 15.5,
-    pitch: 20,
-    type: 'business',
-    price: '€€€',
-    tags: ['bar', 'sushi', 'cosy'],
-    images: [
-      'https://source.unsplash.com/300x400/?food,gree,vegan,bio',
-      'https://source.unsplash.com/1600x900/?food',
-      'https://source.unsplash.com/1600x900/?food,snack,fastfood',
-    ],
-    title: 'Titre test',
-    name: 'Chez vico',
-    adress: '12 rue test',
-    score: 8.6,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    longitude: '2.383572',
-    latitude: '48.868671',
-  },
-  {
-    id: 12,
-    center: [2.329143, 48.859161],
-    zoom: 15.5,
-    pitch: 20,
-    type: 'business',
-    price: '€€',
-    tags: ['africa', 'bar'],
-    images: [
-      'https://source.unsplash.com/300x400/?food,gree,vegan,bio',
-      'https://source.unsplash.com/1600x900/?food',
-      'https://source.unsplash.com/1600x900/?food,snack,fastfood',
-    ],
-    title: 'Titre test',
-    name: 'Chez vico',
-    adress: '12 rue test',
-    score: 8.6,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut nisl tristique dignissim tellus malesuada enim, pharetra.',
-    longitude: '2.383572',
-    latitude: '48.868671',
-  },
-];
-
 const Map: React.FC<Props> = () => {
   const [defaultEntries, setDefaultEntries] = useState<CardItemProps[]>([]);
   const [entries, setEntries] = useState<CardItemProps[]>([]);
@@ -351,11 +85,13 @@ const Map: React.FC<Props> = () => {
   const [previewCardData, setPreviewCardData] = useState<CardItemProps | null>(
     null,
   );
+  const { pois, fetchingPois } = useContext(PoisContext);
 
+  // eslint-disable-next-line
   useEffect(() => {
-    setDefaultEntries(fakeData);
-    setEntries(fakeData);
-  }, []);
+    setDefaultEntries(pois);
+    setEntries(pois);
+  }, [pois]);
 
   const toggleFilters = () => {
     setFiltring(!isFiltring);
@@ -380,14 +116,14 @@ const Map: React.FC<Props> = () => {
     // TODO Manage selected filters && or || ????????????
     let newEntries: any[] = [...defaultEntries];
     switch (filter_key) {
-      case 'type':
+      case 'category':
         if (filter_value === '') {
           // reset ?
         } else {
           newEntries = filterType(newEntries, filter_key, filter_value);
         }
         break;
-      case 'price':
+      case 'averagePrice':
         newEntries =
           filter_value.length > 0
             ? filterPrice(newEntries, filter_key, filter_value)
@@ -437,7 +173,7 @@ const Map: React.FC<Props> = () => {
               return (
                 <Marker
                   key={entry.id}
-                  coordinates={entry.center || [0, 0]}
+                  coordinates={[entry.longitude, entry.latitude] || [0, 0]}
                   anchor="bottom"
                   offset={[0, -15]}
                   onClick={() => {
@@ -465,7 +201,7 @@ const Map: React.FC<Props> = () => {
       </MapComponent>
     ),
     // eslint-disable-next-line
-    [entries, isMapReady],
+    [entries, isMapReady, pois],
   );
 
   return (
@@ -496,12 +232,12 @@ const Map: React.FC<Props> = () => {
               { label: 'Commerce', value: 'shop', key: 'shop' },
               { label: 'Business', value: 'business', key: 'business' },
             ]}
-            onChange={(_value: any) => filter('type', _value)}
+            onChange={(_value: any) => filter('category', _value)}
           />
           <RadioMultiple
             values={radioPrice}
             title="Prix"
-            onChange={(_value: any) => filter('price', _value)}
+            onChange={(_value: any) => filter('averagePrice', _value)}
           />
           <RadioMultiple
             values={radioTags}
@@ -534,6 +270,18 @@ const Map: React.FC<Props> = () => {
           </StyledMotionPreviewCard>
         )}
       </AnimatePresence>
+      {/* TODO: clean loader */}
+      {fetchingPois && (
+        <LinearProgress
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: 5,
+            width: '100%',
+          }}
+        />
+      )}
       <AnimatePresence>{renderMap}</AnimatePresence>
     </CompanyContainer>
   );

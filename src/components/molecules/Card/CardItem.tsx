@@ -3,24 +3,10 @@ import TextCard from '../../atoms/Text/Card/TextCard';
 import ImgCard from '../../atoms/Text/Card/ImgCard';
 import { Card, CardActionArea, CardContent } from '@material-ui/core';
 import styled from 'styled-components';
+import { PoiModel } from 'utils/models/pois.model';
 
-export interface CardItemProps {
-  name: string;
-  adress: string;
-  price: string;
-  type: string;
-  score: number;
-  images: string[];
-  title: string;
-  description?: string;
-  latitude: string;
-  longitude: string;
+export interface CardItemProps extends PoiModel {
   onClick?: () => void;
-  id?: string | number;
-  center?: [number, number];
-  zoom?: number;
-  pitch?: number;
-  tags?: string[];
 }
 
 const CardContainer = styled(Card)`
@@ -36,25 +22,24 @@ const CardContainer = styled(Card)`
 
 const CardItem: React.FC<CardItemProps> = ({
   name,
-  adress,
-  price,
-  type,
-  score,
+  address,
+  averagePrice,
+  category,
+  greenScore,
   images,
-  title,
   onClick,
 }) => {
   return (
     <CardContainer onClick={onClick}>
       <CardActionArea>
         <CardContent>
-          <ImgCard image={images[0]} title={title} />
+          <ImgCard image={images ? images[0] : ''} />
           <TextCard
             name={name}
-            adress={adress}
-            price={price}
-            type={type}
-            score={score}
+            address={address}
+            averagePrice={averagePrice}
+            category={category}
+            greenScore={greenScore}
           />
         </CardContent>
       </CardActionArea>
