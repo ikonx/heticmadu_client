@@ -13,12 +13,6 @@ const CompaniesProvider: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     setFetchingCompanies(true);
-    getCompanies().then((res: any) => {
-      if (res.status === 200) {
-        setCompanies(res.data);
-        setFetchingCompanies(false);
-      }
-    });
   }, []);
 
   const refreshCompanies = () => getCompanies().then((res: any) => {
@@ -28,6 +22,15 @@ const CompaniesProvider: React.FC<Props> = ({ children }) => {
     }
     return res
   });
+
+  const fetchCompanies = (allCompanies: boolean) => {
+    getCompanies().then((res: any) => {
+      if (res.status === 200) {
+        setCompanies(res.data);
+        setFetchingCompanies(false);
+      }
+    });
+  };
 
   return (
     <CompaniesContext.Provider value={{ companies, setCompanies, fetchingCompanies, refreshCompanies }}>

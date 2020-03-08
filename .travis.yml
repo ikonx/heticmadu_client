@@ -20,8 +20,6 @@ env:
 script:
   - openssl aes-256-cbc -K $encrypted_4987b30d526d_key -iv $encrypted_4987b30d526d_iv -in ./devops/secrets/secrets.tar.enc -out secrets.tar -d
   - tar xvf ./secrets.tar
-  - npm i
-  - npm run build
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - docker build -t $DOCKER_USERNAME/heticmadu-client-app:latest -f ./devops/docker/Dockerfile ./
   - docker push $DOCKER_USERNAME/heticmadu-client-app:latest
