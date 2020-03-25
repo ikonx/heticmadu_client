@@ -37,6 +37,8 @@ const StyledTableBody = styled(TableBody)`
 
 
 const ViewEntity: React.FC<Props> = ({ defaultData, tableData }) => {
+  defaultData.pattern = defaultData.rse.slice(defaultData.rse.indexOf('@'));
+
   const deleteRow = () => {
     console.log('DELETE ITEM');
   };
@@ -45,12 +47,12 @@ const ViewEntity: React.FC<Props> = ({ defaultData, tableData }) => {
     { label: 'Type d\'entreprise', key: 'type', type: 'text' },
     { label: 'Nom de l\'entreprise', key: 'name', type: 'text' },
     { label: 'Adresse complète', key: 'address', type: 'text' },
-    { label: 'Effectif', key: 'employeesTotal', type: 'number' },
+    { label: 'Effectif', key: 'numberOfEmployees', type: 'number' },
     { label: 'Perimètre', key: 'perimeter', type: 'text' },
   ];
 
   const emailFields = [
-    { label: 'Email du référant', key: 'emailAdmin', type: 'text' },
+    { label: 'Email du référant', key: 'rse', type: 'text' },
     { label: 'Pattern', key: 'pattern', type: 'text' },
   ];
 

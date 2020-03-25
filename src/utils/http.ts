@@ -2,6 +2,8 @@ import axios from 'axios';
 import { PoiModel } from './models/pois.model';
 import { TagModel } from './models/tag.model';
 import { CreatePointsOfInterestDTO } from './dto/pointsOfInterest.dto';
+import { CompaniesModel } from './models/companies.model';
+import { CreateCompanyDTO } from './dto/company.dto';
 import { CreateTagsDTO } from './dto/tags.dto';
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -40,3 +42,19 @@ export const loginUser = async ({
   password: string;
 }): Promise<any> =>
   await axios.post(`${API_URL}auth/login`, { email, password });
+
+// COMPANIES
+
+export const getCompanies = async (): Promise<CompaniesModel[]> =>
+  await axios.get(`${API_URL}clients`);
+
+export const postCompanies = async (
+  _data: CreateCompanyDTO,
+): Promise<CompaniesModel> =>
+  await axios.post(`${API_URL}clients`, { clients: [{ ..._data }] });
+
+export const getSingleCompanies = async (): Promise<any> =>
+  await axios.get('${API_URL}');
+
+export const deleteCompany = async (_id: string | number): Promise<any> =>
+  await axios.delete(`${API_URL}clients/${_id}`);

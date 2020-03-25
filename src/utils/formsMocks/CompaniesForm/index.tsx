@@ -2,17 +2,17 @@ export const radioCompany = [
   {
     name: 'Startup',
     category: 'company',
-    value: 'startup'
+    value: 'Startup'
   },
   {
     name: 'Grand Groupe',
     category: 'company',
-    value: 'big_company'
+    value: 'Grand Groupe'
   },
   {
     name: 'PME',
     category: 'company',
-    value: 'pme'
+    value: 'PME'
   }
 ];
 
@@ -20,17 +20,17 @@ export const radioPerimeter = [
   {
     name: '1km',
     category: 'perimeter',
-    value: '1'
+    value: 1
   },
   {
     name: '3km',
     category: 'perimeter',
-    value: '3'
+    value: 3
   },
   {
     name: '5km',
     category: 'perimeter',
-    value: '5'
+    value: 5
   }
 ];
 
@@ -38,11 +38,11 @@ export const radioCompanyActive = [
   {
     name: 'Oui',
     category: 'companyActive',
-    value: 'true'
+    value: 'Open'
   },
   {
     name: 'Non',
     category: 'companyActive',
-    value: 'false'
+    value: 'Close'
   }
 ];
