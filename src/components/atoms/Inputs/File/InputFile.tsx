@@ -13,17 +13,30 @@ interface Props {
   title: string;
   placeholder: string;
   isLarge: boolean;
+  fieldKey?: string;
+  fieldValue?: string;
+  onChange?: (_fieldKey: string, _fieldValue: string) => void;
 }
 
-const InputFile: React.FC<Props> = ({ title, placeholder,isLarge }) => {
+const InputFile: React.FC<Props> = ({ title, placeholder,isLarge, onChange, fieldKey, fieldValue }) => {
   const [source, setSource] = useState(placeholder);
   const [allFiles, setFiles] = useState<any>(null);
 
   const displaySrc = (event: { target: HTMLInputElement }) => {
     const { files } = event.target;
-    files && (
-      setFiles(Array.from(files))
-    );
+    const reader = new FileReader();
+
+
+    if (files) {
+      setFiles(Array.from(files));
+      reader.readAsDataURL(files[0]);
+
+      reader.onloadend = () => {
+        const fileImage = reader.result && reader.result;
+        console.log(fileImage);
+        // onChange && onChange(fieldKey || '', fileImage || '')
+      }
+    };
     setSource( files && files.length > 0 ? files[0].name : placeholder);
   };
 
@@ -38,7 +51,12 @@ const InputFile: React.FC<Props> = ({ title, placeholder,isLarge }) => {
     <StyledContainer>
       <StyledTitle>{ title }</StyledTitle>
       <StyledInputContainer isLarge={isLarge.toString()}>
-        <StyledInput id={title} type="file" onChange={displaySrc} accept="image/png, image/jpeg, .svg" multiple={isLarge} />
+        <StyledInput
+          id={title}
+          type="file"
+          onChange={displaySrc}
+          accept="image/png, image/jpeg, .svg"
+        />
         { source === placeholder ? (
           <StyledLabel isLarge={isLarge.toString()}>
             <ImportLogo/>
