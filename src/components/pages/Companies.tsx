@@ -51,7 +51,7 @@ interface Props {}
 
 const Companies: React.FC<Props> = () => {
   const [selectedCompany, setCompany] = useState<any | null>(null);
-  const { companies, fetchingCompanies } = useContext(CompaniesContext);
+  const { companies, fetchingCompanies, deleteCompany } = useContext(CompaniesContext);
 
   const dataAllCompanies: any[] = [...companies];
 
@@ -78,8 +78,9 @@ const Companies: React.FC<Props> = () => {
         MySwal.fire (
           'Supprimé !',
           'Cette Entreprise à bien été supprimé'
-        )
+        );
         setCompany(null);
+        deleteCompany(selectedCompany?.id);
         history.goBack();
       }
     })

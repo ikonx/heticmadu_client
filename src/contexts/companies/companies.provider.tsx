@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getCompanies, getPois } from 'utils/http';
+import { deleteCompany as deleteCompanyAPI, getCompanies } from 'utils/http';
 import { CompaniesModel } from "../../utils/models/companies.model";
 import CompaniesContext from "./companies.context";
 
@@ -13,6 +13,7 @@ const CompaniesProvider: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     setFetchingCompanies(true);
+    fetchCompanies(true);
   }, []);
 
   const refreshCompanies = () => getCompanies().then((res: any) => {
@@ -32,8 +33,24 @@ const CompaniesProvider: React.FC<Props> = ({ children }) => {
     });
   };
 
+  const deleteCompany = (_companyId: string | number) => deleteCompanyAPI(_companyId).then((res: any) => {
+    setFetchingCompanies(true);
+    if (res.status === 200) {
+      setFetchingCompanies(false);
+      refreshCompanies();
+    }
+    return res
+  });
+
   return (
-    <CompaniesContext.Provider value={{ companies, setCompanies, fetchingCompanies, refreshCompanies }}>
+    <CompaniesContext.Provider value={{
+      companies,
+      setCompanies,
+      fetchingCompanies,
+      refreshCompanies,
+      fetchCompanies,
+      deleteCompany
+    }}>
       {children}
     </CompaniesContext.Provider>
   );

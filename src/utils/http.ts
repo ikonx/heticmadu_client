@@ -7,10 +7,10 @@ import { CreateCompanyDTO } from "./dto/company.dto";
 import { CreateTagsDTO } from './dto/tags.dto';
 
 const API_URL = process.env.REACT_APP_API_URL;
-export const getPois = async (): Promise<PoiModel[]> => 
+export const getPois = async (): Promise<PoiModel[]> =>
   await axios.get(`http://localhost:4000/pois`);
 
-export const getPoi = async (_id: string | number): Promise<PoiModel> => 
+export const getPoi = async (_id: string | number): Promise<PoiModel> =>
   await axios.get(`http://localhost:4000/pois/${_id}`);
 
 export const postPoi = async (_data: CreatePointsOfInterestDTO): Promise<PoiModel> =>
@@ -22,7 +22,7 @@ export const getCompanies = async (): Promise<CompaniesModel[]> =>
 export const deletePoi = async (_id: string | number): Promise<any> =>
   await axios.delete(`${API_URL}pois/${_id}`);
 
-export const getTags = async (): Promise<TagModel[]> => 
+export const getTags = async (): Promise<TagModel[]> =>
   await axios.get(`http://localhost:4000/tags`);
 
 export const postTags = async (_data: CreateTagsDTO): Promise<TagModel> =>
@@ -36,3 +36,6 @@ export const postCompanies = async (_data: CreateCompanyDTO): Promise<CompaniesM
 
 export const getSingleCompanies = async (): Promise<any> =>
   await axios.get('${API_URL}');
+
+export const deleteCompany = async (_id: string | number): Promise<any> =>
+  await axios.delete(`${API_URL}clients/${_id}`);
