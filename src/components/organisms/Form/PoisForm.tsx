@@ -115,6 +115,17 @@ const PoisForm: React.FC<Props> = () => {
     setPoiData(newPoiState);
   };
 
+  const updateAddressField = (_fieldKey: any, _fieldValue: any) => {
+    const newPoiState: CreatePointsOfInterestDTO = { ...poiData };
+    // @ts-ignore
+    setPoiData({
+      ...newPoiState,
+      address: _fieldValue.address,
+      longitude: _fieldValue.longitude,
+      latitude: _fieldValue.latitude,
+    });
+  };
+
   useEffect(() => {
     console.log(poiData);
   }, [poiData]);
@@ -150,11 +161,7 @@ const PoisForm: React.FC<Props> = () => {
                   title="Adresse complète"
                   placeholder="Entrez l'adresse du POI ..."
                   fieldKey={'address'}
-                  onChange={(_fieldKey: any, _fieldValue: any) => {
-                    const newPoiState: CreatePointsOfInterestDTO = { ...poiData, ..._fieldValue };
-                    // @ts-ignore
-                    setPoiData(newPoiState);
-                  }}
+                  onChange={updateAddressField}
                   fieldValue={poiData['address']}
                 />
               </Grid>
