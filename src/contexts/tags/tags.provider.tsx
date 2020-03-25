@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import TagsContext from './tags.context';
 import { getTags, deleteTag as deleteTagAPI } from 'utils/http';
 import { TagModel } from 'utils/models/tag.model';
+import UserContext from 'contexts/user/user.context';
 
 interface Props {}
 
@@ -10,16 +11,19 @@ const defaultTags: TagModel[] = [];
 const TagsProvider: React.FC<Props> = ({ children }) => {
   const [tags, setTags] = useState<TagModel[]>(defaultTags);
   const [fetchingTags, setFetchingTags] = useState<boolean>(false);
+  const { isLogin } = useContext(UserContext);
 
   useEffect(() => {
-    setFetchingTags(true);
-    getTags().then((res: any) => {
-      if (res.status === 200) {
-        setTags(res.data);
-        setFetchingTags(false);
-      }
-    });
-    setFetchingTags(false);
+    if (isLogin) {
+      setFetchingTags(true);
+      getTags().then((res: any) => {
+        if (res.status === 200) {
+          setTags(res.data);
+          setFetchingTags(false);
+        }
+      });
+      setFetchingTags(false);
+    }
   }, []);
 
   const refreshTags = () =>
@@ -38,8 +42,8 @@ const TagsProvider: React.FC<Props> = ({ children }) => {
         refreshTags();
         setFetchingTags(false);
       }
-      return res
-    })
+      return res;
+    });
   };
 
   return (
