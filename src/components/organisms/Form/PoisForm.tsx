@@ -126,10 +126,6 @@ const PoisForm: React.FC<Props> = () => {
     });
   };
 
-  useEffect(() => {
-    console.log(poiData);
-  }, [poiData]);
-
   return (
     <section>
       {step === 1 ? (

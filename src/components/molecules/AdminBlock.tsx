@@ -48,7 +48,6 @@ const StyledLink = styled(Link)`
 `;
 
 const AdminBlock: React.FC<Props> = ({ status, clickListener }) => {
-    console.log(status);
     return (
         <StyledContainer onClick={clickListener}>
             <Admin />
