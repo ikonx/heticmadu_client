@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import places from 'places.js';
 import { StyledFormControl, StyledInput, StyledLabel } from './_style';
 
@@ -18,6 +18,7 @@ const InputAutocomplete: React.FC<Props> = ({
   fieldValue,
 }) => {
   const search = useRef(null);
+  const [coordinates, setCoordinates] = useState({});
 
   useEffect(() => {
     const options = {
@@ -37,10 +38,19 @@ const InputAutocomplete: React.FC<Props> = ({
         latitude: e.suggestion.latlng.lat,
         address: e.suggestion.value,
       };
-      onChange && onChange(fieldKey, parsedData);
+      setCoordinates(parsedData);
     });
-    // eslint-disable-next-line
   }, []);
+
+  const changeEvent = (e: any) => {
+    if (onChange) {
+      coordinates ? (
+        onChange("coordinates", coordinates || '')
+      ) : (
+        onChange(fieldKey || '', e.target.value || '')
+      )
+    }
+  }
 
   return (
     <StyledFormControl>
@@ -51,6 +61,7 @@ const InputAutocomplete: React.FC<Props> = ({
         className="form-control"
         placeholder={placeholder}
         defaultValue={fieldValue}
+        onBlur={e => changeEvent(e)}
       />
     </StyledFormControl>
   );

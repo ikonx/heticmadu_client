@@ -13,7 +13,6 @@ export interface CreateCompanyDTO {
   rse: string;
   numberOfEmployees: string;
   picture: string;
-  perimeter: string;
   status: string;
   type: ICompanyTypeEnum;
   creationDate: string;

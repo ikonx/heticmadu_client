@@ -9,9 +9,8 @@ import FormsFooter from "../../molecules/FormsFooter";
 import { radioCompany, radioCompanyActive, radioPerimeter } from "../../../utils/formsMocks/CompaniesForm";
 import InputAutocomplete from "../../atoms/Inputs/Autocomplete/InputAutocomplete";
 import { CreateCompanyDTO, ICompanyTypeEnum } from "../../../utils/dto/company.dto";
-import { IStatusEnum } from "../../../utils/interfaces/statusEnum";
 import CompaniesContext from "../../../contexts/companies/companies.context";
-import { postCompanies, postPoi } from "../../../utils/http";
+import { postCompanies } from "../../../utils/http";
 import { useHistory } from "react-router-dom";
 
 interface Props {
@@ -23,7 +22,6 @@ const emptyCompany: CreateCompanyDTO = {
   rse: '',
   numberOfEmployees: '',
   picture: '',
-  perimeter: '1',
   status: 'Close',
   type: ICompanyTypeEnum.STARTUP,
   creationDate: '2020-02-20T14:50:44+00:00',
@@ -31,7 +29,7 @@ const emptyCompany: CreateCompanyDTO = {
     {
       "longitude": "1.273828",
       "latitude": "1.273828",
-      "perimeter": 20
+      "perimeter": 1
     }
   ]
 };
@@ -44,8 +42,20 @@ const CompaniesForm: React.FC<Props> = () => {
   const history = useHistory();
   const updateField = (_fieldKey: any, _fieldValue: any) => {
     const newPoiState: CreateCompanyDTO = { ...companyData };
-    // @ts-ignore
-    newPoiState[_fieldKey] = _fieldValue;
+    const isFieldAutocomplete = _fieldKey === "coordinates";
+    const isFieldPerimeter = _fieldKey === "perimeter";
+
+    if (isFieldAutocomplete) {
+      newPoiState['clientsPositions'][0].longitude = _fieldValue.longitude;
+      newPoiState['clientsPositions'][0].latitude = _fieldValue.latitude;
+      newPoiState['address'] = _fieldValue.address;
+    } else if (isFieldPerimeter){
+      newPoiState['clientsPositions'][0].perimeter = _fieldValue;
+    } else {
+      // @ts-ignore
+      newPoiState[_fieldKey] = _fieldValue;
+    }
+
     setCompanyData(newPoiState);
   };
   const onNextStep = () => {
@@ -118,7 +128,7 @@ const CompaniesForm: React.FC<Props> = () => {
               title="Périmètre"
               fieldKey={'perimeter'}
               onChange={updateField}
-              fieldValue={companyData['perimeter']}
+              fieldValue={companyData['clientsPositions'][0].perimeter}
             />
           </Grid>
         </Grid>
