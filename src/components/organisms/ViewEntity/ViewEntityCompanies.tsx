@@ -8,6 +8,7 @@ import { index as TableHead } from "../../molecules/Table/Head";
 import { index as TableItem } from "../../molecules/Table/Row";
 import { Table, TableBody } from "@material-ui/core";
 import { Colors } from "../../../utils/styles";
+import {radioCompany} from "../../../utils/formsMocks/CompaniesForm";
 
 interface Props {
   fields: any[];
@@ -37,7 +38,9 @@ const StyledTableBody = styled(TableBody)`
 
 
 const ViewEntity: React.FC<Props> = ({ defaultData, tableData }) => {
+  const companyType = radioCompany.find((item: any) => item.value === defaultData.type || item.name === defaultData.type);
   defaultData.pattern = defaultData.rse.slice(defaultData.rse.indexOf('@'));
+  defaultData.type = companyType && companyType.name;
 
   const deleteRow = () => {
     console.log('DELETE ITEM');

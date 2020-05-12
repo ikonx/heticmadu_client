@@ -1,9 +1,9 @@
 import { ICoordinates } from 'utils/interfaces/coordinates';
 
 export enum ICompanyTypeEnum {
-  STARTUP = 'Startup',
-  GRANDGROUPE = 'Grand Groupe',
-  PME = 'PME',
+  STARTUP = 'startup',
+  GRANDGROUPE = 'grandGroupe',
+  PME = 'pme',
 }
 
 export interface CreateCompanyDTO {
@@ -13,7 +13,6 @@ export interface CreateCompanyDTO {
   rse: string;
   numberOfEmployees: string;
   picture: string;
-  perimeter: string;
   status: string;
   type: ICompanyTypeEnum;
   creationDate: string;
