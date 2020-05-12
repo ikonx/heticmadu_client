@@ -1,9 +1,9 @@
 import { ICoordinates } from 'utils/interfaces/coordinates';
 
 export enum ICompanyTypeEnum {
-  STARTUP = 'Startup',
-  GRANDGROUPE = 'Grand Groupe',
-  PME = 'PME',
+  STARTUP = 'startup',
+  GRANDGROUPE = 'grand groupe',
+  PME = 'pme',
 }
 
 export interface CreateCompanyDTO {
