@@ -19,6 +19,7 @@ import Swal from 'sweetalert2';
 import CompaniesContext from "../../contexts/companies/companies.context";
 import withReactContent from "sweetalert2-react-content";
 import moment from "moment";
+import {radioCompany} from "../../utils/formsMocks/CompaniesForm";
 
 const CompanyContainer = styled.section`
   width: 100%;
@@ -114,9 +115,11 @@ const Companies: React.FC<Props> = () => {
                   <TableHead tableValues={dataTableHead}/>
                   <StyledTableBody>
                     { dataAllCompanies.map((company, i) => {
+                      const companyType = radioCompany.find((item: any) => item.value === company.type || item.name === company.type);
+
                       const tableCompany = {
                         name: company.name,
-                        type: company.type,
+                        type: companyType && companyType.name,
                         pattern: company.rse,
                         numberOfEmployees: company.numberOfEmployees,
                         creationDate: moment(company.creationDate).format('DD/M/YY'),

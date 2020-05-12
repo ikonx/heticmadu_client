@@ -2,7 +2,7 @@ import { ICoordinates } from 'utils/interfaces/coordinates';
 
 export enum ICompanyTypeEnum {
   STARTUP = 'startup',
-  GRANDGROUPE = 'grand groupe',
+  GRANDGROUPE = 'grandGroupe',
   PME = 'pme',
 }
 

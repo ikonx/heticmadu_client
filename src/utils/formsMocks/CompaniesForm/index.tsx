@@ -7,7 +7,7 @@ export const radioCompany = [
   {
     name: 'Grand Groupe',
     category: 'company',
-    value: 'grand groupe'
+    value: 'grandGroupe'
   },
   {
     name: 'PME',
