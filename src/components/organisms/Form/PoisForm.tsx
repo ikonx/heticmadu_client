@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Grid } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { postPoi } from 'utils/http';

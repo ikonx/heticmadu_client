@@ -36,27 +36,25 @@ const UserProvider: React.FC<Props> = ({ children }) => {
   const checkToken = () => {
     const token = localStorage.getItem('token');
     if (token) {
-      const { exp, iat } = jwtDecode.default(token);
+      const { exp } = jwtDecode.default(token);
       const expDate = moment.unix(exp);
       const now = moment();
-
       if (now.isAfter(expDate)) {
+        history.push('/login');
+        localStorage.setItem('token', '');
         setUser({ ...user, token: '', isLogin: false });
       } else {
-        history.push('/');
+        localStorage.setItem('token', token);
         setUser({ ...user, token, isLogin: true });
       }
+    } else {
+      history.push('/login');
     }
   };
 
   useEffect(() => {
     checkToken();
   }, []);
-
-  useEffect(() => {
-    user.isLogin === false && history.push('/login');
-    user.isLogin === false && checkToken();
-  }, [user.isLogin]);
 
   return (
     <UserContext.Provider value={{ user, setUser, loginUser }}>

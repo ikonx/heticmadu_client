@@ -10,8 +10,6 @@ import MainUi from 'components/template/MainUi/MainUi';
 import Login from 'components/pages/Login';
 
 // providers
-import PoisProvider from 'contexts/pois/pois.provider';
-import TagsProvider from 'contexts/tags/tags.provider';
 import UserProvider from 'contexts/user/user.provider';
 
 import './App.css';

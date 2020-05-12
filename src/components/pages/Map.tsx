@@ -15,7 +15,7 @@ import CustomSelect from 'components/atoms/Select/CustomSelect';
 import RadioMultiple from 'components/atoms/Inputs/RadioMultiple/RadioMultiple';
 import CardItem, { CardItemProps } from 'components/molecules/Card/CardItem';
 
-import { radioPrice, radioTags } from 'utils/formsMocks/PoisForm';
+import { radioPrice } from 'utils/formsMocks/PoisForm';
 import { filterType } from 'utils/filters/type.filter';
 import { filterPrice } from 'utils/filters/price.filter';
 import { filterTags } from 'utils/filters/tags.filter';
@@ -51,7 +51,7 @@ const StyledFiltersContainer = styled<any>(Grid)`
   top: 0;
   left: 0;
   z-index: 4;
-  transform: translateX(${props => (props.isFiltring ? '0' : '-100%')});
+  transform: translateX(${(props) => (props.isFiltring ? '0' : '-100%')});
   transition: all 0.3s ease;
   background: #f4f6f8;
   border: 1px solid #eaedf3;
@@ -75,7 +75,7 @@ const StyledMotionPreviewCard = styled(motion.div)`
   z-index: 4;
 `;
 
-const MotionMarker = styled(motion.div)`
+export const MotionMarker = styled(motion.div)`
   cursor: pointer;
 `;
 
@@ -152,8 +152,8 @@ const Map: React.FC<Props> = () => {
         // eslint-disable-next-line
         style="mapbox://styles/mapbox/streets-v9"
         containerStyle={{
-          height: '100%',
           width: '100vw',
+          height: 'calc(100vh - 72px)',
         }}
         movingMethod="flyTo"
         center={[2.349014, 48.864716]}
