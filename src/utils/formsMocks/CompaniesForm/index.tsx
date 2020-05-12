@@ -2,17 +2,17 @@ export const radioCompany = [
   {
     name: 'Startup',
     category: 'company',
-    value: 'Startup'
+    value: 'startup'
   },
   {
     name: 'Grand Groupe',
     category: 'company',
-    value: 'Grand Groupe'
+    value: 'grandGroupe'
   },
   {
     name: 'PME',
     category: 'company',
-    value: 'PME'
+    value: 'pme'
   }
 ];
 
