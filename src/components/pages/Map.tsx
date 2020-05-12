@@ -15,7 +15,7 @@ import CustomSelect from 'components/atoms/Select/CustomSelect';
 import RadioMultiple from 'components/atoms/Inputs/RadioMultiple/RadioMultiple';
 import CardItem, { CardItemProps } from 'components/molecules/Card/CardItem';
 
-import { radioPrice, radioTags } from 'utils/formsMocks/PoisForm';
+import { radioPrice } from 'utils/formsMocks/PoisForm';
 import { filterType } from 'utils/filters/type.filter';
 import { filterPrice } from 'utils/filters/price.filter';
 import { filterTags } from 'utils/filters/tags.filter';

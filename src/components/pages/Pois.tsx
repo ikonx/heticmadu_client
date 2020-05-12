@@ -59,7 +59,7 @@ const Pois: React.FC<Props> = () => {
   const [selectedPoi, setPoi] = useState<CardItemProps | null>(null);
   const [defaultEntries, setDefaultEntries] = useState<CardItemProps[]>([]);
   const [entries, setEntries] = useState<CardItemProps[]>([]);
-  const { pois, fetchingPois, deletePoi } = useContext(PoisContext);
+  const { pois, fetchingPois, deletePoi, refreshPois } = useContext(PoisContext);
   const [isMapReady, setMapReady] = useState<any>(false);
   const [previewCardData, setPreviewCardData] = useState<CardItemProps | null>(
     null,
@@ -74,8 +74,8 @@ const Pois: React.FC<Props> = () => {
   useEffect(() => {
     setDefaultEntries(pois);
     setEntries(pois);
-    console.log("pois", pois);
-    
+    console.log('pois', pois);
+
     // eslint-disable-next-line
   }, [pois]);
 
@@ -119,6 +119,7 @@ const Pois: React.FC<Props> = () => {
           }
         });
     }
+    refreshPois();
   }, []);
 
   const renderMap = useMemo(
@@ -127,7 +128,7 @@ const Pois: React.FC<Props> = () => {
         // eslint-disable-next-line
         style="mapbox://styles/mapbox/streets-v9"
         containerStyle={{
-          width: '100vw',
+          width: '100%',
           height: 'calc(100vh - 72px)',
         }}
         movingMethod="flyTo"
@@ -139,6 +140,7 @@ const Pois: React.FC<Props> = () => {
         onStyleLoad={() => setMapReady(true)}
         onClick={() => {
           setPreviewCardData(null);
+          setPoi(null);
         }}
       >
         <ZoomControl />
@@ -153,6 +155,7 @@ const Pois: React.FC<Props> = () => {
                   offset={[0, -15]}
                   onClick={() => {
                     setPreviewCardData(entry);
+                    setPoi(entry);
                   }}
                 >
                   <MotionMarker
@@ -176,7 +179,7 @@ const Pois: React.FC<Props> = () => {
       </MapComponent>
     ),
     // eslint-disable-next-line
-    [entries, isMapReady, pois],
+    [entries, isMapReady, pois, selectedPoi],
   );
 
   return (
