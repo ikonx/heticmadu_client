@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
-import ReactMapboxGl from 'react-mapbox-gl';
+import ReactMapboxGl, { Marker, ZoomControl } from 'react-mapbox-gl';
 import { Grid as GoogleGrid, LinearProgress } from '@material-ui/core';
 import Grid, { FlowEnum } from 'components/atoms/Grid/Grid';
 import CardItem, { CardItemProps } from '../molecules/Card/CardItem';
@@ -14,6 +14,7 @@ import { GridContainer, StyledIconBack } from 'utils/styles/Globals';
 import { useLocation, useHistory } from 'react-router-dom';
 import BtnRed from '../atoms/Buttons/BtnRed';
 import PoisContext from 'contexts/pois/pois.context';
+import MapPointIcon from 'components/atoms/MapPointIcon/MapPointIcon';
 
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -21,6 +22,8 @@ import withReactContent from 'sweetalert2-react-content';
 import TitleModal from 'components/atoms/Text/TitleModal';
 import TextModal from 'components/atoms/Text/TextModal';
 import { getPoi } from 'utils/http';
+import { AnimatePresence } from 'framer-motion';
+import { MotionMarker } from './Map';
 
 interface Props {}
 
@@ -46,7 +49,7 @@ const ContainerList = styled.div`
   padding: 0 2rem 10rem;
 `;
 
-const Map = ReactMapboxGl({
+const MapComponent = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOXGL_KEY || '',
 });
 
@@ -54,7 +57,27 @@ const MySwal = withReactContent(Swal);
 
 const Pois: React.FC<Props> = () => {
   const [selectedPoi, setPoi] = useState<CardItemProps | null>(null);
+  const [defaultEntries, setDefaultEntries] = useState<CardItemProps[]>([]);
+  const [entries, setEntries] = useState<CardItemProps[]>([]);
   const { pois, fetchingPois, deletePoi } = useContext(PoisContext);
+  const [isMapReady, setMapReady] = useState<any>(false);
+  const [previewCardData, setPreviewCardData] = useState<CardItemProps | null>(
+    null,
+  );
+
+  const spring = {
+    type: 'spring',
+    damping: 900,
+    stiffness: 600,
+  };
+
+  useEffect(() => {
+    setDefaultEntries(pois);
+    setEntries(pois);
+    console.log("pois", pois);
+    
+    // eslint-disable-next-line
+  }, [pois]);
 
   const handleOpen = () => {
     MySwal.fire({
@@ -68,7 +91,7 @@ const Pois: React.FC<Props> = () => {
       confirmButtonText: 'Suprimmer',
       cancelButtonText: 'Annuler',
       reverseButtons: true,
-    }).then(result => {
+    }).then((result) => {
       if (result.value) {
         MySwal.fire('Supprimé !', 'Cette POI à bien été supprimé');
         setPoi(null);
@@ -97,6 +120,64 @@ const Pois: React.FC<Props> = () => {
         });
     }
   }, []);
+
+  const renderMap = useMemo(
+    () => (
+      <MapComponent
+        // eslint-disable-next-line
+        style="mapbox://styles/mapbox/streets-v9"
+        containerStyle={{
+          width: '100vw',
+          height: 'calc(100vh - 72px)',
+        }}
+        movingMethod="flyTo"
+        center={[
+          selectedPoi?.longitude || 2.3488,
+          selectedPoi?.latitude || 48.8534,
+        ]}
+        zoom={selectedPoi ? [18] : [11.25]}
+        onStyleLoad={() => setMapReady(true)}
+        onClick={() => {
+          setPreviewCardData(null);
+        }}
+      >
+        <ZoomControl />
+        <AnimatePresence>
+          {isMapReady &&
+            entries.map((entry, index) => {
+              return (
+                <Marker
+                  key={entry.id}
+                  coordinates={[entry.longitude, entry.latitude] || [0, 0]}
+                  anchor="bottom"
+                  offset={[0, -15]}
+                  onClick={() => {
+                    setPreviewCardData(entry);
+                  }}
+                >
+                  <MotionMarker
+                    initial={{ scale: 0, y: -100 }}
+                    animate={{ scale: 1, y: 0 }}
+                    exit={{ scale: 0, y: 30 }}
+                    whileHover={{ scale: 1.1 }}
+                    key={entry.id}
+                    transition={{
+                      ...spring,
+                      delay: index * 0.05,
+                      duration: 0.3,
+                    }}
+                  >
+                    <MapPointIcon point={entry} />
+                  </MotionMarker>
+                </Marker>
+              );
+            })}
+        </AnimatePresence>
+      </MapComponent>
+    ),
+    // eslint-disable-next-line
+    [entries, isMapReady, pois],
+  );
 
   return (
     <PoiContainer>
@@ -172,21 +253,7 @@ const Pois: React.FC<Props> = () => {
           )}
         </LeftColumn>
         <GoogleGrid item xs={5}>
-          <Map
-            // eslint-disable-next-line
-            style="mapbox://styles/mapbox/streets-v9"
-            containerStyle={{
-              height: 'calc(100vh - 72px)',
-              width: '100%',
-              maxWidth: 'calc(100vw - 280px)',
-            }}
-            movingMethod="flyTo"
-            center={[
-              selectedPoi?.longitude || 2.3488,
-              selectedPoi?.latitude || 48.8534,
-            ]}
-            zoom={selectedPoi ? [18] : [11.25]}
-          />
+          {renderMap}
         </GoogleGrid>
       </GridContainer>
     </PoiContainer>
