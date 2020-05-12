@@ -61,9 +61,6 @@ const Pois: React.FC<Props> = () => {
   const [entries, setEntries] = useState<CardItemProps[]>([]);
   const { pois, fetchingPois, deletePoi, refreshPois } = useContext(PoisContext);
   const [isMapReady, setMapReady] = useState<any>(false);
-  const [previewCardData, setPreviewCardData] = useState<CardItemProps | null>(
-    null,
-  );
 
   const spring = {
     type: 'spring',
@@ -74,8 +71,6 @@ const Pois: React.FC<Props> = () => {
   useEffect(() => {
     setDefaultEntries(pois);
     setEntries(pois);
-    console.log('pois', pois);
-
     // eslint-disable-next-line
   }, [pois]);
 
@@ -139,7 +134,6 @@ const Pois: React.FC<Props> = () => {
         zoom={selectedPoi ? [18] : [11.25]}
         onStyleLoad={() => setMapReady(true)}
         onClick={() => {
-          setPreviewCardData(null);
           setPoi(null);
         }}
       >
@@ -154,7 +148,6 @@ const Pois: React.FC<Props> = () => {
                   anchor="bottom"
                   offset={[0, -15]}
                   onClick={() => {
-                    setPreviewCardData(entry);
                     setPoi(entry);
                   }}
                 >
