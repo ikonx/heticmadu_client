@@ -8,4 +8,4 @@ FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 COPY --from=build ./build/* ./
 COPY --from=build ./build/static/ ./static
-COPY ./devops/nginx/heticmadu.conf /etc/nginx/conf.d/default.conf
+COPY ./devops/prod/nginx/heticmadu.conf /etc/nginx/conf.d/default.conf
