@@ -41,7 +41,7 @@ export const loginUser = async ({
   email: string;
   password: string;
 }): Promise<any> =>
-  await axios.post(`${API_URL}auth/login`, { email, password });
+  await axios.post(`http://localhost:4000/auth/login`, { email, password });
 
 // COMPANIES
 

@@ -23,6 +23,10 @@ const MenuContainer: React.FC<Props> = () => {
         {
             "title": "Tags",
             "link": "/tags"
+        },
+        {
+            "title": "Story",
+            "link": "/story"
         }
     ];
 

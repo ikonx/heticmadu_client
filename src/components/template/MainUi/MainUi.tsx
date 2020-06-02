@@ -8,6 +8,7 @@ import Companies from 'components/pages/Companies';
 import Pois from 'components/pages/Pois';
 import Form from 'components/pages/Form';
 import Tags from 'components/pages/Tags';
+import Story from 'components/pages/Story';
 import Header from 'components/molecules/Header';
 import Map from 'components/pages/Map';
 import TagsProvider from 'contexts/tags/tags.provider';
@@ -51,6 +52,9 @@ const MainUi: React.FC<Props> = () => {
                 </Route>
                 <Route exact path="/tags">
                   <Tags />
+                </Route>
+                <Route path="/story">
+                  <Story />
                 </Route>
                 <Route path="/form/:page">
                   <CompaniesProvider>
