@@ -23,6 +23,6 @@ const TextModal: React.FC<Props> = ({textContent}) => {
             {textContent}
         </StyledTextContent>
     )
-}
+};
 
 export default TextModal;

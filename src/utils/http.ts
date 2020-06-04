@@ -58,3 +58,14 @@ export const getSingleCompanies = async (): Promise<any> =>
 
 export const deleteCompany = async (_id: string | number): Promise<any> =>
   await axios.delete(`${API_URL}clients/${_id}`);
+
+// THEMES
+
+export const getThemes = async () =>
+    await axios.get(`${API_URL}themes`);
+
+export const postTheme = async (theme: any) =>
+    await axios.post(`${API_URL}themes`, {theme});
+
+export const deleteTheme = async (_id: string | number): Promise<any> =>
+    await axios.delete(`${API_URL}themes/${_id}`);
